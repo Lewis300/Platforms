@@ -6,19 +6,23 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Platforms extends Game
 {
-	SpriteBatch sb;
+	Batch sb;
 	Screen gameScreen;
 
-	public static final int SCREEN_WIDTH = Gdx.graphics.getWidth();
-	public static final int SCREEN_HEIGHT = Gdx.graphics.getHeight();
+	public static int SCREEN_WIDTH;
+	public static int SCREEN_HEIGHT;
 	
 	@Override
 	public void create ()
 	{
+		SCREEN_WIDTH = Gdx.graphics.getWidth();
+		SCREEN_HEIGHT = Gdx.graphics.getHeight();
+
 		sb = new SpriteBatch();
 		gameScreen = new GameScreen(sb);
 		setScreen(gameScreen);
