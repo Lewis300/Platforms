@@ -22,7 +22,15 @@ public class ProababilityTools
         return probAsFraction[0]+":"+(probAsFraction[1]-probAsFraction[0]);
     }
 
-    public static int[] asFraction(long a, long b) {
+    public static int[] asFraction(double a, double b)
+    {
+        int accuaracyA = Double.toString(a).length() - 2;
+        int accuracyB = Double.toString(b).length() - 2;
+
+        return asFraction((long)(a*accuaracyA*10), (long)(b*accuracyB*10));
+    }
+
+    private static int[] asFraction(long a, long b) {
         long gcd = greatestCommonDenominator(a, b);
         //return (a / gcm) + "/" + (b / gcm);
 
@@ -30,7 +38,7 @@ public class ProababilityTools
         return arr;
     }
 
-    public static long greatestCommonDenominator(long a, long b) {
+    private static long greatestCommonDenominator(long a, long b) {
         return b == 0 ? a : greatestCommonDenominator(b, a % b);
     }
 }
