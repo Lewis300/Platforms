@@ -8,10 +8,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Platfroms extends Game
+public class Platforms extends Game
 {
 	SpriteBatch sb;
 	Screen gameScreen;
+
+	public static final int SCREEN_WIDTH = Gdx.graphics.getWidth();
+	public static final int SCREEN_HEIGHT = Gdx.graphics.getHeight();
 	
 	@Override
 	public void create ()
