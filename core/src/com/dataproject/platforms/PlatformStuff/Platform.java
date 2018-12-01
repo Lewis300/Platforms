@@ -33,19 +33,22 @@ public class Platform extends Actor
     {
         initPosition();
 
-        platBodyDef = new BodyDef();
-        platBodyDef.type = BodyDef.BodyType.KinematicBody;
-        platBodyDef.position.set(position);
+        //Initialize the platforms BodyDef
+            platBodyDef = new BodyDef();
+            platBodyDef.type = BodyDef.BodyType.KinematicBody;
+            platBodyDef.position.set(position);
 
-        platShape.setAsBox(size.x, size.y);
+        //Initialize the FixtureDef characteristics
+            platShape.setAsBox(size.x, size.y);
         /*
             Set characteristics of this object (characteristics are defined by the FixtureDef)
             ...
          */
-        platFixDef.shape = platShape;
+            platFixDef.shape = platShape;
 
-        platform = gameWorld.createBody(platBodyDef);
-        platform.createFixture(platFixDef);
+        //Add body to game world define body with the FixtureDef
+            platform = gameWorld.createBody(platBodyDef);
+            platform.createFixture(platFixDef);
 
 
     }
