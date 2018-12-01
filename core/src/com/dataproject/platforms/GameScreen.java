@@ -56,8 +56,6 @@ public class GameScreen implements Screen
         rayHandler.update();
         gameCam.update();
 
-        System.out.println(ground.getPosition());
-
         sb.setProjectionMatrix(gameCam.combined);
     }
 
