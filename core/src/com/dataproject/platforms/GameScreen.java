@@ -72,6 +72,7 @@ public class GameScreen implements Screen
 //        sb.begin();
 //        sb.end();
 
+
         rayHandler.render();
         b2dr.render(world, gameCam.combined);
     }
@@ -103,7 +104,7 @@ public class GameScreen implements Screen
             //Initialize left platforms
             p1_platforms = new Platform[INITIAL_PLAT_AMT];
 
-            for(int i = 0; i< INITIAL_PLAT_AMT; i++)
+            for(int i = 0; i < INITIAL_PLAT_AMT; i++)
             {
                 p1_platforms[i] = new Platform(world, new Vector2(Platform.PLATFORM_WIDTH + Platforms.SCREEN_WIDTH/30f, groundPosition.y + groundSize.y + (i+1)*platformSpacing + i*Platform.PLATFORM_HEIGHT));
             }

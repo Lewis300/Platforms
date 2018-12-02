@@ -39,7 +39,7 @@ public class Platform extends Actor
         //Initialize the platforms BodyDef
             platBodyDef = new BodyDef();
             platBodyDef.type = BodyDef.BodyType.DynamicBody;
-            platBodyDef.gravityScale=0; //Makes sure the platform doesent spontaneously fall
+            platBodyDef.gravityScale = 0; //Makes sure the platform doesent spontaneously fall
             platBodyDef.position.set(position);
 
         //Initialize the FixtureDef characteristics
