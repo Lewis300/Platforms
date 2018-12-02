@@ -2,43 +2,54 @@ package com.dataproject.platforms.Utilities;
 
 public class ProababilityTools
 {
+    // Returns random integer between min and max
     public static int randInt(int min, int max)
     {
         return min + (int)((max-min + 1)*Math.random());
     }
 
+    // Returns a random float between min and max
     public static float randFloat(float min, float max)
     {
         return min + (float)((max-min + 1)*Math.random());
     }
 
+    // Returns the odds in favour as a string in the form of "X:Y" given the probability in favour as a decimal
     public static String oddsInFavour(double probability)
     {
         int accuracy = Double.toString(probability).length() - 2; //How many decimal places
-        //long gcd = greatestCommonDenominator(probability*10*accuracy, 10*accuracy);
 
-        int[] probAsFraction = asFraction((int)(probability*accuracy*10), accuracy*10);
+        long[] probAsFraction = asFraction((long)(probability*Math.pow(10, accuracy)), (long)Math.pow(10, accuracy));;
 
-        return probAsFraction[0]+":"+(probAsFraction[1]-probAsFraction[0]);
+        long[] oddsInFavour = {probAsFraction[0], probAsFraction[1]-probAsFraction[0]};
+
+        return oddsInFavour[0]+":"+oddsInFavour[1];
     }
 
-    public static int[] asFraction(double a, double b)
+    // Returns the odds against as a string in the form of "X:Y" given the probability in favour as a decimal
+    public static String oddsAgainst(double probability)
     {
-        int accuaracyA = Double.toString(a).length() - 2;
-        int accuracyB = Double.toString(b).length() - 2;
+        int accuracy = Double.toString(probability).length() - 2; //How many decimal places
 
-        return asFraction((long)(a*accuaracyA*10), (long)(b*accuracyB*10));
+        long[] probAsFraction = asFraction((long)(probability*Math.pow(10, accuracy)), (long)Math.pow(10, accuracy));
+
+        return (probAsFraction[1]-probAsFraction[0])+":"+probAsFraction[0];
     }
 
-    private static int[] asFraction(long a, long b) {
-        long gcd = greatestCommonDenominator(a, b);
-        //return (a / gcm) + "/" + (b / gcm);
 
-        int[] arr = {(int)(a/gcd), (int)(b/gcd)};
+    // [0] = aerator, [1] = denominator
+    private static long[] asFraction(long a, long b)
+    {
+        long gcd = greatestCommonDenominator(a, b);
+
+        long[] arr = {(long)(a/gcd), (long)(b/gcd)};
         return arr;
     }
 
-    private static long greatestCommonDenominator(long a, long b) {
-        return b == 0 ? a : greatestCommonDenominator(b, a % b);
+    // Returns the greatest common denominator of two longs
+    private static long greatestCommonDenominator(long a, long b)
+    {
+        if (b==0) return a;
+        return greatestCommonDenominator(b,a%b);
     }
 }
