@@ -17,6 +17,7 @@ public class GameScreen implements Screen
 {
     private Batch sb;
     private final int PPM = 100;
+    private final int INITIAL_PLAT_AMT = 15;
 
     //Renderers
     private Box2DDebugRenderer b2dr;
@@ -93,8 +94,29 @@ public class GameScreen implements Screen
 
             ground = world.createBody(groundBodyDef);
             ground.createFixture(groundFixtureDef);
+
+
         //Initialize platforms
 
+            int platformSpacing = Platforms.SCREEN_HEIGHT/30;
+
+            //Initialize left platforms
+            p1_platforms = new Platform[INITIAL_PLAT_AMT];
+
+            for(int i = 0; i< INITIAL_PLAT_AMT; i++)
+            {
+                p1_platforms[i] = new Platform(world, new Vector2(Platform.PLATFORM_WIDTH + Platforms.SCREEN_WIDTH/30f, groundPosition.y + groundSize.y + (i+1)*platformSpacing + i*Platform.PLATFORM_HEIGHT));
+            }
+
+
+            //Initialize right platforms
+
+            p2_platforms = new Platform[INITIAL_PLAT_AMT];
+
+            for(int i = 0; i< INITIAL_PLAT_AMT; i++)
+            {
+                p2_platforms[i] = new Platform(world, new Vector2(Platforms.SCREEN_WIDTH - Platform.PLATFORM_WIDTH - Platforms.SCREEN_WIDTH/30f, groundPosition.y + groundSize.y + (i+1)*platformSpacing + i*Platform.PLATFORM_HEIGHT));
+            }
     }
 
     @Override

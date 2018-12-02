@@ -8,6 +8,9 @@ import com.dataproject.platforms.Platforms;
 
 public class Platform extends Actor
 {
+    public static final float PLATFORM_WIDTH = Platforms.SCREEN_WIDTH/7f;
+    public static final float PLATFORM_HEIGHT = Platforms.SCREEN_HEIGHT/100f;
+
     //Box2d
     private World gameWorld;
 
@@ -15,12 +18,13 @@ public class Platform extends Actor
     private BodyDef platBodyDef;
     private FixtureDef platFixDef = new FixtureDef();
     private PolygonShape platShape;
-    private final Vector2 size = new Vector2(Platforms.SCREEN_WIDTH/7f, Platforms.SCREEN_HEIGHT/25f);
+    private final Vector2 size = new Vector2(PLATFORM_WIDTH, PLATFORM_HEIGHT);
     private final Vector2 position = new Vector2();
 
-    public Platform(World world)
+    public Platform(World world, Vector2 position)
     {
         gameWorld = world;
+        this.position.set(position);
 
         init();
     }
@@ -32,11 +36,10 @@ public class Platform extends Actor
 
     private void initBox2d()
     {
-        initPosition();
-
         //Initialize the platforms BodyDef
             platBodyDef = new BodyDef();
-            platBodyDef.type = BodyDef.BodyType.KinematicBody;
+            platBodyDef.type = BodyDef.BodyType.DynamicBody;
+            platBodyDef.gravityScale=0; //Makes sure the platform doesent spontaneously fall
             platBodyDef.position.set(position);
 
         //Initialize the FixtureDef characteristics
@@ -46,17 +49,12 @@ public class Platform extends Actor
             Set characteristics of this object (characteristics are defined by the FixtureDef)
             ...
          */
+            platFixDef.restitution = 1;
             platFixDef.shape = platShape;
 
         //Add body to game world define body with the FixtureDef
             platform = gameWorld.createBody(platBodyDef);
             platform.createFixture(platFixDef);
-
-
     }
 
-    private void initPosition()
-    {
-
-    }
 }
