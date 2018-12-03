@@ -1,7 +1,26 @@
 package com.dataproject.platforms.Utilities;
 
+import com.dataproject.platforms.Player;
+import com.dataproject.platforms.Powerups.Powerup;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 public class ProababilityTools
 {
+    public static Powerup roll(Player p)
+    {
+        double roll = Math.random();
+        for(Powerup pup: p.getAvailiblePowerups())
+        {
+            boolean isPupRolled = pup.getRange().isValueInRange(roll);
+            if(isPupRolled){return pup;}
+        }
+        return null;
+    }
+
     // Returns random integer between min and max
     public static int randInt(int min, int max)
     {
@@ -52,4 +71,6 @@ public class ProababilityTools
         if (b==0) return a;
         return greatestCommonDenominator(b,a%b);
     }
+
+
 }

@@ -1,5 +1,7 @@
 package com.dataproject.platforms.Powerups;
 
+import com.dataproject.platforms.Utilities.Range;
+
 public interface Powerup
 {
     void setRarity(double p);
@@ -10,4 +12,6 @@ public interface Powerup
 
     void animate(float dt);
     void initTextures();
+
+    Range getRange();
 }
