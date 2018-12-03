@@ -5,6 +5,7 @@ public class Laser  implements Powerup
     private static double rarity; //Probability of rolling this powerup
     private static  double chanceToHarmUser;
 
+    
 
     public Laser(double rarity, double chanceToHarmUser)
     {
