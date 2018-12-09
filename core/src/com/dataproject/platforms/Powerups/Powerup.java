@@ -1,5 +1,6 @@
 package com.dataproject.platforms.Powerups;
 
+import com.dataproject.platforms.Player;
 import com.dataproject.platforms.Utilities.Range;
 
 public interface Powerup
@@ -14,4 +15,6 @@ public interface Powerup
     void initTextures();
 
     Range getRange();
+
+    void use(Player self, Player other);
 }

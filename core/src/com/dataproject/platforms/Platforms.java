@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.dataproject.platforms.PlatformStuff.Platform;
 import com.dataproject.platforms.Utilities.ProababilityTools;
 
 public class Platforms extends Game
@@ -17,13 +18,17 @@ public class Platforms extends Game
 
 	public static int SCREEN_WIDTH;
 	public static int SCREEN_HEIGHT;
-	
+
+	public Platforms(int height, int width)
+	{
+		super();
+		SCREEN_HEIGHT = height;
+		SCREEN_WIDTH = width;
+	}
+
 	@Override
 	public void create ()
 	{
-		SCREEN_WIDTH = Gdx.graphics.getWidth();
-		SCREEN_HEIGHT = Gdx.graphics.getHeight();
-
 		sb = new SpriteBatch();
 		gameScreen = new GameScreen(sb);
 		setScreen(gameScreen);

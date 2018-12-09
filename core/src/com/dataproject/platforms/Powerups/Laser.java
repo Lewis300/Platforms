@@ -1,5 +1,6 @@
 package com.dataproject.platforms.Powerups;
 
+import com.dataproject.platforms.Player;
 import com.dataproject.platforms.Utilities.Range;
 
 public class Laser  implements Powerup
@@ -15,6 +16,12 @@ public class Laser  implements Powerup
         setChanceToHarmUser(chanceToHarmUser);
 
         initTextures();
+    }
+
+    @Override
+    public void use(Player self, Player other)
+    {
+
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.dataproject.platforms.PlatformStuff;
 
 import box2dLight.RayHandler;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -21,12 +22,25 @@ public class Platform extends Actor
     private final Vector2 size = new Vector2(PLATFORM_WIDTH, PLATFORM_HEIGHT);
     private final Vector2 position = new Vector2();
 
+    //Animation
+    private boolean animateDestroy = false;
+
     public Platform(World world, Vector2 position)
     {
         gameWorld = world;
         this.position.set(position);
 
         init();
+    }
+
+    @Override
+    public void draw(Batch batch, float parentAlpha)
+    {
+        if(animateDestroy)
+        {
+            // Animate destruction
+        }
+        super.draw(batch, parentAlpha);
     }
 
     private void init()
@@ -55,6 +69,12 @@ public class Platform extends Actor
         //Add body to game world define body with the FixtureDef
             platform = gameWorld.createBody(platBodyDef);
             platform.createFixture(platFixDef);
+    }
+
+    public void destroy()
+    {
+       animateDestroy = true;
+       platform.setActive(false);
     }
 
 }
