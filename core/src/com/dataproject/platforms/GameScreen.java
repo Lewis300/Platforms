@@ -1,9 +1,11 @@
 package com.dataproject.platforms;
 
+import box2dLight.PointLight;
 import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -16,9 +18,9 @@ import com.dataproject.platforms.PlatformStuff.Platform;
 public class GameScreen implements Screen
 {
     private Batch sb;
-    private final int PPM = 100;
-    private final int INITIAL_PLAT_AMT = 15;
-    public final int HUD_HEIGHT = Platforms.SCREEN_HEIGHT/7;
+    private static final int PPM = 100;
+    private static final int INITIAL_PLAT_AMT = 15;
+    public static final int HUD_HEIGHT = Platforms.SCREEN_HEIGHT/7;
 
     //Renderers
     private Box2DDebugRenderer b2dr;
@@ -27,6 +29,9 @@ public class GameScreen implements Screen
     //Box2d World
     private World world;
     private RayHandler rayHandler;
+    public static final float AMBIENT_LIGHT = 0.7f;
+    private PointLight sun;
+    private Vector2 sunPos;
 
     private final Vector2 gravity = new Vector2(0f,-9.81f);
     private final boolean allowSleepingObjects = false;
@@ -47,16 +52,19 @@ public class GameScreen implements Screen
         this.sb = sb;
         b2dr = new Box2DDebugRenderer();
         gameCam = new OrthographicCamera();
+        sunPos = new Vector2(Platforms.SCREEN_WIDTH/2, Platforms.SCREEN_HEIGHT/2);
 
     }
 
     public void update(float dt)
     {
         world.step(1/60f, 6,2);
-        rayHandler.update();
+        rayHandler.setCombinedMatrix(gameCam.combined);
+        //rayHandler.update();
         gameCam.update();
 
         sb.setProjectionMatrix(gameCam.combined);
+
     }
 
     @Override
@@ -72,8 +80,9 @@ public class GameScreen implements Screen
 //        sb.end();
 
 
-        rayHandler.render();
+
         b2dr.render(world, gameCam.combined);
+        rayHandler.updateAndRender();
     }
 
     private boolean worldInitialized = false;
@@ -86,6 +95,11 @@ public class GameScreen implements Screen
         Box2D.init();
         world = new World(gravity, allowSleepingObjects);
         rayHandler = new RayHandler(world);
+        rayHandler.setAmbientLight(AMBIENT_LIGHT);
+        //rayHandler.setAmbientLight(1,1,1,1);
+        sun = new PointLight(rayHandler, 600, Color.WHITE, 1000, 0,0);
+        sun.setSoftnessLength(0f);
+        sun.setPosition(sunPos);
 
         //Initialize the ground body and add to the Box2d world
             groundBodyDef = new BodyDef();
