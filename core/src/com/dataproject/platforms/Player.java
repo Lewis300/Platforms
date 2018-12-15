@@ -22,7 +22,7 @@ public class Player
     {
         if(onRightSide){onRightSide = false;}
         else{onRightSide = true;}
-        
+
         gameWorld = world;
         this.plats = plats;
     }
