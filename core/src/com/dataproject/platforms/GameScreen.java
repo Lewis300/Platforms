@@ -104,7 +104,7 @@ public class GameScreen implements Screen
 
 
         b2dr.render(world, gameCam.combined);
-        pdr.render(psys, 1, gameCam.combined);
+        //pdr.render(psys, 1, gameCam.combined);
         rayHandler.updateAndRender();
         pdr.render(psys, 1, gameCam.combined);
     }
@@ -168,7 +168,8 @@ public class GameScreen implements Screen
             ParticleSystemDef psysDef = new ParticleSystemDef();
             psysDef.pressureStrength = 100;
             psysDef.destroyByAge = true;
-            psysDef.lifetimeGranularity = 100;
+            psysDef.lifetimeGranularity = 10;
+            psysDef.maxCount = 1000000;
             psys = new ParticleSystem(world, psysDef);
 
         //Initialize Players

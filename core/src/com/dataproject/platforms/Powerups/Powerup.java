@@ -5,16 +5,16 @@ import com.dataproject.platforms.Utilities.Range;
 
 public interface Powerup
 {
-    void setRarity(double p);
-    void setChanceToHarmUser(double p);
+    void setRarity(double p); //Set rarity of rolling powerup
+    void setChanceToHarmUser(double p); //decimal probability to harm player using powerup
 
-    double getRarity();
-    double getChanceToHarmUser();
+    double getRarity(); //gets the rarity of rolling this powerup
+    double getChanceToHarmUser(); //gets the probability of harming the player using the powerup
 
-    void animate(float dt);
-    void initTextures();
+    void animate(float dt); //animates the sprite of the powerup
+    void initTextures(); //loads textures/sprites of the powerup
 
-    Range getRange();
+    Range getRange();//dw about this for not
 
-    void use(Player self, Player other, boolean harmSelf);
+    void use(Player self, Player other, boolean harmSelf); //Uses the powerup
 }

@@ -1,5 +1,6 @@
 package com.dataproject.platforms.Powerups;
 
+import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
@@ -21,9 +22,8 @@ public class Wave implements Powerup
     private static final int DROP_AMT = 10000;
     //private static World gameWorld;
 
-    private static Body[] drops;
-    private static BodyDef dropBodyDef;
-    private static FixtureDef dropFixDef = new FixtureDef();
+    private static ParticleDef dropBodyDef;
+   // private static Particle dropFixDef = new FixtureDef();
     private static CircleShape dropShape;
     private static final int radius = 1;
     //private final Vector2 position = new Vector2();
@@ -86,32 +86,32 @@ public class Wave implements Powerup
         psys = sys;
         dropShape = new CircleShape();
         dropShape.setRadius(radius);
+////
+////        dropFixDef = new FixtureDef();
+////        dropFixDef.shape = dropShape;
+////        dropFixDef.friction = 0;
+////
+////        // Create every drop
+////        drops = new Body[DROP_AMT];
+////        for(int i = 0; i<DROP_AMT; i++)
+////        {
+////            drops[i] = gameWorld.createBody(dropBodyDef);
+////            drops[i].createFixture(dropFixDef);
+////        }
+//        waveDef = new ParticleGroupDef();
+//        //waveDef.particleCount = 10;
+//        waveDef.strength = 1;
+//        waveDef.position.set(new Vector2(0,0));
+//        //waveDef.color.set(0,0,1,1);
+//        //waveDef.linearVelocity.set(new Vector2(100,0));
 //
-//        dropFixDef = new FixtureDef();
-//        dropFixDef.shape = dropShape;
-//        dropFixDef.friction = 0;
 //
-//        // Create every drop
-//        drops = new Body[DROP_AMT];
-//        for(int i = 0; i<DROP_AMT; i++)
-//        {
-//            drops[i] = gameWorld.createBody(dropBodyDef);
-//            drops[i].createFixture(dropFixDef);
-//        }
-        waveDef = new ParticleGroupDef();
-        //waveDef.particleCount = 100;
-        waveDef.strength = 1;
-        waveDef.position.set(new Vector2(0,0));
-        //waveDef.color.set(0,0,1,1);
-        //waveDef.linearVelocity.set(new Vector2(100,0));
-
-
-        PolygonShape shp = new PolygonShape();
-        shp.setAsBox(10,5);
-        waveDef.shape = shp;
-        //waveDef.angle= 5.5f;
-        //waveDef.angularVelocity=0f;
-        //waveDef.linearVelocity.set(1000, 10);
+//        PolygonShape shp = new PolygonShape();
+//        shp.setAsBox(10,5);
+//        waveDef.shape = shp;
+//        //waveDef.angle= 5.5f;
+//        //waveDef.angularVelocity=0f;
+//        //waveDef.linearVelocity.set(1000, 10);
 
         createWave(new Vector2(50, 50));
     }
@@ -134,13 +134,17 @@ public class Wave implements Powerup
 
     private static void createWave(Vector2 pos)
     {
-        for (int i = 0; i < 150; i++)
+       // for (int i = 0; i < 1; i++)
         {
             waveDef.lifetime = 1;
             waveDef.position.set(pos);
             //waveDef.groupFlags.add(ParticleGroupDef.ParticleGroupType.b2_particleGroupCanBeEmpty);
             waveDef.color.set(0,0,1,1);
-            wave = psys.createParticleGroup(waveDef);
         }
+    }
+
+    private void resetWave()
+    {
+       // psys.particle
     }
 }
