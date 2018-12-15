@@ -114,7 +114,6 @@ public class Wave implements Powerup
         //waveDef.linearVelocity.set(1000, 10);
 
         createWave(new Vector2(50, 50));
-
     }
 
     @Override
