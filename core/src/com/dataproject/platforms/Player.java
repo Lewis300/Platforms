@@ -20,9 +20,6 @@ public class Player
 
     public Player(World world, ArrayList<Platform> plats)
     {
-        if(onRightSide){onRightSide = false;}
-        else{onRightSide = true;}
-
         gameWorld = world;
         this.plats = plats;
     }
@@ -30,9 +27,14 @@ public class Player
     public Vector2 getTopPlatPos(){return plats.get(plats.size()-1).getPosition();}
 
 
-    public void setTopPlatDynamic()
+    public void setTopPlatDynamic(int amount)
     {
-        plats.get(plats.size()-1).setDynamic();
+
+
+        for(int i = 0; i<amount; i++)
+        {
+            plats.get(plats.size()-1-i).setDynamic();
+        }
     }
 
     // This method chooses a powerup from the list of powerups currently availible to this player

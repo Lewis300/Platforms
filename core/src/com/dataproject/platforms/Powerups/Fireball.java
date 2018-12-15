@@ -1,8 +1,6 @@
 package com.dataproject.platforms.Powerups;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.World;
-import com.dataproject.platforms.Platforms;
 import com.dataproject.platforms.Powerups.Projectiles.FireballProjectile;
 import com.dataproject.platforms.Player;
 import com.dataproject.platforms.Utilities.Range;
@@ -11,7 +9,6 @@ import java.util.ArrayList;
 
 public class Fireball implements Powerup
 {
-    private static World gameworld;
     private double rarity = 0.15;
     private double chanceToHarmUser =  0.5;
     private ArrayList<FireballProjectile> fireballs;
@@ -41,11 +38,7 @@ public class Fireball implements Powerup
         return null;
     }
 
-    public static void init(World world)
-    {
-        gameworld = world;
-    }
-
+    @Override
     public void use(Player affected)
     {
         boolean harmsSelf;
@@ -75,10 +68,9 @@ public class Fireball implements Powerup
 
                 Vector2 currentTopPlatPos = affected.getTopPlatPos();
                 Vector2 currentFireballSpawnPoint = currentTopPlatPos;
-                currentFireballSpawnPoint.x = (float) (currentTopPlatPos.x - (Platforms.SCREEN_WIDTH/7f / 2) + Math.random() * Platforms.SCREEN_WIDTH/7f);
-                currentFireballSpawnPoint.y = currentTopPlatPos.y + 150;
+                currentFireballSpawnPoint.y = 0;
 
-                fireballs.add(new FireballProjectile(gameworld, currentFireballSpawnPoint));
+                fireballs.add(new FireballProjectile(world, currentFireballSpawnPoint));
             }
         }
     }

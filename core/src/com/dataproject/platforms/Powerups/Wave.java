@@ -77,7 +77,7 @@ public class Wave implements Powerup
         waveDef = new ParticleGroupDef();
 
         PolygonShape shp = new PolygonShape();
-        shp.setAsBox(50,10);
+        shp.setAsBox(2,20);
 
         waveDef.shape = shp;
         waveDef.angle= 5.5f;
@@ -97,15 +97,16 @@ public class Wave implements Powerup
        // psys.setPaused(true);
 
         waveDef.lifetime = 5;
+        waveDef.strength = 1000;
         placeWave(new Vector2(-120, Platforms.SCREEN_HEIGHT+75));
     }
 
     @Override
     public void use(Player affected)
     {
-        affected.setTopPlatDynamic();
+        affected.setTopPlatDynamic(3);
 
-        if(affected.onRightSide){START_POS = new Vector2(Platforms.SCREEN_WIDTH+75, affected.getTopPlatPos().y);}
+        if(affected.onRightSide){START_POS = new Vector2(Platforms.SCREEN_WIDTH+200, affected.getTopPlatPos().y);}
 
         else{START_POS = new Vector2(-75, Platforms.SCREEN_HEIGHT+75);}
 
@@ -116,39 +117,32 @@ public class Wave implements Powerup
 
     public static void placeWave(Vector2 pos)
     {
-        if(pos.x > Platforms.SCREEN_WIDTH/2) //check if spawning on right side of world
+        if(WAVEGROUP_SPAWN_COUNT == 0)
         {
-            waveDef.angle= -5.5f;
-            waveDef.linearVelocity.set(new Vector2(-100000, 0)); //Move wave left
-
-            if(wave!=null)
+            if(pos.x > Platforms.SCREEN_WIDTH/2) //check if spawning on right side of world
             {
-                wave.applyLinearImpulse(new Vector2(10000000, 0));
+                waveDef.angle = 0f;
+                waveDef.linearVelocity.set(new Vector2(-1000, 100)); //Move wave left
+
+            }
+            else
+            {
+                waveDef.angle = 0f;
+                waveDef.linearVelocity.set(new Vector2(1000, 100)); //Move wave right
+
             }
         }
-        else
-        {
-            waveDef.angle= 5.5f;
-            waveDef.linearVelocity.set(new Vector2(100000, -100000)); //Move wave right
-
-            if(wave!=null)
-            {
-                wave.applyLinearImpulse(new Vector2(-10000000, 0));
-            }
-        }
-
-
 
         if(wave!=null && WAVEGROUP_SPAWN_COUNT == 0)
         {
             wave.destroyParticlesInGroup();
         }
 
-        waveDef.position.set(pos);
+        waveDef.position.set(new Vector2(pos.x-0*WAVEGROUP_SPAWN_COUNT, pos.y));
 
 
-        if(wave == null){wave = psys.createParticleGroup(waveDef);}
-        psys.joinParticleGroups(wave, psys.createParticleGroup(waveDef));
+        //if(wave == null){wave = psys.createParticleGroup(waveDef);}
+        wave = psys.createParticleGroup(waveDef);
 
 
 

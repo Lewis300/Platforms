@@ -59,6 +59,7 @@ public class Platform extends Actor
             platBodyDef.type = BodyDef.BodyType.StaticBody;
             platBodyDef.gravityScale = 100; //Makes sure the platform doesent spontaneously fall
             platBodyDef.position.set(position);
+           // platBodyDef.active = false;
 
         //Initialize the FixtureDef characteristics
             platShape = new PolygonShape();
@@ -78,6 +79,7 @@ public class Platform extends Actor
     public void setDynamic()
     {
         platform.setType(BodyDef.BodyType.DynamicBody);
+        //platform.setActive(true);
         platform.setGravityScale(10);
     }
 
