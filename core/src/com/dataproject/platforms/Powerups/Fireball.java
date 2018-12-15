@@ -5,24 +5,17 @@ import com.dataproject.platforms.Utilities.Range;
 
 public class Fireball implements Powerup
 {
-    @Override
-    public void setRarity(double p) {
-
-    }
-
-    @Override
-    public void setChanceToHarmUser(double p) {
-
-    }
+    private double rarity = 0.15;
+    private double chanceToHarmUser =  0.5;
 
     @Override
     public double getRarity() {
-        return 0;
+        return rarity;
     }
 
     @Override
     public double getChanceToHarmUser() {
-        return 0;
+        return chanceToHarmUser;
     }
 
     @Override
@@ -41,8 +34,9 @@ public class Fireball implements Powerup
     }
 
     @Override
-    public void use(Player self, Player other, boolean harmSelf) {
+    public void use(Player self, Player other) {
+
+
 
     }
-    // Luka is gay
 }

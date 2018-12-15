@@ -5,9 +5,6 @@ import com.dataproject.platforms.Utilities.Range;
 
 public interface Powerup
 {
-    void setRarity(double p); //Set rarity of rolling powerup
-    void setChanceToHarmUser(double p); //decimal probability to harm player using powerup
-
     double getRarity(); //gets the rarity of rolling this powerup
     double getChanceToHarmUser(); //gets the probability of harming the player using the powerup
 
@@ -16,5 +13,5 @@ public interface Powerup
 
     Range getRange();//dw about this for not
 
-    void use(Player self, Player other, boolean harmSelf); //Uses the powerup
+    void use(Player self, Player other); //Uses the powerup
 }
