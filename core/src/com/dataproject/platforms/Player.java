@@ -24,7 +24,7 @@ public class Player
         gameWorld = world;
         this.plats = plats;
     }
-    
+
 
     public void setTopPlatDynamic()
     {
