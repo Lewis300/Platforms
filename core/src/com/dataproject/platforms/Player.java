@@ -16,19 +16,14 @@ public class Player
     private int PLATFORMS_LEFT = 15;
     public boolean onRightSide = true; //whichever player is created first will have this variable as false
     private ArrayList<Platform> plats;
-    private ArrayList<Powerup> powerups;
     private World gameWorld;
 
     public Player(World world, ArrayList<Platform> plats)
     {
         onRightSide = !onRightSide;
         gameWorld = world;
-        powerups = new ArrayList<Powerup>();
         this.plats = plats;
-        powerups.add(new Wave(1,0,gameWorld));
     }
-
-    public ArrayList<Powerup> getAvailiblePowerups(){return powerups;}
 
     public void attack(Player other, Powerup rolled)
     {
