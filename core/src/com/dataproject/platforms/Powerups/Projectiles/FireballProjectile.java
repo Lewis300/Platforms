@@ -1,12 +1,12 @@
 package com.dataproject.platforms.Powerups.Projectiles;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.dataproject.platforms.PlatformStuff.Platform;
 
-import java.util.ArrayList;
 
 public class FireballProjectile extends Actor
 {
@@ -28,6 +28,12 @@ public class FireballProjectile extends Actor
         this.position.set(position);
 
         init();
+    }
+
+    @Override
+    public void draw(Batch batch, float parentAlpha)
+    {
+        super.draw(batch, parentAlpha);
     }
 
     private void initBox2d(){
@@ -53,9 +59,6 @@ public class FireballProjectile extends Actor
         fireBody = gameWorld.createBody(fireBodyDef);
         fireBody.createFixture(fireFixDef);
 
-        /*
-        Need to find way to set texture on box2d object
-         */
     }
 
     private void init()

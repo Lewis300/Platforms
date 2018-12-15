@@ -1,13 +1,17 @@
 package com.dataproject.platforms.Powerups;
 
+import com.badlogic.gdx.math.Vector2;
 import com.dataproject.platforms.Powerups.Projectiles.FireballProjectile;
 import com.dataproject.platforms.Player;
 import com.dataproject.platforms.Utilities.Range;
+
+import java.util.ArrayList;
 
 public class Fireball implements Powerup
 {
     private double rarity = 0.15;
     private double chanceToHarmUser =  0.5;
+    private ArrayList<FireballProjectile> fireballs;
 
     @Override
     public double getRarity() {
@@ -60,8 +64,13 @@ public class Fireball implements Powerup
         {
             for(int fireball = 1; fireball <= 3; fireball++)
             {
-                //FireballProjectile currentFireball = new FireballProjectile();
                 affected.setTopPlatDynamic();
+
+                Vector2 currentTopPlatPos = affected.getTopPlatPos();
+                Vector2 currentFireballSpawnPoint = currentTopPlatPos;
+                currentFireballSpawnPoint.y = 0;
+
+                fireballs.add(new FireballProjectile(world, currentFireballSpawnPoint));
             }
         }
     }
