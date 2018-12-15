@@ -1,6 +1,7 @@
 package com.dataproject.platforms.Utilities;
 
 import com.dataproject.platforms.Player;
+import com.dataproject.platforms.Powerups.Fireball;
 import com.dataproject.platforms.Powerups.Powerup;
 import com.dataproject.platforms.Powerups.Wave;
 
@@ -14,7 +15,7 @@ public class ProababilityTools
     public static Powerup roll(Player p)
     {
 
-        return new Wave(); //For now just auto roll wave every time
+        return new Fireball(); //For now just auto roll wave every time
     }
 
     // Returns random integer between min and max

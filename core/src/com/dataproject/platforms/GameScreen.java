@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.dataproject.platforms.PlatformStuff.Platform;
+import com.dataproject.platforms.Powerups.Fireball;
 import com.dataproject.platforms.Powerups.Wave;
 import com.dataproject.platforms.Utilities.ProababilityTools;
 import com.dataproject.platforms.Utilities.WorldContactListener;
@@ -193,6 +194,7 @@ public class GameScreen implements Screen
 
         //Initialize Players
             Wave.init(psys);
+            Fireball.init(world);
             p1 = new Player(world, p1_platforms);
             p2 = new Player(world, p2_platforms);
 
