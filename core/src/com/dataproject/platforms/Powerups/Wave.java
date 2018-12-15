@@ -138,8 +138,9 @@ public class Wave implements Powerup
         for (int i = 0; i < 150; i++)
         {
             waveDef.lifetime = 10;
+
             waveDef.position.set(pos);
-           // waveDef.groupFlags.add(ParticleGroupDef.ParticleGroupType.b2_particleGroupWillBeDestroyed);
+            waveDef.groupFlags.add(ParticleGroupDef.ParticleGroupType.b2_particleGroupCanBeEmpty);
             waveDef.color.set(0,0,1,1);
             wave = psys.createParticleGroup(waveDef);
         }
