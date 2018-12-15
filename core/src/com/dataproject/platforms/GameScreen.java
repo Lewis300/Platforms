@@ -63,11 +63,14 @@ public class GameScreen implements Screen
     private ParticleSystem psys;
     private ParticleDebugRenderer pdr;
 
+    //Rendering
+    private float timePassed = 0;
+
     public GameScreen(Batch sb)
     {
         this.sb = sb;
         b2dr = new Box2DDebugRenderer();
-        pdr = new ParticleDebugRenderer(Color.BLACK, 100000);
+        pdr = new ParticleDebugRenderer(Color.BLUE, 100000);
         gameCam = new OrthographicCamera();
         sunPos = new Vector2(Platforms.SCREEN_WIDTH/2, Platforms.SCREEN_HEIGHT/2);
 
@@ -75,8 +78,11 @@ public class GameScreen implements Screen
     }
 
     private boolean hudAdded = false;
+
+    private  boolean spawnednewWave = false;
     public void update(float dt)
     {
+        timePassed+=dt;
         if(!hudAdded){addHud();}
 
         world.step(1/60f, 6,2, 1);
@@ -86,6 +92,11 @@ public class GameScreen implements Screen
 
         sb.setProjectionMatrix(gameCam.combined);
 
+        if(timePassed>10 && spawnednewWave == false)
+        {
+            spawnednewWave = true;
+
+        }
     }
 
     @Override
@@ -169,7 +180,7 @@ public class GameScreen implements Screen
             psysDef.pressureStrength = 100;
             psysDef.destroyByAge = true;
             psysDef.lifetimeGranularity = 10;
-            psysDef.maxCount = 1000000;
+            psysDef.maxCount = 2000;
             psys = new ParticleSystem(world, psysDef);
 
         //Initialize Players

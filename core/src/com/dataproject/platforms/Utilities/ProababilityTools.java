@@ -2,6 +2,7 @@ package com.dataproject.platforms.Utilities;
 
 import com.dataproject.platforms.Player;
 import com.dataproject.platforms.Powerups.Powerup;
+import com.dataproject.platforms.Powerups.Wave;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,13 +13,8 @@ public class ProababilityTools
 {
     public static Powerup roll(Player p)
     {
-        double roll = Math.random();
-        for(Powerup pup: p.getAvailiblePowerups())
-        {
-            boolean isPupRolled = pup.getRange().isValueInRange(roll);
-            if(isPupRolled){return pup;}
-        }
-        return null;
+
+        return new Wave(); //For now just auto roll wave every time
     }
 
     // Returns random integer between min and max

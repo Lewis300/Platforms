@@ -24,19 +24,7 @@ public class Player
         gameWorld = world;
         this.plats = plats;
     }
-
-    public void attack(Player other, Powerup rolled)
-    {
-        rolled.use(this, other, false);
-    }
-
-    public boolean usePowerup(Powerup rolled)
-    {
-        // determine answer
-
-        boolean answer = true;
-        return true;
-    }
+    
 
     public void setTopPlatDynamic()
     {
