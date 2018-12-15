@@ -20,10 +20,12 @@ public class Player
 
     public Player(World world, ArrayList<Platform> plats)
     {
-        onRightSide = !onRightSide;
+        onRightSide = true;
         gameWorld = world;
         this.plats = plats;
     }
+
+    public Vector2 getTopPlatPos(){return plats.get(plats.size()-1).getPosition();}
 
 
     public void setTopPlatDynamic()

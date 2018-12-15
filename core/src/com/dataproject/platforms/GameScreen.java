@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.dataproject.platforms.PlatformStuff.Platform;
 import com.dataproject.platforms.Powerups.Wave;
+import com.dataproject.platforms.Utilities.ProababilityTools;
 import com.dataproject.platforms.Utilities.WorldContactListener;
 import finnstr.libgdx.liquidfun.ParticleDebugRenderer;
 import finnstr.libgdx.liquidfun.ParticleSystem;
@@ -92,10 +93,17 @@ public class GameScreen implements Screen
 
         sb.setProjectionMatrix(gameCam.combined);
 
-        if(timePassed>10 && spawnednewWave == false)
+        if(Wave.WAVE_USED && Wave.WAVEGROUP_SPAWN_COUNT < Wave.DROP_AMT)
+        {
+            Wave.placeWave(Wave.START_POS);
+            Wave.WAVEGROUP_SPAWN_COUNT++;
+            if(Wave.WAVEGROUP_SPAWN_COUNT == 100){Wave.WAVE_USED = false;}
+        }
+
+        if(timePassed>5 && spawnednewWave == false)
         {
             spawnednewWave = true;
-
+            ProababilityTools.roll(p1).use(p2);
         }
     }
 
@@ -177,7 +185,7 @@ public class GameScreen implements Screen
 
         //Initialize water
             ParticleSystemDef psysDef = new ParticleSystemDef();
-            psysDef.pressureStrength = 100;
+            psysDef.pressureStrength = 1000;
             psysDef.destroyByAge = true;
             psysDef.lifetimeGranularity = 10;
             psysDef.maxCount = 2000;

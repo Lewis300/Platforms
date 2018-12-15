@@ -13,5 +13,5 @@ public interface Powerup
 
     Range getRange();//dw about this for not
 
-    void use(Player self, Player other); //Uses the powerup
+    void use(Player affected); //Uses the powerup
 }

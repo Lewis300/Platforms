@@ -35,7 +35,7 @@ public class Fireball implements Powerup
     }
 
     @Override
-    public void use(Player self, Player other)
+    public void use(Player affected)
     {
         boolean harmsSelf;
 
@@ -61,7 +61,7 @@ public class Fireball implements Powerup
             for(int fireball = 1; fireball <= 3; fireball++)
             {
                 //FireballProjectile currentFireball = new FireballProjectile();
-                self.setTopPlatDynamic();
+                affected.setTopPlatDynamic();
             }
         }
     }

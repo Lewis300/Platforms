@@ -48,12 +48,16 @@ public class Platform extends Actor
         initBox2d();
     }
 
+    public Vector2 getPosition() {
+        return position;
+    }
+
     private void initBox2d()
     {
         //Initialize the platforms BodyDef
             platBodyDef = new BodyDef();
             platBodyDef.type = BodyDef.BodyType.StaticBody;
-            platBodyDef.gravityScale = 0; //Makes sure the platform doesent spontaneously fall
+            platBodyDef.gravityScale = 100; //Makes sure the platform doesent spontaneously fall
             platBodyDef.position.set(position);
 
         //Initialize the FixtureDef characteristics
@@ -63,9 +67,9 @@ public class Platform extends Actor
             Set characteristics of this object (characteristics are defined by the FixtureDef)
             ...
          */
-            platFixDef.restitution = 1;
+            platFixDef.restitution = 2;
             platFixDef.shape = platShape;
-            platFixDef.density = 0;
+            platFixDef.density = 40;
         //Add body to game world define body with the FixtureDef
             platform = gameWorld.createBody(platBodyDef);
             platform.createFixture(platFixDef);

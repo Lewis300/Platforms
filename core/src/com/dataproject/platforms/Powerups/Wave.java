@@ -19,7 +19,10 @@ public class Wave implements Powerup
 {
     private double rarity; //Probability of rolling this powerup
     private double chanceToHarmUser;
-    private static final int DROP_AMT = 100;
+    public static final int DROP_AMT = 200;
+    public static boolean WAVE_USED = false;
+    public static int WAVEGROUP_SPAWN_COUNT = 0;
+    public static Vector2 START_POS;
 
     private static int[] drops;
     private static ParticleDef dropDef;
@@ -32,6 +35,7 @@ public class Wave implements Powerup
     private static ParticleGroupDef waveDef;
     private static ParticleGroupDef.ParticleGroupType waveType;
     private static ParticleSystem psys;
+
 
     public Wave()
     {
@@ -66,49 +70,87 @@ public class Wave implements Powerup
 
     public static void init(ParticleSystem sys)
     {
-//        dropBodyDef = new BodyDef();
-//        dropBodyDef.type = BodyDef.BodyType.DynamicBody;
-//
         psys = sys;
         psys.setParticleRadius(2);
+        psys.setParticleGravityScale(10);
 
         waveDef = new ParticleGroupDef();
 
         PolygonShape shp = new PolygonShape();
-        shp.setAsBox(100,15);
+        shp.setAsBox(50,10);
 
         waveDef.shape = shp;
         waveDef.angle= 5.5f;
+        waveDef.flags.add(ParticleDef.ParticleType.b2_waterParticle);
 
 
-        placeWave(new Vector2(-100, Platforms.SCREEN_HEIGHT));
+//        for(int i = 0; i<DROP_AMT; i++)
+//        {
+//            if(i == 0){wave = psys.createParticleGroup(waveDef);}
+//            else
+//            {
+//                psys.joinParticleGroups(wave, psys.createParticleGroup(waveDef));
+//            }
+//        }
+//
+//
+       // psys.setPaused(true);
+
+        waveDef.lifetime = 5;
+        placeWave(new Vector2(-120, Platforms.SCREEN_HEIGHT+75));
     }
 
     @Override
-    public void use(Player self, Player other)
+    public void use(Player affected)
     {
-        other.setTopPlatDynamic();
-        placeWave(new Vector2(Platforms.SCREEN_WIDTH+75, Platforms.SCREEN_HEIGHT-50));
+        affected.setTopPlatDynamic();
+
+        if(affected.onRightSide){START_POS = new Vector2(Platforms.SCREEN_WIDTH+75, affected.getTopPlatPos().y);}
+
+        else{START_POS = new Vector2(-75, Platforms.SCREEN_HEIGHT+75);}
+
+        WAVE_USED = true;
     }
 
 
 
-    private static void placeWave(Vector2 pos)
+    public static void placeWave(Vector2 pos)
     {
         if(pos.x > Platforms.SCREEN_WIDTH/2) //check if spawning on right side of world
         {
-            waveDef.linearVelocity.set(new Vector2(-100000, -10000)); //Move wave left
+            waveDef.angle= -5.5f;
+            waveDef.linearVelocity.set(new Vector2(-100000, 0)); //Move wave left
+
+            if(wave!=null)
+            {
+                wave.applyLinearImpulse(new Vector2(10000000, 0));
+            }
         }
         else
         {
-            waveDef.linearVelocity.set(new Vector2(100000, -10000)); //Move wave right
+            waveDef.angle= 5.5f;
+            waveDef.linearVelocity.set(new Vector2(100000, -100000)); //Move wave right
+
+            if(wave!=null)
+            {
+                wave.applyLinearImpulse(new Vector2(-10000000, 0));
+            }
+        }
+
+
+
+        if(wave!=null && WAVEGROUP_SPAWN_COUNT == 0)
+        {
+            wave.destroyParticlesInGroup();
         }
 
         waveDef.position.set(pos);
-        for(int i = 0; i<DROP_AMT; i++)
-        {
 
-           psys.createParticleGroup(waveDef);
-        }
+
+        if(wave == null){wave = psys.createParticleGroup(waveDef);}
+        psys.joinParticleGroups(wave, psys.createParticleGroup(waveDef));
+
+
+
     }
 }
