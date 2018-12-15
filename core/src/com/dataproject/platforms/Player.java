@@ -25,18 +25,6 @@ public class Player
         this.plats = plats;
     }
 
-    public void attack(Player other, Powerup rolled)
-    {
-        rolled.use(this, other);
-    }
-
-    public boolean usePowerup(Powerup rolled)
-    {
-        // determine answer
-
-        boolean answer = true;
-        return true;
-    }
 
     public void setTopPlatDynamic()
     {

@@ -12,9 +12,6 @@ public class Laser implements Powerup
 
     public Laser(double rarity, double chanceToHarmUser)
     {
-        setRarity(rarity);
-        setChanceToHarmUser(chanceToHarmUser);
-
         initTextures();
     }
 
@@ -23,12 +20,6 @@ public class Laser implements Powerup
     {
 
     }
-
-    @Override
-    public void setRarity(double p) {rarity = p;}
-
-    @Override
-    public void setChanceToHarmUser(double p) {chanceToHarmUser = p;}
 
     @Override
     public double getRarity() {
