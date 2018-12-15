@@ -20,7 +20,9 @@ public class Player
 
     public Player(World world, ArrayList<Platform> plats)
     {
-        onRightSide = true;
+        if(onRightSide){onRightSide = false;}
+        else{onRightSide = true;}
+        
         gameWorld = world;
         this.plats = plats;
     }
