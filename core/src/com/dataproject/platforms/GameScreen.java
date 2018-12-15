@@ -3,6 +3,7 @@ package com.dataproject.platforms;
 import box2dLight.PointLight;
 import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
@@ -13,6 +14,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.dataproject.platforms.PlatformStuff.Platform;
+import com.dataproject.platforms.Powerups.Wave;
+import finnstr.libgdx.liquidfun.ParticleDebugRenderer;
 
 
 public class GameScreen implements Screen
@@ -37,8 +40,8 @@ public class GameScreen implements Screen
     private final boolean allowSleepingObjects = false;
 
     private BodyDef groundBodyDef;
-    private final Vector2 groundPosition = new Vector2(-25, -100);
-    private final Vector2 groundSize = new Vector2(Platforms.SCREEN_WIDTH+50, 20);
+    private final Vector2 groundPosition = new Vector2(-2, -30);
+    private final Vector2 groundSize = new Vector2(Platforms.SCREEN_WIDTH*3, 20);
     private PolygonShape groundShape;
     private final FixtureDef groundFixtureDef = new FixtureDef();
     private Body ground;
@@ -47,6 +50,10 @@ public class GameScreen implements Screen
     private Platform[] p1_platforms;
     private Platform[] p2_platforms;
 
+    //Players
+    private Player p1; //on the left
+    private Player p2; //on the right
+
     public GameScreen(Batch sb)
     {
         this.sb = sb;
@@ -54,11 +61,15 @@ public class GameScreen implements Screen
         gameCam = new OrthographicCamera();
         sunPos = new Vector2(Platforms.SCREEN_WIDTH/2, Platforms.SCREEN_HEIGHT/2);
 
+
     }
 
+    private boolean hudAdded = false;
     public void update(float dt)
     {
-        world.step(1/60f, 6,2);
+        if(!hudAdded){addHud();}
+
+        world.step(1/60f, 6,2, 10);
         rayHandler.setCombinedMatrix(gameCam.combined);
         //rayHandler.update();
         gameCam.update();
@@ -77,6 +88,7 @@ public class GameScreen implements Screen
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 //        sb.begin();
+//        draw background
 //        sb.end();
 
 
@@ -92,12 +104,13 @@ public class GameScreen implements Screen
 
 
         //Initialize Box2d and create world
-        Box2D.init();
+        //Box2D.init();
         world = new World(gravity, allowSleepingObjects);
         rayHandler = new RayHandler(world);
         rayHandler.setAmbientLight(AMBIENT_LIGHT);
         //rayHandler.setAmbientLight(1,1,1,1);
-        sun = new PointLight(rayHandler, 600, Color.WHITE, 1000, 0,0);
+        sun = new PointLight(rayHandler, 600, Color.YELLOW, 1450, 0,0);
+        sun.setXray(true);
         sun.setSoftnessLength(0f);
         sun.setPosition(sunPos);
 
@@ -116,14 +129,14 @@ public class GameScreen implements Screen
 
         //Initialize platforms
 
-            int platformSpacing = (int)(gameCam.viewportHeight/30f);
+            int platformSpacing = (int)(gameCam.viewportHeight/27f);
 
             //Initialize left platforms
             p1_platforms = new Platform[INITIAL_PLAT_AMT];
 
             for(int i = 0; i < INITIAL_PLAT_AMT; i++)
             {
-                p1_platforms[i] = new Platform(world, new Vector2(Platform.PLATFORM_WIDTH + gameCam.viewportWidth/30f, HUD_HEIGHT + gameCam.viewportHeight/10f + groundPosition.y + groundSize.y + (i+1)*platformSpacing + i*Platform.PLATFORM_HEIGHT));
+                p1_platforms[i] = new Platform(world, new Vector2(Platform.PLATFORM_WIDTH + gameCam.viewportWidth/30f, HUD_HEIGHT + gameCam.viewportHeight/10f + (i+1)*platformSpacing + i*Platform.PLATFORM_HEIGHT));
 
             }
 
@@ -134,11 +147,15 @@ public class GameScreen implements Screen
 
             for(int i = 0; i< INITIAL_PLAT_AMT; i++)
             {
-                p2_platforms[i] = new Platform(world, new Vector2(gameCam.viewportWidth - Platform.PLATFORM_WIDTH - gameCam.viewportWidth/30f, HUD_HEIGHT + gameCam.viewportHeight/10f + groundPosition.y + groundSize.y + (i+1)*platformSpacing + i*Platform.PLATFORM_HEIGHT));
+                p2_platforms[i] = new Platform(world, new Vector2(gameCam.viewportWidth - Platform.PLATFORM_WIDTH - gameCam.viewportWidth/30f, HUD_HEIGHT + gameCam.viewportHeight/10f + (i+1)*platformSpacing + i*Platform.PLATFORM_HEIGHT));
             }
 
+        //Initialize Players
+            //Wave.init(world);
+           // p1 = new Player(world);
+            //p2 = new Player(world);
+
         worldInitialized = true;
-        addHud();
 
 
 
@@ -146,7 +163,8 @@ public class GameScreen implements Screen
     
     private void addHud()
     {
-
+        hudAdded = true;
+        Gdx.graphics.setDisplayMode(Platforms.SCREEN_WIDTH, Platforms.SCREEN_HEIGHT+HUD_HEIGHT, false);
     }
 
     @Override
@@ -154,7 +172,7 @@ public class GameScreen implements Screen
     {
         gameCam.viewportWidth = width;
         gameCam.viewportHeight = height;
-        gameCam.position.set(width/2f, height/2f, 0);
+        if(!hudAdded){gameCam.position.set(width/2f, height/2f, 0);}
 
         if(!worldInitialized){initializeWorld();}
     }
