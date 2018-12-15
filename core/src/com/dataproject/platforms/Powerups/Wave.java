@@ -113,6 +113,9 @@ public class Wave implements Powerup
 //        //waveDef.angularVelocity=0f;
 //        //waveDef.linearVelocity.set(1000, 10);
 
+        psys.cre
+
+
         createWave(new Vector2(50, 50));
     }
 
@@ -134,13 +137,7 @@ public class Wave implements Powerup
 
     private static void createWave(Vector2 pos)
     {
-       // for (int i = 0; i < 1; i++)
-        {
-            waveDef.lifetime = 1;
-            waveDef.position.set(pos);
-            //waveDef.groupFlags.add(ParticleGroupDef.ParticleGroupType.b2_particleGroupCanBeEmpty);
-            waveDef.color.set(0,0,1,1);
-        }
+
     }
 
     private void resetWave()
