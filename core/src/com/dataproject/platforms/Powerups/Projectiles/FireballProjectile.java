@@ -52,6 +52,10 @@ public class FireballProjectile extends Actor
         //Creating the body in the world
         fireBody = gameWorld.createBody(fireBodyDef);
         fireBody.createFixture(fireFixDef);
+
+        /*
+        Need to find way to set texture on box2d object
+         */
     }
 
     private void init()
