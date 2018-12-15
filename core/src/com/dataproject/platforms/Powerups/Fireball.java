@@ -1,5 +1,6 @@
 package com.dataproject.platforms.Powerups;
 
+import com.dataproject.platforms.Powerups.Projectiles.FireballProjectile;
 import com.dataproject.platforms.Player;
 import com.dataproject.platforms.Utilities.Range;
 
@@ -34,9 +35,34 @@ public class Fireball implements Powerup
     }
 
     @Override
-    public void use(Player self, Player other) {
+    public void use(Player self, Player other)
+    {
+        boolean harmsSelf;
 
+        //number to determine whether to harm user
+        double numHarmSelf = Math.random();
 
+        //checks whether number rolled is less that or equal to the set chance
+        //to harm user
+        if(numHarmSelf <= chanceToHarmUser)
+        {
+            //if less than 0.15, harm self
+            harmsSelf = true;
+        }
 
+        else
+        {
+            //otherwise, harm enemy
+            harmsSelf = false;
+        }
+
+        if(harmsSelf)
+        {
+            for(int fireball = 1; fireball <= 3; fireball++)
+            {
+                //FireballProjectile currentFireball = new FireballProjectile();
+                self.setTopPlatDynamic();
+            }
+        }
     }
 }

@@ -27,7 +27,7 @@ public class Player
 
     public void attack(Player other, Powerup rolled)
     {
-        rolled.use(this, other, false);
+        rolled.use(this, other);
     }
 
     public boolean usePowerup(Powerup rolled)
