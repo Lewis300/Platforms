@@ -62,7 +62,7 @@ public class Fireball implements Powerup
 
         if(harmsSelf)
         {
-            for(int fireball = 1; fireball <= 3; fireball++)
+            for(int fireballCounter = 1; fireballCounter <= 3; fireballCounter++)
             {
                 affected.setTopPlatDynamic();
 
