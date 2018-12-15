@@ -15,7 +15,12 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.dataproject.platforms.PlatformStuff.Platform;
 import com.dataproject.platforms.Powerups.Wave;
+import com.dataproject.platforms.Utilities.WorldContactListener;
 import finnstr.libgdx.liquidfun.ParticleDebugRenderer;
+import finnstr.libgdx.liquidfun.ParticleSystem;
+import finnstr.libgdx.liquidfun.ParticleSystemDef;
+
+import java.util.ArrayList;
 
 
 public class GameScreen implements Screen
@@ -47,17 +52,22 @@ public class GameScreen implements Screen
     private Body ground;
 
     //Platforms
-    private Platform[] p1_platforms;
-    private Platform[] p2_platforms;
+    private ArrayList<Platform> p1_platforms;
+    private ArrayList<Platform> p2_platforms;
 
     //Players
     private Player p1; //on the left
     private Player p2; //on the right
 
+    //Liquidfun
+    private ParticleSystem psys;
+    private ParticleDebugRenderer pdr;
+
     public GameScreen(Batch sb)
     {
         this.sb = sb;
         b2dr = new Box2DDebugRenderer();
+        pdr = new ParticleDebugRenderer(Color.BLACK, 100000);
         gameCam = new OrthographicCamera();
         sunPos = new Vector2(Platforms.SCREEN_WIDTH/2, Platforms.SCREEN_HEIGHT/2);
 
@@ -69,7 +79,7 @@ public class GameScreen implements Screen
     {
         if(!hudAdded){addHud();}
 
-        world.step(1/60f, 6,2, 10);
+        world.step(1/60f, 6,2, 1);
         rayHandler.setCombinedMatrix(gameCam.combined);
         //rayHandler.update();
         gameCam.update();
@@ -94,7 +104,9 @@ public class GameScreen implements Screen
 
 
         b2dr.render(world, gameCam.combined);
+        pdr.render(psys, 1, gameCam.combined);
         rayHandler.updateAndRender();
+        pdr.render(psys, 1, gameCam.combined);
     }
 
     private boolean worldInitialized = false;
@@ -106,6 +118,7 @@ public class GameScreen implements Screen
         //Initialize Box2d and create world
         //Box2D.init();
         world = new World(gravity, allowSleepingObjects);
+        world.setContactListener(new WorldContactListener());
         rayHandler = new RayHandler(world);
         rayHandler.setAmbientLight(AMBIENT_LIGHT);
         //rayHandler.setAmbientLight(1,1,1,1);
@@ -132,28 +145,36 @@ public class GameScreen implements Screen
             int platformSpacing = (int)(gameCam.viewportHeight/27f);
 
             //Initialize left platforms
-            p1_platforms = new Platform[INITIAL_PLAT_AMT];
+            p1_platforms = new ArrayList<Platform>();
 
             for(int i = 0; i < INITIAL_PLAT_AMT; i++)
             {
-                p1_platforms[i] = new Platform(world, new Vector2(Platform.PLATFORM_WIDTH + gameCam.viewportWidth/30f, HUD_HEIGHT + gameCam.viewportHeight/10f + (i+1)*platformSpacing + i*Platform.PLATFORM_HEIGHT));
+                p1_platforms.add(new Platform(world, new Vector2(Platform.PLATFORM_WIDTH + gameCam.viewportWidth/30f, HUD_HEIGHT + gameCam.viewportHeight/10f + (i+1)*platformSpacing + i*Platform.PLATFORM_HEIGHT)));
 
             }
 
 
             //Initialize right platforms
 
-            p2_platforms = new Platform[INITIAL_PLAT_AMT];
+            p2_platforms = new ArrayList<Platform>();
 
             for(int i = 0; i< INITIAL_PLAT_AMT; i++)
             {
-                p2_platforms[i] = new Platform(world, new Vector2(gameCam.viewportWidth - Platform.PLATFORM_WIDTH - gameCam.viewportWidth/30f, HUD_HEIGHT + gameCam.viewportHeight/10f + (i+1)*platformSpacing + i*Platform.PLATFORM_HEIGHT));
+                p2_platforms.add(new Platform(world, new Vector2(gameCam.viewportWidth - Platform.PLATFORM_WIDTH - gameCam.viewportWidth/30f, HUD_HEIGHT + gameCam.viewportHeight/10f + (i+1)*platformSpacing + i*Platform.PLATFORM_HEIGHT)));
             }
 
+
+        //Initialize water
+            ParticleSystemDef psysDef = new ParticleSystemDef();
+            psysDef.pressureStrength = 100;
+            psysDef.destroyByAge = true;
+            psysDef.lifetimeGranularity = 100;
+            psys = new ParticleSystem(world, psysDef);
+
         //Initialize Players
-            //Wave.init(world);
-           // p1 = new Player(world);
-            //p2 = new Player(world);
+            Wave.init(psys);
+            p1 = new Player(world, p1_platforms);
+            p2 = new Player(world, p2_platforms);
 
         worldInitialized = true;
 

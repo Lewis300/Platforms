@@ -19,7 +19,7 @@ public class Laser  implements Powerup
     }
 
     @Override
-    public void use(Player self, Player other)
+    public void use(Player self, Player other, boolean harmSelf)
     {
 
     }

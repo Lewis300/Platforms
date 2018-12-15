@@ -52,7 +52,7 @@ public class Platform extends Actor
     {
         //Initialize the platforms BodyDef
             platBodyDef = new BodyDef();
-            platBodyDef.type = BodyDef.BodyType.DynamicBody;
+            platBodyDef.type = BodyDef.BodyType.StaticBody;
             platBodyDef.gravityScale = 0; //Makes sure the platform doesent spontaneously fall
             platBodyDef.position.set(position);
 
@@ -65,10 +65,16 @@ public class Platform extends Actor
          */
             platFixDef.restitution = 1;
             platFixDef.shape = platShape;
-
+            platFixDef.density = 0;
         //Add body to game world define body with the FixtureDef
             platform = gameWorld.createBody(platBodyDef);
             platform.createFixture(platFixDef);
+    }
+
+    public void setDynamic()
+    {
+        platform.setType(BodyDef.BodyType.DynamicBody);
+        platform.setGravityScale(10);
     }
 
     public void destroy()

@@ -16,5 +16,5 @@ public interface Powerup
 
     Range getRange();
 
-    void use(Player self, Player other);
+    void use(Player self, Player other, boolean harmSelf);
 }
