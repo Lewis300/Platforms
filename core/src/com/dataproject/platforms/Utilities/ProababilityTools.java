@@ -29,6 +29,8 @@ public class ProababilityTools
 
         double roll = Math.random();
 
+        //return pup_lightning;
+
         if(roll > 0.33 && roll <0.66){return pup_wave;}
         else if(roll>=0.66){return pup_fireball;}
         else {return pup_lightning;}

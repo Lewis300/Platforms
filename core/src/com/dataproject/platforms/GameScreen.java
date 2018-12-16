@@ -92,7 +92,7 @@ public class GameScreen implements Screen
         background = new Sprite();
         background.setRegion(backtex);
 
-        HH = new HudHandler();
+       // HH = new HudHandler();
     }
 
     private boolean hudAdded = false;
@@ -111,7 +111,7 @@ public class GameScreen implements Screen
 
     public void handleInput(float dt)
     {
-        HH.handleInput(dt);
+//        HH.handleInput(dt);
     }
 
     private  boolean spawnednewWave = false;
@@ -181,11 +181,12 @@ public class GameScreen implements Screen
 
         sb.begin();
         Lightning.render(sb, delta);
+        Fireball.render(sb, delta);
         sb.end();
 
 
         b2dr.render(world, gameCam.combined);
-        HH.render(sb, delta);
+        //HH.render(sb, delta);
         rayHandler.updateAndRender();
 
 

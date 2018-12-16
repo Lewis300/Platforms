@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.dataproject.platforms.PlatformStuff.Platform;
+import com.dataproject.platforms.Platforms;
 import com.dataproject.platforms.Player;
 import com.dataproject.platforms.Utilities.Range;
 
@@ -29,7 +30,7 @@ public class Lightning implements Powerup
 
     public static void render(Batch batch, float dt)
     {
-        if(timePassed<=0.15f){batch.draw(BOLT, drawPos.x, drawPos.y, 20,150);}
+        if(timePassed<=0.15f){batch.draw(BOLT, drawPos.x, drawPos.y, 20, Platforms.SCREEN_HEIGHT-drawPos.y+20);}
     }
 
     @Override

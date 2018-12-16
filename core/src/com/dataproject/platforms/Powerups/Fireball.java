@@ -1,5 +1,7 @@
 package com.dataproject.platforms.Powerups;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.dataproject.platforms.Platforms;
@@ -26,8 +28,20 @@ public class Fireball implements Powerup
         return chanceToHarmUser;
     }
 
+    public static void render(Batch batch, float dt)
+    {
+        if(fireballs != null)
+        {
+            for(FireballProjectile f: fireballs)
+            {
+                f.draw(batch, 1);
+            }
+        }
+    }
+
     @Override
-    public void animate(float dt) {
+    public void animate(float dt)
+    {
 
     }
 

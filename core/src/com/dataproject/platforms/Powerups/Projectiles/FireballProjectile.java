@@ -2,15 +2,20 @@ package com.dataproject.platforms.Powerups.Projectiles;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.dataproject.platforms.PlatformStuff.Platform;
+import com.dataproject.platforms.Utilities.MiscTools;
 import com.dataproject.platforms.Utilities.WorldContactListener;
 
 
 public class FireballProjectile extends Actor
 {
+    public static final Texture FIREBALL_TEX = new Texture("Powerups/FireBallTexture.png");
+    private Sprite fireballSprite;
+
     private int fireballWidth;
     private int fireballHeight;
     private World gameWorld;
@@ -39,6 +44,15 @@ public class FireballProjectile extends Actor
     @Override
     public void draw(Batch batch, float parentAlpha)
     {
+        float rotation = (float)Math.toDegrees(fireBody.getAngle());
+
+        if(fireBody.isActive())
+        {
+            fireballSprite.setPosition(fireBody.getPosition().x - size.x, fireBody.getPosition().y - size.y);
+            fireballSprite.setRotation(rotation);
+            fireballSprite.draw(batch, 1);
+        }
+
         super.draw(batch, parentAlpha);
     }
 
@@ -50,10 +64,10 @@ public class FireballProjectile extends Actor
         fireBodyDef.position.set(position);
 
         //Setting the texture, and getting its width and height to set the size
-        fireTexture = new Texture("Powerups/FireBallTexture.png");
-        fireballWidth = fireTexture.getWidth();
-        fireballHeight = fireTexture.getHeight();
+        fireballWidth = FIREBALL_TEX.getWidth();
+        fireballHeight = FIREBALL_TEX.getHeight();
         size = new Vector2(fireballWidth,fireballHeight);
+        fireballSprite = MiscTools.createScaledSprite(FIREBALL_TEX, (int)size.x*2, (int)size.y*2);
 
         //Making the shape according to size
         fireShape = new PolygonShape();
@@ -71,6 +85,9 @@ public class FireballProjectile extends Actor
 
     private void init()
     {
+
+       // fireballSprite.setRegionWidth((int)size.x);
+       // fireballSprite.setRegionHeight((int)size.y);
         initBox2d();
     }
 
@@ -79,6 +96,6 @@ public class FireballProjectile extends Actor
         System.out.println("Bucktee");
         fireBody.setActive(false);
         WorldContactListener.bodiesToDestroy.add(fireBody);
-        //gameWorld.destroyBody(fireBody);
+
     }
 }

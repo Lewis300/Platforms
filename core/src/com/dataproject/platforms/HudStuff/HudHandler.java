@@ -21,7 +21,7 @@ public class HudHandler
         p2_roll = new Button(Button.ButtonType.ROLL); //TODO set postition
 
         p1_roll.setButtonPosition(new Vector2(20, 20));
-        p2_roll.setButtonPosition(new Vector2(Platforms.SCREEN_WIDTH - Button.ROLL_BTN_TEX.getWidth() - 20, 20));
+        //p2_roll.setButtonPosition(new Vector2(Platforms.SCREEN_WIDTH - Button.ROLL_BTN_TEX.getWidth() - 20, 20));
     }
 
     public void render(Batch batch, float dt)
