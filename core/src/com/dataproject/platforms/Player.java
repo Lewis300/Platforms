@@ -53,7 +53,6 @@ public class Player
         for(int i = 0; i<amount; i++)
         {
             plats.get(plats.size()-1).destroy();
-            plats.remove(plats.size()-1);
         }
     }
 

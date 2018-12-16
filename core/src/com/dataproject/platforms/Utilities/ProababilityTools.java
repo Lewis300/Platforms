@@ -16,7 +16,7 @@ public class ProababilityTools
     private static Wave pup_wave = new Wave();
     private static Fireball pup_fireball = new Fireball();
     private static Lightning pup_lightning = new Lightning();
-    
+
     public static Powerup roll(Player p)
     {
         double roll = Math.random();
