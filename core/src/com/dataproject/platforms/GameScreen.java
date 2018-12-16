@@ -137,7 +137,7 @@ public class GameScreen implements Screen
 
         WorldContactListener.update(delta);
     }
-
+//
     private boolean worldInitialized = false;
     private void initializeWorld()
     {

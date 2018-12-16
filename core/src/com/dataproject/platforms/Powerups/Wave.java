@@ -76,7 +76,7 @@ public class Wave implements Powerup
     public Range getRange() {
         return null;
     }
-
+//
     public static void init(ParticleSystem sys)
     {
         psys = sys;

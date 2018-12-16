@@ -72,5 +72,5 @@ public class FireballProjectile extends Actor
     {
         fireBody.setActive(false);
         gameWorld.destroyBody(fireBody);
-    }
+    }//
 }

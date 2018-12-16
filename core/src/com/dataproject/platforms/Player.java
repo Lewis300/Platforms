@@ -17,7 +17,7 @@ public class Player
     public boolean onRightSide = true; //whichever player is created first will have this variable as false
     private ArrayList<Platform> plats;
     private World gameWorld;
-
+//
     public Player(World world, ArrayList<Platform> plats)
     {
         gameWorld = world;

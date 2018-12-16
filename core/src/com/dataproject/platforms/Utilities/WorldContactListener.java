@@ -12,7 +12,7 @@ public class WorldContactListener implements ContactListener
     private Fixture object;
     private static ArrayList<Body> bodiesToDestroy;
     private static World gameWorld;
-
+//
     public WorldContactListener(World gameWorld)
     {
         this.gameWorld = gameWorld;

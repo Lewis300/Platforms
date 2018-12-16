@@ -41,7 +41,7 @@ public class Platform extends Actor
 
         if(deathClock>5.0f){destroy();}
     }
-
+//
     @Override
     public void draw(Batch batch, float parentAlpha)
     {

@@ -60,7 +60,7 @@ public class Fireball implements Powerup
             //if less than 0.15, harm self
             harmsSelf = true;
         }
-
+//
         else
         {
             //otherwise, harm enemy
