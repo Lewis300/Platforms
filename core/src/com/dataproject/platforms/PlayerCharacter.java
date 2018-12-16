@@ -27,13 +27,14 @@ public class PlayerCharacter extends Actor
     private Vector2 size;
     private final Vector2 position = new Vector2();
 
-    private static int fireballProjectileCount = 0;
-    public int fireballProjectileId = 0;
+    private static int playerCount = 1;
+    public final int id;
 
     public PlayerCharacter(World world, Vector2 position)
     {
-        fireballProjectileCount++;
-        fireballProjectileId = fireballProjectileCount;
+        id = playerCount;
+        playerCount++;
+
         gameWorld = world;
         this.position.set(position);
 
@@ -78,7 +79,7 @@ public class PlayerCharacter extends Actor
         //Creating the body in the world
         playercharBody = gameWorld.createBody(playercharBodyDef);
 
-        playercharBody.createFixture(playercharFixDef).setUserData("fireball_"+fireballProjectileId);
+        playercharBody.createFixture(playercharFixDef).setUserData("player_"+id);
 
     }
 
