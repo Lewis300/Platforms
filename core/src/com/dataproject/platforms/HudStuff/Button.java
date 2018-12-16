@@ -19,7 +19,7 @@ public class Button
 
     public static final Texture USE_BTN_TEX = new Texture("Buttons/YesButton.png"); //TODO Get path
     public static final Texture DONT_USE_BTN_TEX = new Texture("Buttons/NoButton.png"); //TODO get path
-    //public static final Texture ROLL_BTN_TEX = new Texture("");//TODO get path)
+    public static final Texture ROLL_BTN_TEX = new Texture("Buttons/RollButton.png");//TODO get path)
 
     private Texture tex;
     private boolean isActive = true;
@@ -31,7 +31,7 @@ public class Button
     {
         if(buttonType == ButtonType.USE){tex = USE_BTN_TEX;}
         else if(buttonType == ButtonType.DONT_USE){tex = DONT_USE_BTN_TEX;}
-        //else if(buttonType == ButtonType.ROLL){tex = ROLL_BTN_TEX; isActive = false;}
+        else if(buttonType == ButtonType.ROLL){tex = ROLL_BTN_TEX; isActive = false;}
 
         dimensions = new Vector2(tex.getWidth(), tex.getHeight());
     }
@@ -40,7 +40,7 @@ public class Button
     {
         if(buttonType == ButtonType.USE){tex = USE_BTN_TEX;}
         else if(buttonType == ButtonType.DONT_USE){tex = DONT_USE_BTN_TEX;}
-       // else if(buttonType == ButtonType.ROLL){tex = ROLL_BTN_TEX;}
+        else if(buttonType == ButtonType.ROLL){tex = ROLL_BTN_TEX;}
 
         dimensions = new Vector2(tex.getWidth(), tex.getHeight());
         this.buttonPos = buttonPos;
