@@ -39,22 +39,21 @@ public class Wave implements Powerup
     public static void update(float dt)
     {
 
-        if(Wave.WAVE_USED && Wave.WAVEGROUP_SPAWN_COUNT < Wave.DROP_AMT)
+        if(WAVE_USED && WAVEGROUP_SPAWN_COUNT < DROP_AMT)
         {
-            Wave.placeWave(Wave.START_POS);
-            Wave.WAVEGROUP_SPAWN_COUNT++;
-            if(Wave.WAVEGROUP_SPAWN_COUNT == 100){Wave.WAVE_USED = false;}
+            placeWave(Wave.START_POS);
+            WAVEGROUP_SPAWN_COUNT++;
+            if(WAVEGROUP_SPAWN_COUNT == 100){WAVE_USED = false; WAVEGROUP_SPAWN_COUNT = 0;}
         }
 
-//        try
-//        {
-//            for(int i = 0; i<2; i++)
-//            {
-//                psys.destroyParticle(i);
-//            }
-//
-//        }
-//        catch (Exception e){}
+        try
+        {
+            for(int i = 0; i<2; i++)
+            {
+                psys.destroyParticle(i);
+            }
+        }
+        catch (Exception e){}
     }
 
     @Override
@@ -103,27 +102,16 @@ public class Wave implements Powerup
         //for(int i =0; i<100; i++)placeWave(new Vector2(-120, Platforms.SCREEN_HEIGHT-75));
     }
 
+    private static int useCount = 0;
     @Override
     public void use(Player affected)
     {
-        ParticleSystemDef psysDef = new ParticleSystemDef();
-        psysDef.pressureStrength = 1000;
-        psysDef.destroyByAge = true;
-        psysDef.lifetimeGranularity = 10;
-        psysDef.maxCount = 2000;
-        psysDef.pressureStrength =1000;
-
-        psys.destroyParticleSystem();
-        psys = new ParticleSystem(gameWorld, psysDef);
-        psys.setParticleRadius(2f);
-        psys.setParticleGravityScale(10);
-
-
+        useCount++;
         affected.setTopPlatDynamic(3, true);
 
         if(affected.onRightSide){START_POS = new Vector2(Platforms.SCREEN_WIDTH+200, affected.getTopPlatPos().y);}
 
-        else{START_POS = new Vector2(-75, Platforms.SCREEN_HEIGHT+75);}
+        else{START_POS = new Vector2(-200, affected.getTopPlatPos().y); System.out.println("FAG");}
 
         WAVE_USED = true;
     }
@@ -148,12 +136,13 @@ public class Wave implements Powerup
             }
         }
 
-        if(wave!=null && WAVEGROUP_SPAWN_COUNT == 0)
-        {
-            wave.destroyParticlesInGroup();
-        }
+//        if(wave!=null && WAVEGROUP_SPAWN_COUNT == 0)
+//        {
+//            wave.destroyParticlesInGroup();
+//        }
 
-        waveDef.position.set(new Vector2(pos.x+0*WAVEGROUP_SPAWN_COUNT, pos.y-10));
+        if(pos.x > Platforms.SCREEN_WIDTH/2){waveDef.position.set(new Vector2(pos.x-0*WAVEGROUP_SPAWN_COUNT, pos.y-10));}
+        else {waveDef.position.set(new Vector2(pos.x-0.1f*WAVEGROUP_SPAWN_COUNT, pos.y-10));}
 
 
         //if(wave == null){wave = psys.createParticleGroup(waveDef);}

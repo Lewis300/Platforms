@@ -1,6 +1,10 @@
 package com.dataproject.platforms.Utilities;
 
 import com.badlogic.gdx.physics.box2d.*;
+import com.dataproject.platforms.PlatformStuff.Platform;
+import com.dataproject.platforms.Player;
+import com.dataproject.platforms.Powerups.Fireball;
+import com.dataproject.platforms.Powerups.Projectiles.FireballProjectile;
 import finnstr.libgdx.liquidfun.ParticleBodyContact;
 import finnstr.libgdx.liquidfun.ParticleContact;
 import finnstr.libgdx.liquidfun.ParticleSystem;
@@ -10,12 +14,16 @@ import java.util.ArrayList;
 public class WorldContactListener implements ContactListener
 {
     private Fixture object;
-    private static ArrayList<Body> bodiesToDestroy;
+    public static ArrayList<Body> bodiesToDestroy;
     private static World gameWorld;
+
+    private Player p1, p2;
 //
-    public WorldContactListener(World gameWorld)
+    public WorldContactListener(World gameWorld, Player p1, Player p2)
     {
         this.gameWorld = gameWorld;
+        this.p1 = p1;
+        this.p2 = p2;
         bodiesToDestroy = new ArrayList<Body>();
     }
 
@@ -37,30 +45,13 @@ public class WorldContactListener implements ContactListener
     public void beginContact(Contact contact)
     {
 
+
     }
 
     @Override
     public void endContact(Contact contact)
     {
-        try
-        {
-            Fixture A, B;
 
-            A = contact.getFixtureA();
-            B = contact.getFixtureB();
-
-            if(A.getUserData().equals("fireball") && B.getUserData().equals("platform"))
-            {
-                bodiesToDestroy.add(A.getBody());
-                bodiesToDestroy.add(B.getBody());
-            }
-            else if(A.getUserData().equals("platform") && B.getUserData().equals("fireball"))
-            {
-                bodiesToDestroy.add(B.getBody());
-                bodiesToDestroy.add(A.getBody());
-            }
-        }
-        catch (NullPointerException e){System.out.println("NullPointerException caught in encContact()");}
     }
 
     @Override
@@ -75,8 +66,8 @@ public class WorldContactListener implements ContactListener
     }
 
     @Override
-    public void beginParticleContact(ParticleSystem particleSystem, ParticleContact particleContact) {
-
+    public void beginParticleContact(ParticleSystem particleSystem, ParticleContact particleContact)
+    {
     }
 
     @Override
@@ -88,12 +79,66 @@ public class WorldContactListener implements ContactListener
     public void preSolve(Contact contact, Manifold manifold)
     {
 
+
     }
 
     @Override
     public void postSolve(Contact contact, ContactImpulse contactImpulse)
     {
+        try
+        {
+            Fixture A, B;
+
+            A = contact.getFixtureA();
+            B = contact.getFixtureB();
+
+            if(A.getUserData().toString().contains("fireball") && B.getUserData().toString().contains("platform"))
+            {
+//                bodiesToDestroy.add(A.getBody());
+//                bodiesToDestroy.add(B.getBody());
 
 
+                getPlat(B.getUserData().toString()).destroy();
+                getFireballProjectile(A.getUserData().toString()).destroy();
+
+            }
+            else if(A.getUserData().toString().contains("platform") && B.getUserData().toString().contains("fireball"))
+            {
+                //bodiesToDestroy.add(B.getBody());
+                //bodiesToDestroy.add(A.getBody());
+
+                getPlat(A.getUserData().toString()).destroy();
+                getFireballProjectile(B.getUserData().toString()).destroy();
+            }
+        }
+        catch (NullPointerException e){e.printStackTrace();}
+    }
+
+    private Platform getPlat(String userdata)
+    {
+        int id = Integer.parseInt(userdata.substring(9));
+
+        for(Platform p: p1.plats)
+        {
+            if(id == p.platId){return p;}
+        }
+        for(Platform p: p2.plats)
+        {
+            if(id == p.platId){return p;}
+        }
+
+        return null;
+    }
+
+    private FireballProjectile getFireballProjectile(String userdata)
+    {
+        int id = Integer.parseInt(userdata.substring(9));
+
+        for(FireballProjectile f: Fireball.fireballs)
+        {
+            if(f.fireballProjectileId == id){return f;}
+        }
+
+        return null;
     }
 }

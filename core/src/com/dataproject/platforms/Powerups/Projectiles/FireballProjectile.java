@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.dataproject.platforms.PlatformStuff.Platform;
+import com.dataproject.platforms.Utilities.WorldContactListener;
 
 
 public class FireballProjectile extends Actor
@@ -22,8 +23,13 @@ public class FireballProjectile extends Actor
     private Vector2 size;
     private final Vector2 position = new Vector2();
 
+    private static int fireballProjectileCount = 0;
+    public int fireballProjectileId = 0;
+
     public FireballProjectile(World world, Vector2 position)
     {
+        fireballProjectileCount++;
+        fireballProjectileId = fireballProjectileCount;
         gameWorld = world;
         this.position.set(position);
 
@@ -59,7 +65,7 @@ public class FireballProjectile extends Actor
         //Creating the body in the world
         fireBody = gameWorld.createBody(fireBodyDef);
 
-        fireBody.createFixture(fireFixDef).setUserData("fireball");
+        fireBody.createFixture(fireFixDef).setUserData("fireball_"+fireballProjectileId);
 
     }
 
@@ -70,7 +76,9 @@ public class FireballProjectile extends Actor
 
     public void destroy()
     {
+        System.out.println("Bucktee");
         fireBody.setActive(false);
-        gameWorld.destroyBody(fireBody);
-    }//
+        WorldContactListener.bodiesToDestroy.add(fireBody);
+        //gameWorld.destroyBody(fireBody);
+    }
 }

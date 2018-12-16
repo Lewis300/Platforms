@@ -14,7 +14,7 @@ public class Fireball implements Powerup
     private static World gameworld;
     private double rarity = 0.15;
     private double chanceToHarmUser =  0.5;
-    private ArrayList<FireballProjectile> fireballs;
+    public static ArrayList<FireballProjectile> fireballs;
 
     @Override
     public double getRarity() {
@@ -70,6 +70,7 @@ public class Fireball implements Powerup
         if(true)
         {
             affected.setTopPlatDynamic(3, false);
+            fireballs = new ArrayList<FireballProjectile>();
             for(int fireballCounter = 1; fireballCounter <= 3; fireballCounter++)
             {
 
@@ -79,7 +80,7 @@ public class Fireball implements Powerup
                 currentFireballSpawnPoint.x = (float) (currentTopPlatPos.x - (Platforms.SCREEN_WIDTH/7f / 2) + Math.random() * Platforms.SCREEN_WIDTH/7f);
                 currentFireballSpawnPoint.y = currentTopPlatPos.y + 150;
 
-                fireballs = new ArrayList<FireballProjectile>();
+
                 fireballs.add(new FireballProjectile(gameworld, currentFireballSpawnPoint));
             }
         }

@@ -6,7 +6,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.dataproject.platforms.Platforms;
+import com.dataproject.platforms.Player;
 import com.dataproject.platforms.Powerups.Powerup;
+import com.dataproject.platforms.Powerups.Wave;
+import com.dataproject.platforms.Utilities.WorldContactListener;
 
 public class Platform extends Actor
 {
@@ -27,13 +30,21 @@ public class Platform extends Actor
     private boolean animateDestroy = false;
     public boolean selfDestruct = false;
 
+    private Player owner;
+
+    private static int platCount = 0;
+    public int platId;
+
     public Platform(World world, Vector2 position)
     {
+        platCount++;
+        platId = platCount;
         gameWorld = world;
         this.position.set(position);
-
         init();
     }
+
+    public void setOwner(Player owner){this.owner = owner;}
 
     public void update(float dt)
     {
@@ -77,12 +88,12 @@ public class Platform extends Actor
             Set characteristics of this object (characteristics are defined by the FixtureDef)
             ...
          */
-            platFixDef.restitution = 2f;
+            platFixDef.restitution = 0f;
             platFixDef.shape = platShape;
             platFixDef.density = 10;
         //Add body to game world define body with the FixtureDef
             platform = gameWorld.createBody(platBodyDef);
-            platform.createFixture(platFixDef).setUserData("platform");
+            platform.createFixture(platFixDef).setUserData("platform_"+platId);
 
             MassData mass = new MassData();
             mass.mass = 100;
@@ -104,7 +115,8 @@ public class Platform extends Actor
     {
        animateDestroy = true;
        platform.setActive(false);
-       gameWorld.destroyBody(platform);
+       WorldContactListener.bodiesToDestroy.add(platform);
+       owner.plats.remove(this);
     }
 
 }

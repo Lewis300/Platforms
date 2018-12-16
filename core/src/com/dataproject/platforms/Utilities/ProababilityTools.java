@@ -13,12 +13,17 @@ import java.util.List;
 //;
 public class ProababilityTools
 {
+    private static Wave pup_wave = new Wave();
+    private static Fireball pup_fireball = new Fireball();
+    private static Lightning pup_lightning = new Lightning();
+    
     public static Powerup roll(Player p)
     {
         double roll = Math.random();
 
-
-        return new Wave(); //For now just auto roll wave every time
+        if(roll > 0.33 && roll <0.66){return pup_wave;}
+        else if(roll>=0.66){return pup_fireball;}
+        else {return pup_lightning;}
     }
 
     // Returns random integer between min and max
@@ -38,7 +43,7 @@ public class ProababilityTools
     {
         int accuracy = Double.toString(probability).length() - 2; //How many decimal places
 
-        long[] probAsFraction = asFraction((long)(probability*Math.pow(10, accuracy)), (long)Math.pow(10, accuracy));;
+        long[] probAsFraction = asFraction((long)(probability*Math.pow(10, accuracy)), (long)Math.pow(10, accuracy));
 
         long[] oddsInFavour = {probAsFraction[0], probAsFraction[1]-probAsFraction[0]};
 

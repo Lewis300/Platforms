@@ -90,6 +90,8 @@ public class GameScreen implements Screen
 
     private  boolean spawnednewWave = false;
     private  boolean spawnednewWave2 = false;
+    private  boolean spawnednewWave3 = false;
+    private  boolean spawnednewWave4 = false;
     public void update(float dt)
     {
         timePassed+=dt;
@@ -110,15 +112,33 @@ public class GameScreen implements Screen
             ProababilityTools.roll(p1).use(p2);
         }
 
-        if(timePassed>25 && spawnednewWave2 == false)
+        if(timePassed>12 && spawnednewWave2 == false)
         {
             spawnednewWave2 = true;
+            ProababilityTools.roll(p2).use(p1);
+        }
+
+        if(timePassed>18 && spawnednewWave3 == false)
+        {
+            spawnednewWave3 = true;
             ProababilityTools.roll(p1).use(p2);
         }
 
+        if(timePassed>24 && spawnednewWave4 == false)
+        {
+            spawnednewWave4 = true;
+            ProababilityTools.roll(p2).use(p1);
+        }
 
-        for(Platform p: p1_platforms) {p.update(dt);}
-        for(Platform p: p2_platforms) {p.update(dt);}
+
+        //MAccaroni
+        try
+        {
+            for(Platform p: p1_platforms) {p.update(dt);}
+            for(Platform p: p2_platforms) {p.update(dt);}
+        }
+        catch (Exception e){}
+
         Wave.update(dt);
         Lightning.update(dt);
     }
@@ -140,7 +160,10 @@ public class GameScreen implements Screen
         b2dr.render(world, gameCam.combined);
         //pdr.render(psys, 1, gameCam.combined);
         rayHandler.updateAndRender();
+
+
         pdr.render(Wave.psys, 1, gameCam.combined);
+
 
 
         WorldContactListener.update(delta);
@@ -155,7 +178,6 @@ public class GameScreen implements Screen
         //Initialize Box2d and create world
         //Box2D.init();
         world = new World(gravity, allowSleepingObjects);
-        world.setContactListener(new WorldContactListener(world));
         rayHandler = new RayHandler(world);
         rayHandler.setAmbientLight(AMBIENT_LIGHT);
         //rayHandler.setAmbientLight(1,1,1,1);
@@ -214,8 +236,10 @@ public class GameScreen implements Screen
             Wave.init(psys, world);
             Fireball.init(world);
             Lightning.init();
-            p1 = new Player(world, p1_platforms);
-            p2 = new Player(world, p2_platforms);
+            p1 = new Player(world, p1_platforms); p1.onRightSide = false;
+            p2 = new Player(world, p2_platforms); p2.onRightSide = true;
+
+        world.setContactListener(new WorldContactListener(world, p1, p2));
 
         worldInitialized = true;
 
@@ -234,7 +258,7 @@ public class GameScreen implements Screen
     {
         gameCam.viewportWidth = width;
         gameCam.viewportHeight = height;
-        {gameCam.position.set(width/2f, height/2f, 0);}
+        {gameCam.position.set(width/2f - 300, height/2f, 0);}
 
         if(!worldInitialized){initializeWorld();}
     }

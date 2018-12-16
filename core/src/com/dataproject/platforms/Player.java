@@ -15,13 +15,18 @@ public class Player
 {
     private int PLATFORMS_LEFT = 15;
     public boolean onRightSide = true; //whichever player is created first will have this variable as false
-    private ArrayList<Platform> plats;
+    public ArrayList<Platform> plats;
     private World gameWorld;
 //
     public Player(World world, ArrayList<Platform> plats)
     {
         gameWorld = world;
         this.plats = plats;
+
+        for(int i = 0; i<this.plats.size(); i++)
+        {
+            this.plats.get(i).setOwner(this);
+        }
     }
 
     public Vector2 getTopPlatPos(){return plats.get(plats.size()-1).getPosition();}
@@ -29,13 +34,13 @@ public class Player
 
     public void setTopPlatDynamic(int amount, boolean selfDestruct)
     {
-        ArrayList<Platform> destroyed = new ArrayList<Platform>();
-        for(Platform p: plats)
-        {
-            if(p.selfDestruct){destroyed.add(p);}
-        }
-
-        plats.removeAll(destroyed);
+//        ArrayList<Platform> destroyed = new ArrayList<Platform>();
+//        for(Platform p: plats)
+//        {
+//            if(p.selfDestruct){destroyed.add(p);}
+//        }
+//
+//        plats.removeAll(destroyed);
 
         for(int i = 0; i<amount; i++)
         {
