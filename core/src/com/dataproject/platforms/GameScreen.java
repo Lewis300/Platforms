@@ -11,6 +11,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.dataproject.platforms.HudStuff.HudHandler;
+import com.dataproject.platforms.HudStuff.PowerupPrompt;
 import com.dataproject.platforms.PlatformStuff.Platform;
 import com.dataproject.platforms.Powerups.Fireball;
 import com.dataproject.platforms.Powerups.Lightning;
@@ -59,6 +61,7 @@ public class GameScreen implements Screen
     //Players
     private Player p1; //on the left
     private Player p2; //on the right
+    private boolean isItP1Turn = true;
 
     //Liquidfun
     private ParticleSystem psys;
@@ -70,6 +73,9 @@ public class GameScreen implements Screen
     //Background and SB
     private Sprite background;
     private Texture backtex;
+
+    //Hud
+    private HudHandler HH;
 
     public GameScreen(Batch sb)
     {
@@ -84,9 +90,16 @@ public class GameScreen implements Screen
         background = new Sprite();
         background.setRegion(backtex);
 
+        HH = new HudHandler();
     }
 
     private boolean hudAdded = false;
+
+
+    public void handleInput(float dt)
+    {
+        HH.handleInput(dt);
+    }
 
     private  boolean spawnednewWave = false;
     private  boolean spawnednewWave2 = false;
@@ -95,6 +108,7 @@ public class GameScreen implements Screen
     public void update(float dt)
     {
         timePassed+=dt;
+        handleInput(dt);
 
         //Destroy bodies before world steps
         world.step(1/60f, 6,3, 1);
@@ -158,7 +172,7 @@ public class GameScreen implements Screen
 
 
         b2dr.render(world, gameCam.combined);
-        //pdr.render(psys, 1, gameCam.combined);
+        HH.render(sb, delta);
         rayHandler.updateAndRender();
 
 
