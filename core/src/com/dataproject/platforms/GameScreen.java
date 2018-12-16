@@ -102,10 +102,12 @@ public class GameScreen implements Screen
         if(isItP1Turn == true)
         {
             currentRoll = ProababilityTools.roll(p1, p2);
+            p1.setCurrentlyRolledPowerup(currentRoll);
         }
         else
         {
             currentRoll = ProababilityTools.roll(p2, p1);
+            p2.setCurrentlyRolledPowerup(currentRoll);
         }
     }
 

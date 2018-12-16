@@ -50,7 +50,7 @@ public class Player
         }
     }
 
-    public void setCurrentlyRolledPowerup(Powerup rolled){currentlyRolled = currentlyRolled;}
+    public void setCurrentlyRolledPowerup(Powerup rolled){currentlyRolled = rolled;}
 
     public Powerup gettCurrentlyRolledPowerup(){return currentlyRolled;}
 

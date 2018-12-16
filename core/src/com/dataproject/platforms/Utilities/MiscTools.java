@@ -13,5 +13,11 @@ public class MiscTools
         return sprite;
     }
 
-
+    public static Texture createScaledTexture(Texture texture, int width, int height)
+    {
+        Sprite sprite = new Sprite(texture);
+        sprite.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        sprite.setSize(width, height);
+        return sprite.getTexture();
+    }
 }
