@@ -1,5 +1,6 @@
 package com.dataproject.platforms.Utilities;
 
+import com.dataproject.platforms.PlatformStuff.Platform;
 import com.dataproject.platforms.Player;
 import com.dataproject.platforms.Powerups.Fireball;
 import com.dataproject.platforms.Powerups.Lightning;
@@ -17,8 +18,15 @@ public class ProababilityTools
     private static Fireball pup_fireball = new Fireball();
     private static Lightning pup_lightning = new Lightning();
 
-    public static Powerup roll(Player p)
+    public static Player decider;
+    public static Player affected;
+
+    public static Powerup roll(Player p1, Player p2)
     {
+        //TODO implement way of deciding who gets affected
+        decider = p1;
+        affected = p2;
+
         double roll = Math.random();
 
         if(roll > 0.33 && roll <0.66){return pup_wave;}

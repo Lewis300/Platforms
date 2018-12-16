@@ -17,6 +17,8 @@ public class Player
     public boolean onRightSide = true; //whichever player is created first will have this variable as false
     public ArrayList<Platform> plats;
     private World gameWorld;
+
+    private Powerup currentlyRolled;
 //
     public Player(World world, ArrayList<Platform> plats)
     {
@@ -48,6 +50,10 @@ public class Player
         }
     }
 
+    public void setCurrentlyRolledPowerup(Powerup rolled){currentlyRolled = currentlyRolled;}
+
+    public Powerup gettCurrentlyRolledPowerup(){return currentlyRolled;}
+
     public void instantlyDestroyPlat(int amount)
     {
         for(int i = 0; i<amount; i++)
@@ -57,8 +63,8 @@ public class Player
     }
 
     // This method chooses a powerup from the list of powerups currently availible to this player
-    public Powerup roll()
-    {
-        return  ProababilityTools.roll(this);
-    }
+//    public Powerup roll()
+//    {
+//        return  ProababilityTools.roll(this, othg);
+//    }
 }
