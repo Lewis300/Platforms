@@ -3,6 +3,7 @@ package com.dataproject.platforms.HudStuff;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Vector2;
 import com.dataproject.platforms.Platforms;
 import com.dataproject.platforms.Utilities.ProababilityTools;
 
@@ -18,6 +19,9 @@ public class HudHandler
 
         p1_roll = new Button(Button.ButtonType.ROLL); //TODO set position
         p2_roll = new Button(Button.ButtonType.ROLL); //TODO set postition
+
+        p1_roll.setButtonPosition(new Vector2(20, 20));
+        p2_roll.setButtonPosition(new Vector2(Platforms.SCREEN_WIDTH - Button.ROLL_BTN_TEX.getWidth() - 20, 20));
     }
 
     public void render(Batch batch, float dt)
