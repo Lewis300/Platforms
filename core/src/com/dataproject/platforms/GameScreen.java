@@ -96,12 +96,6 @@ public class GameScreen implements Screen
 
         sb.setProjectionMatrix(gameCam.combined);
 
-        if(Wave.WAVE_USED && Wave.WAVEGROUP_SPAWN_COUNT < Wave.DROP_AMT)
-        {
-            Wave.placeWave(Wave.START_POS);
-            Wave.WAVEGROUP_SPAWN_COUNT++;
-            if(Wave.WAVEGROUP_SPAWN_COUNT == 100){Wave.WAVE_USED = false;}
-        }
 
         if(timePassed>5 && spawnednewWave == false)
         {

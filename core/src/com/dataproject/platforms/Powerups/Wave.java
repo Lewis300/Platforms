@@ -45,6 +45,14 @@ public class Wave implements Powerup
 
     public static void update(float dt)
     {
+
+        if(Wave.WAVE_USED && Wave.WAVEGROUP_SPAWN_COUNT < Wave.DROP_AMT)
+        {
+            Wave.placeWave(Wave.START_POS);
+            Wave.WAVEGROUP_SPAWN_COUNT++;
+            if(Wave.WAVEGROUP_SPAWN_COUNT == 100){Wave.WAVE_USED = false;}
+        }
+
         try
         {
             psys.destroyParticle(0);
@@ -107,7 +115,7 @@ public class Wave implements Powerup
 
         waveDef.lifetime = 5;
         waveDef.strength = 1000;
-        placeWave(new Vector2(-120, Platforms.SCREEN_HEIGHT+75));
+        for(int i =0; i<100; i++)placeWave(new Vector2(-120, Platforms.SCREEN_HEIGHT-75));
     }
 
     @Override
