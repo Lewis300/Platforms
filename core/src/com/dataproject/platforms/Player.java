@@ -46,8 +46,9 @@ public class Player
 
         for(int i = 0; i<amount; i++)
         {
-            plats.get(plats.size()-1-i).setDynamic(selfDestruct);
+            plats.get(plats.size()-i-1).setDynamic(selfDestruct);
         }
+
     }
 
     public void setCurrentlyRolledPowerup(Powerup rolled){currentlyRolled = rolled;}

@@ -66,41 +66,26 @@ public class Fireball implements Powerup
 
     public void use(Player affected)
     {
-        boolean harmsSelf;
 
-        //number to determine whether to harm user
-        double numHarmSelf = Math.random();
-
-        //checks whether number rolled is less that or equal to the set chance
-        //to harm user
-        if(numHarmSelf <= chanceToHarmUser)
-        {
-            //if less than 0.15, harm self
-            harmsSelf = true;
-        }
-//
-        else
-        {
-            //otherwise, harm enemy
-            harmsSelf = false;
-        }
-
-        if(true)
+        if(affected.plats.size()>=3)
         {
             affected.setTopPlatDynamic(3, false);
-            fireballs = new ArrayList<FireballProjectile>();
-            for(int fireballCounter = 1; fireballCounter <= 3; fireballCounter++)
-            {
+        }
 
 
-                Vector2 currentTopPlatPos = affected.getTopPlatPos();
-                Vector2 currentFireballSpawnPoint = currentTopPlatPos;
-                currentFireballSpawnPoint.x = (float) (currentTopPlatPos.x - (Platforms.SCREEN_WIDTH/7f / 2) + Math.random() * Platforms.SCREEN_WIDTH/7f);
-                currentFireballSpawnPoint.y = currentTopPlatPos.y + 150;
+
+        fireballs = new ArrayList<FireballProjectile>();
+        for(int fireballCounter = 1; fireballCounter <= 3; fireballCounter++)
+        {
 
 
-                fireballs.add(new FireballProjectile(gameworld, currentFireballSpawnPoint));
-            }
+            Vector2 currentTopPlatPos = affected.getTopPlatPos();
+            Vector2 currentFireballSpawnPoint = currentTopPlatPos;
+            currentFireballSpawnPoint.x = (float) (currentTopPlatPos.x - (Platforms.SCREEN_WIDTH/7f / 2) + Math.random() * Platforms.SCREEN_WIDTH/7f);
+            currentFireballSpawnPoint.y = currentTopPlatPos.y + 150;
+
+
+            fireballs.add(new FireballProjectile(gameworld, currentFireballSpawnPoint));
         }
     }
 
