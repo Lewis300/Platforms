@@ -258,7 +258,7 @@ public class GameScreen implements Screen
     {
         gameCam.viewportWidth = width;
         gameCam.viewportHeight = height;
-        {gameCam.position.set(width/2f - 300, height/2f, 0);}
+        {gameCam.position.set(width/2f, height/2f, 0);}
 
         if(!worldInitialized){initializeWorld();}
     }
