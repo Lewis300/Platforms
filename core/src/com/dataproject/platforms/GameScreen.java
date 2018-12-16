@@ -129,6 +129,7 @@ public class GameScreen implements Screen
     {
         timePassed+=dt;
         handleInput(dt);
+        if(timePassed>=26.67f){sun.setColor(new Color((float)(Math.random()), (float)(Math.random()), (float)(Math.random()), 1));}
 
         //Destroy bodies before world steps
         world.step(1/60f, 6,3, 1);

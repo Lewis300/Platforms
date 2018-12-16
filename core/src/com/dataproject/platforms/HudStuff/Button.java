@@ -62,8 +62,11 @@ public class Button
     {
         if(type == ButtonType.ROLL)
         {
-            ROLL_BTN_SPRITE.setPosition(buttonPos.x, buttonPos.y);
-            ROLL_BTN_SPRITE.draw(batch);
+            if(isActive)
+            {
+                ROLL_BTN_SPRITE.setPosition(buttonPos.x, buttonPos.y);
+                ROLL_BTN_SPRITE.draw(batch);
+            }
         }
         else{batch.draw(tex, buttonPos.x, buttonPos.y);}
     }
