@@ -15,18 +15,20 @@ public class HudHandler
 
     public HudHandler()
     {
-        pupPropmt = new PowerupPrompt();
+        //pupPropmt = new PowerupPrompt();
 
         p1_roll = new Button(Button.ButtonType.ROLL); //TODO set position
         p2_roll = new Button(Button.ButtonType.ROLL); //TODO set postition
 
         p1_roll.setButtonPosition(new Vector2(20, 20));
-        //p2_roll.setButtonPosition(new Vector2(Platforms.SCREEN_WIDTH - Button.ROLL_BTN_TEX.getWidth() - 20, 20));
+        p2_roll.setButtonPosition(new Vector2(Platforms.SCREEN_WIDTH - Button.ROLL_BTN_TEX.getWidth() - 20, 20));
     }
 
     public void render(Batch batch, float dt)
     {
-        if(pupPropmt.isOpen()){pupPropmt.render(batch, dt);}
+//        if(pupPropmt.isOpen()){pupPropmt.render(batch, dt);}
+        p1_roll.render(batch, dt);
+        p2_roll.render(batch, dt);
     }
 
     public void handleInput(float dt)
