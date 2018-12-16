@@ -42,21 +42,25 @@ public class WorldContactListener implements ContactListener
     @Override
     public void endContact(Contact contact)
     {
-        Fixture A, B;
-
-        A = contact.getFixtureA();
-        B = contact.getFixtureB();
-
-        if(A.getUserData().equals("fireball") && B.getUserData().equals("platform"))
+        try
         {
-            bodiesToDestroy.add(A.getBody());
-            bodiesToDestroy.add(B.getBody());
+            Fixture A, B;
+
+            A = contact.getFixtureA();
+            B = contact.getFixtureB();
+
+            if(A.getUserData().equals("fireball") && B.getUserData().equals("platform"))
+            {
+                bodiesToDestroy.add(A.getBody());
+                bodiesToDestroy.add(B.getBody());
+            }
+            else if(A.getUserData().equals("platform") && B.getUserData().equals("fireball"))
+            {
+                bodiesToDestroy.add(B.getBody());
+                bodiesToDestroy.add(A.getBody());
+            }
         }
-        else if(A.getUserData().equals("platform") && B.getUserData().equals("fireball"))
-        {
-            bodiesToDestroy.add(B.getBody());
-            bodiesToDestroy.add(A.getBody());
-        }
+        catch (NullPointerException e){System.out.println("NullPointerException caught in encContact()");}
     }
 
     @Override

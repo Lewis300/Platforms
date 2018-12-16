@@ -5,11 +5,9 @@ import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
@@ -39,7 +37,7 @@ public class GameScreen implements Screen
     //Box2d World
     private World world;
     private RayHandler rayHandler;
-    public static final float AMBIENT_LIGHT = 0.7f;
+    public static final float AMBIENT_LIGHT = 1f;
     private PointLight sun;
     private Vector2 sunPos;
 
@@ -68,13 +66,22 @@ public class GameScreen implements Screen
     //Rendering
     private float timePassed = 0;
 
+    //Background and SB
+    private Sprite background;
+    private Texture backtex;
+
     public GameScreen(Batch sb)
     {
         this.sb = sb;
         b2dr = new Box2DDebugRenderer();
         pdr = new ParticleDebugRenderer(Color.BLUE, 100000);
         gameCam = new OrthographicCamera();
-        sunPos = new Vector2(Platforms.SCREEN_WIDTH/2, Platforms.SCREEN_HEIGHT/2);
+        sunPos = new Vector2(Platforms.SCREEN_WIDTH/2, Platforms.SCREEN_HEIGHT/2 -120);
+
+        backtex = new Texture("Powerups/Lightning1.png");
+
+        background = new Sprite();
+        background.setRegion(backtex);
 
         //initializeWorld();
     }
@@ -118,16 +125,16 @@ public class GameScreen implements Screen
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-//        sb.begin();
-//        draw background
-//        sb.end();
-
+        sb.begin();
+        sb.draw(backtex,0,0);
+        sb.end();
 
 
         b2dr.render(world, gameCam.combined);
         //pdr.render(psys, 1, gameCam.combined);
         rayHandler.updateAndRender();
         pdr.render(psys, 1, gameCam.combined);
+
 
         WorldContactListener.update(delta);
     }

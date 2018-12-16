@@ -88,7 +88,7 @@ public class Wave implements Powerup
     public static void init(ParticleSystem sys)
     {
         psys = sys;
-        psys.setParticleRadius(5f);
+        psys.setParticleRadius(2f);
         psys.setParticleGravityScale(10);
 
         waveDef = new ParticleGroupDef();
@@ -98,7 +98,8 @@ public class Wave implements Powerup
 
         waveDef.shape = shp;
         waveDef.angle= 5.5f;
-        waveDef.flags.add(ParticleDef.ParticleType.b2_waterParticle);
+        waveDef.flags.add(ParticleDef.ParticleType.b2_viscousParticle);
+
 
 
 //        for(int i = 0; i<DROP_AMT; i++)
@@ -113,8 +114,7 @@ public class Wave implements Powerup
 //
        // psys.setPaused(true);
 
-        waveDef.lifetime = 5;
-        waveDef.strength = 1000;
+        waveDef.strength = 100000;
         for(int i =0; i<100; i++)placeWave(new Vector2(-120, Platforms.SCREEN_HEIGHT-75));
     }
 
@@ -139,13 +139,13 @@ public class Wave implements Powerup
             if(pos.x > Platforms.SCREEN_WIDTH/2) //check if spawning on right side of world
             {
                 waveDef.angle = 0f;
-                waveDef.linearVelocity.set(new Vector2(-1000, 100)); //Move wave left
+                waveDef.linearVelocity.set(new Vector2(-1000000, 100000)); //Move wave left
 
             }
             else
             {
                 waveDef.angle = 0f;
-                waveDef.linearVelocity.set(new Vector2(1000, 100)); //Move wave right
+                waveDef.linearVelocity.set(new Vector2(1000000, 100000)); //Move wave right
 
             }
         }
@@ -155,7 +155,7 @@ public class Wave implements Powerup
             wave.destroyParticlesInGroup();
         }
 
-        waveDef.position.set(new Vector2(pos.x+2*WAVEGROUP_SPAWN_COUNT, pos.y));
+        waveDef.position.set(new Vector2(pos.x+0*WAVEGROUP_SPAWN_COUNT, pos.y-40));
 
 
         //if(wave == null){wave = psys.createParticleGroup(waveDef);}

@@ -39,7 +39,7 @@ public class Platform extends Actor
     {
         if(selfDestruct){deathClock+=dt;}
 
-        if(deathClock>5.0f){destroy();}
+        if(deathClock>10.0f){destroy();}
     }
 //
     @Override
@@ -66,7 +66,7 @@ public class Platform extends Actor
         //Initialize the platforms BodyDef
             platBodyDef = new BodyDef();
             platBodyDef.type = BodyDef.BodyType.StaticBody;
-            platBodyDef.gravityScale = 4; //Makes sure the platform doesent spontaneously fall
+            platBodyDef.gravityScale = 0f; //Makes sure the platform doesent spontaneously fall
             platBodyDef.position.set(position);
            // platBodyDef.active = false;
 
@@ -77,12 +77,16 @@ public class Platform extends Actor
             Set characteristics of this object (characteristics are defined by the FixtureDef)
             ...
          */
-            platFixDef.restitution = 1f;
+            platFixDef.restitution = 2f;
             platFixDef.shape = platShape;
-            platFixDef.density = 4;
+            platFixDef.density = 10;
         //Add body to game world define body with the FixtureDef
             platform = gameWorld.createBody(platBodyDef);
             platform.createFixture(platFixDef).setUserData("platform");
+
+            MassData mass = new MassData();
+            mass.mass = 100;
+            platform.setMassData(mass);
     }
 
     private float deathClock = 0f;
@@ -90,7 +94,7 @@ public class Platform extends Actor
     {
         platform.setType(BodyDef.BodyType.DynamicBody);
         //platform.setActive(true);
-        platform.setGravityScale(10);
+        platform.setGravityScale(80);
         this.selfDestruct = selfDestruct;
     }
 
