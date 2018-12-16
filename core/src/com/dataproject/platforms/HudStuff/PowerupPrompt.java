@@ -11,7 +11,7 @@ import com.dataproject.platforms.Utilities.ProababilityTools;
 
 public class PowerupPrompt
 {
-    //private static final Texture WINDOW_TEX = new Texture("");//TODO get path
+    private static final Texture WINDOW_TEX = new Texture("Windows/WindowPromptBackgroundPlaceholder.png");//TODO get path
 
     private boolean isOpen = false;
     private Vector2 position;
@@ -26,13 +26,13 @@ public class PowerupPrompt
 
     public PowerupPrompt()
     {
-       // position = new Vector2(Platforms.SCREEN_WIDTH/2 - WINDOW_TEX.getWidth()/2, Platforms.SCREEN_HEIGHT/2 - WINDOW_TEX.getHeight()/2); // Centers window
+        position = new Vector2(Platforms.SCREEN_WIDTH/2 - WINDOW_TEX.getWidth()/2, Platforms.SCREEN_HEIGHT/2 - WINDOW_TEX.getHeight()/2); // Centers window
 
-        //usePos = new Vector2(position.x + WINDOW_TEX.getWidth()/15, position.y + WINDOW_TEX.getHeight()/10); //This button is on the left side of the window
-        //dontUsePos = new Vector2(position.x +WINDOW_TEX.getWidth() - WINDOW_TEX.getWidth()/15 - Button.DONT_USE_BTN_TEX.getWidth(), position.y + WINDOW_TEX.getHeight()/10); //This button is on the right side of the window
+        usePos = new Vector2(position.x + WINDOW_TEX.getWidth()/15, position.y + WINDOW_TEX.getHeight()/10); //This button is on the left side of the window
+        dontUsePos = new Vector2(position.x +WINDOW_TEX.getWidth() - WINDOW_TEX.getWidth()/15 - Button.DONT_USE_BTN_TEX.getWidth(), position.y + WINDOW_TEX.getHeight()/10); //This button is on the right side of the window
 
-        use = new Button(Button.ButtonType.USE); //true --> means this button is the 'use powerup' button
-        dontUse = new Button(Button.ButtonType.DONT_USE);//false --> means this button is the 'dont use powerup' button
+        use = new Button(Button.ButtonType.USE, usePos); //true --> means this button is the 'use powerup' button
+        dontUse = new Button(Button.ButtonType.DONT_USE, dontUsePos);//false --> means this button is the 'dont use powerup' button
 
         //TODO Load all other textures/text associated with this window
     }
@@ -40,7 +40,9 @@ public class PowerupPrompt
     public void render(Batch batch, float dt)
     {
         // render textuers
-            // Render background textures, text etc...
+
+        batch.draw(WINDOW_TEX, position.x, position.y);
+
         use.render(batch, dt);
         dontUse.render(batch, dt);
 

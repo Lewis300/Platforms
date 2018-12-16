@@ -111,7 +111,7 @@ public class GameScreen implements Screen
 
     public void handleInput(float dt)
     {
-        //HH.handleInput(dt);
+        HH.handleInput(dt);
     }
 
     private  boolean spawnednewWave = false;
@@ -132,30 +132,30 @@ public class GameScreen implements Screen
 
         sb.setProjectionMatrix(gameCam.combined);
 
-
-        if(timePassed>5 && timePassed<6 && spawnednewWave == false)
-        {
-            spawnednewWave = true;
-            ProababilityTools.roll(p1, p2).use(p2);
-        }
-
-        if(timePassed>12 && spawnednewWave2 == false)
-        {
-            spawnednewWave2 = true;
-            ProababilityTools.roll(p2, p1).use(p1);
-        }
-
-        if(timePassed>18 && spawnednewWave3 == false)
-        {
-            spawnednewWave3 = true;
-            ProababilityTools.roll(p1, p2).use(p2);
-        }
-
-        if(timePassed>24 && spawnednewWave4 == false)
-        {
-            spawnednewWave4 = true;
-            ProababilityTools.roll(p2, p1).use(p1);
-        }
+//
+//        if(timePassed>5 && timePassed<6 && spawnednewWave == false)
+//        {
+//            spawnednewWave = true;
+//            ProababilityTools.roll(p1, p2).use(p2);
+//        }
+//
+//        if(timePassed>12 && spawnednewWave2 == false)
+//        {
+//            spawnednewWave2 = true;
+//            ProababilityTools.roll(p2, p1).use(p1);
+//        }
+//
+//        if(timePassed>18 && spawnednewWave3 == false)
+//        {
+//            spawnednewWave3 = true;
+//            ProababilityTools.roll(p1, p2).use(p2);
+//        }
+//
+//        if(timePassed>24 && spawnednewWave4 == false)
+//        {
+//            spawnednewWave4 = true;
+//            ProababilityTools.roll(p2, p1).use(p1);
+//        }
 
 
         //MAccaroni
@@ -194,7 +194,7 @@ public class GameScreen implements Screen
         Fireball.render(sb, delta);
         HH.render(sb, delta);
         sb.end();
-        
+
         WorldContactListener.update(delta);
     }
 

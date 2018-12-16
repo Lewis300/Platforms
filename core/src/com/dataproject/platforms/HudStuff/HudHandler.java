@@ -15,7 +15,7 @@ public class HudHandler
 
     public HudHandler()
     {
-        //pupPropmt = new PowerupPrompt();
+        pupPropmt = new PowerupPrompt();
 
         p1_roll = new Button(Button.ButtonType.ROLL); //TODO set position
         p2_roll = new Button(Button.ButtonType.ROLL); //TODO set postition
@@ -26,19 +26,19 @@ public class HudHandler
 
     public void render(Batch batch, float dt)
     {
-//        if(pupPropmt.isOpen()){pupPropmt.render(batch, dt);}
+        if(pupPropmt.isOpen()){pupPropmt.render(batch, dt);}
         p1_roll.render(batch, dt);
         p2_roll.render(batch, dt);
     }
 
     public void handleInput(float dt)
     {
-        if(pupPropmt.isOpen()){pupPropmt.handleInput();}
-
         if(!pupPropmt.isOpen() && Gdx.input.isButtonPressed(Input.Buttons.LEFT)) //We cant have people rolling while someone is deciding
         {
+
             if(p1_roll.isActive() && p1_roll.isClicked())
             {
+
                 Platforms.gameScreen.handleTurn(true);
 
                 pupPropmt.setDecidingPlayer(ProababilityTools.decider);
@@ -56,5 +56,7 @@ public class HudHandler
                 pupPropmt.openPrompt();
             }
         }
+
+        if(pupPropmt.isOpen()){pupPropmt.handleInput();}
     }
 }

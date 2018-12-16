@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.dataproject.platforms.Platforms;
 
 public class Button
 {
@@ -31,7 +32,7 @@ public class Button
     {
         if(buttonType == ButtonType.USE){tex = USE_BTN_TEX;}
         else if(buttonType == ButtonType.DONT_USE){tex = DONT_USE_BTN_TEX;}
-        else if(buttonType == ButtonType.ROLL){tex = ROLL_BTN_TEX; isActive = false;}
+        else if(buttonType == ButtonType.ROLL){tex = ROLL_BTN_TEX; isActive = true;}
 
         dimensions = new Vector2(tex.getWidth(), tex.getHeight());
     }
@@ -58,15 +59,18 @@ public class Button
 
     public boolean isClicked()
     {
-
         int mouseX = Gdx.input.getX();
-        int mouseY = Gdx.input.getY();
+        int mouseY = Platforms.SCREEN_HEIGHT-Gdx.input.getY();
+
+//        System.out.println(mouseX+" | "+buttonPos.x+" <> "+(buttonPos.x + dimensions.x));
+//        System.out.println(mouseY+" | "+buttonPos.y+" <> "+(buttonPos.y + dimensions.y));
 
         if(Gdx.input.isButtonPressed(Input.Buttons.LEFT))
         {
             if((mouseX > buttonPos.x && mouseX < (buttonPos.x + dimensions.x) ) // if mouse is in the X range of button image
                     && (mouseY > buttonPos.y && mouseY < (buttonPos.y + dimensions.y))) // if mouse is in the Y range of button image
             {
+                System.out.println("Here");
                 return true;
             }
         }
