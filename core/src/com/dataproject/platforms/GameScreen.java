@@ -47,7 +47,7 @@ public class GameScreen implements Screen
     private final boolean allowSleepingObjects = false;
 
     private BodyDef groundBodyDef;
-    private final Vector2 groundPosition = new Vector2(-2, -30);
+    private final Vector2 groundPosition = new Vector2(-2, -15);
     private final Vector2 groundSize = new Vector2(Platforms.SCREEN_WIDTH*3, 20);
     private PolygonShape groundShape;
     private final FixtureDef groundFixtureDef = new FixtureDef();
@@ -76,7 +76,7 @@ public class GameScreen implements Screen
         gameCam = new OrthographicCamera();
         sunPos = new Vector2(Platforms.SCREEN_WIDTH/2, Platforms.SCREEN_HEIGHT/2);
 
-
+        //initializeWorld();
     }
 
     private boolean hudAdded = false;
@@ -85,7 +85,7 @@ public class GameScreen implements Screen
     public void update(float dt)
     {
         timePassed+=dt;
-        if(!hudAdded){addHud();}
+        //if(!hudAdded){addHud();}
 
         //Destroy bodies before world steps
         world.step(1/60f, 6,3, 1);
@@ -178,7 +178,7 @@ public class GameScreen implements Screen
 
             for(int i = 0; i < INITIAL_PLAT_AMT; i++)
             {
-                p1_platforms.add(new Platform(world, new Vector2(Platform.PLATFORM_WIDTH + gameCam.viewportWidth/30f, HUD_HEIGHT + gameCam.viewportHeight/10f + (i+1)*platformSpacing + i*Platform.PLATFORM_HEIGHT)));
+                p1_platforms.add(new Platform(world, new Vector2(Platform.PLATFORM_WIDTH + gameCam.viewportWidth/30f, -35+HUD_HEIGHT + gameCam.viewportHeight/10f + (i+1)*platformSpacing + i*Platform.PLATFORM_HEIGHT)));
 
             }
 
@@ -189,7 +189,7 @@ public class GameScreen implements Screen
 
             for(int i = 0; i< INITIAL_PLAT_AMT; i++)
             {
-                p2_platforms.add(new Platform(world, new Vector2(gameCam.viewportWidth - Platform.PLATFORM_WIDTH - gameCam.viewportWidth/30f, HUD_HEIGHT + gameCam.viewportHeight/10f + (i+1)*platformSpacing + i*Platform.PLATFORM_HEIGHT)));
+                p2_platforms.add(new Platform(world, new Vector2(gameCam.viewportWidth - Platform.PLATFORM_WIDTH - gameCam.viewportWidth/30f, -35+ HUD_HEIGHT + gameCam.viewportHeight/10f + (i+1)*platformSpacing + i*Platform.PLATFORM_HEIGHT)));
             }
 
 
@@ -225,7 +225,7 @@ public class GameScreen implements Screen
     {
         gameCam.viewportWidth = width;
         gameCam.viewportHeight = height;
-        if(!hudAdded){gameCam.position.set(width/2f, height/2f, 0);}
+        {gameCam.position.set(width/2f, height/2f, 0);}
 
         if(!worldInitialized){initializeWorld();}
     }

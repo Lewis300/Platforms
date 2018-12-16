@@ -35,7 +35,7 @@ project(":desktop") {
     dependencies {
         compile project(":core")
         compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
-        compile fileTree(dir: 'build/libs', include: '*.jar')
+        compile fileTree(dir: 'libs', include: '*.jar')
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-bullet-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
@@ -49,7 +49,7 @@ project(":core") {
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        compile fileTree(dir: 'build/libs', include: '*.jar')
+        compile fileTree(dir: 'libs', include: '*.jar')
         compile "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
         compile "com.badlogicgames.gdx:gdx-bullet:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
