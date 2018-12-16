@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.dataproject.platforms.PlatformStuff.Platform;
+import com.dataproject.platforms.Powerups.Fireball;
 import com.dataproject.platforms.Powerups.Wave;
 import com.dataproject.platforms.Utilities.ProababilityTools;
 import com.dataproject.platforms.Utilities.WorldContactListener;
@@ -86,7 +87,9 @@ public class GameScreen implements Screen
         timePassed+=dt;
         if(!hudAdded){addHud();}
 
-        world.step(1/60f, 6,2, 1);
+        //Destroy bodies before world steps
+        world.step(1/60f, 6,3, 1);
+
         rayHandler.setCombinedMatrix(gameCam.combined);
         //rayHandler.update();
         gameCam.update();
@@ -105,6 +108,11 @@ public class GameScreen implements Screen
             spawnednewWave = true;
             ProababilityTools.roll(p1).use(p2);
         }
+
+
+        for(Platform p: p1_platforms) {p.update(dt);}
+        for(Platform p: p2_platforms) {p.update(dt);}
+        Wave.update(dt);
     }
 
     @Override
@@ -126,6 +134,8 @@ public class GameScreen implements Screen
         //pdr.render(psys, 1, gameCam.combined);
         rayHandler.updateAndRender();
         pdr.render(psys, 1, gameCam.combined);
+
+        WorldContactListener.update(delta);
     }
 
     private boolean worldInitialized = false;
@@ -137,7 +147,7 @@ public class GameScreen implements Screen
         //Initialize Box2d and create world
         //Box2D.init();
         world = new World(gravity, allowSleepingObjects);
-        world.setContactListener(new WorldContactListener());
+        world.setContactListener(new WorldContactListener(world));
         rayHandler = new RayHandler(world);
         rayHandler.setAmbientLight(AMBIENT_LIGHT);
         //rayHandler.setAmbientLight(1,1,1,1);
@@ -189,10 +199,12 @@ public class GameScreen implements Screen
             psysDef.destroyByAge = true;
             psysDef.lifetimeGranularity = 10;
             psysDef.maxCount = 2000;
+            psysDef.pressureStrength =1000;
             psys = new ParticleSystem(world, psysDef);
 
         //Initialize Players
             Wave.init(psys);
+            Fireball.init(world);
             p1 = new Player(world, p1_platforms);
             p2 = new Player(world, p2_platforms);
 

@@ -4,21 +4,65 @@ import com.badlogic.gdx.physics.box2d.*;
 import finnstr.libgdx.liquidfun.ParticleBodyContact;
 import finnstr.libgdx.liquidfun.ParticleContact;
 import finnstr.libgdx.liquidfun.ParticleSystem;
-//l
+
+import java.util.ArrayList;
+
 public class WorldContactListener implements ContactListener
 {
-    @Override
-    public void beginContact(Contact contact) {
+    private Fixture object;
+    private static ArrayList<Body> bodiesToDestroy;
+    private static World gameWorld;
+
+    public WorldContactListener(World gameWorld)
+    {
+        this.gameWorld = gameWorld;
+        bodiesToDestroy = new ArrayList<Body>();
+    }
+
+    public static void update(float dt)
+    {
+        for(int i = 0; i<bodiesToDestroy.size(); i++)
+        {
+            Body b = bodiesToDestroy.get(i);
+            if(b!=null)
+            {
+                gameWorld.destroyBody(b);
+            }
+        }
+        bodiesToDestroy.removeAll(bodiesToDestroy);
 
     }
 
     @Override
-    public void endContact(Contact contact) {
+    public void beginContact(Contact contact)
+    {
 
     }
 
     @Override
-    public void beginParticleBodyContact(ParticleSystem particleSystem, ParticleBodyContact particleBodyContact) {
+    public void endContact(Contact contact)
+    {
+        Fixture A, B;
+
+        A = contact.getFixtureA();
+        B = contact.getFixtureB();
+
+        if(A.getUserData().equals("fireball") && B.getUserData().equals("platform"))
+        {
+            bodiesToDestroy.add(A.getBody());
+            bodiesToDestroy.add(B.getBody());
+        }
+        else if(A.getUserData().equals("platform") && B.getUserData().equals("fireball"))
+        {
+            bodiesToDestroy.add(B.getBody());
+            bodiesToDestroy.add(A.getBody());
+        }
+    }
+
+    @Override
+    public void beginParticleBodyContact(ParticleSystem particleSystem, ParticleBodyContact particleBodyContact)
+    {
+
     }
 
     @Override
@@ -37,12 +81,15 @@ public class WorldContactListener implements ContactListener
     }
 
     @Override
-    public void preSolve(Contact contact, Manifold manifold) {
-        
+    public void preSolve(Contact contact, Manifold manifold)
+    {
+
     }
 
     @Override
-    public void postSolve(Contact contact, ContactImpulse contactImpulse) {
+    public void postSolve(Contact contact, ContactImpulse contactImpulse)
+    {
+
 
     }
 }

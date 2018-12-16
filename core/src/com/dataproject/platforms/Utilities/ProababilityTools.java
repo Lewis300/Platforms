@@ -15,7 +15,7 @@ public class ProababilityTools
     public static Powerup roll(Player p)
     {
 
-        return new Fireball(); //For now just auto roll wave every time
+        return new Wave(); //For now just auto roll wave every time
     }
 
     // Returns random integer between min and max

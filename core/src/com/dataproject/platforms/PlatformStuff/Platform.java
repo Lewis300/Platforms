@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.dataproject.platforms.Platforms;
+import com.dataproject.platforms.Powerups.Powerup;
 
 public class Platform extends Actor
 {
@@ -24,6 +25,7 @@ public class Platform extends Actor
 
     //Animation
     private boolean animateDestroy = false;
+    public boolean selfDestruct = false;
 
     public Platform(World world, Vector2 position)
     {
@@ -31,6 +33,13 @@ public class Platform extends Actor
         this.position.set(position);
 
         init();
+    }
+
+    public void update(float dt)
+    {
+        if(selfDestruct){deathClock+=dt;}
+
+        if(deathClock>5.0f){destroy();}
     }
 
     @Override
@@ -57,7 +66,7 @@ public class Platform extends Actor
         //Initialize the platforms BodyDef
             platBodyDef = new BodyDef();
             platBodyDef.type = BodyDef.BodyType.StaticBody;
-            platBodyDef.gravityScale = 100; //Makes sure the platform doesent spontaneously fall
+            platBodyDef.gravityScale = 4; //Makes sure the platform doesent spontaneously fall
             platBodyDef.position.set(position);
            // platBodyDef.active = false;
 
@@ -68,25 +77,30 @@ public class Platform extends Actor
             Set characteristics of this object (characteristics are defined by the FixtureDef)
             ...
          */
-            platFixDef.restitution = 2;
+            platFixDef.restitution = 1f;
             platFixDef.shape = platShape;
-            platFixDef.density = 40;
+            platFixDef.density = 4;
         //Add body to game world define body with the FixtureDef
             platform = gameWorld.createBody(platBodyDef);
-            platform.createFixture(platFixDef);
+            platform.createFixture(platFixDef).setUserData("platform");
     }
 
-    public void setDynamic()
+    private float deathClock = 0f;
+    public void setDynamic(boolean selfDestruct)
     {
         platform.setType(BodyDef.BodyType.DynamicBody);
         //platform.setActive(true);
         platform.setGravityScale(10);
+        this.selfDestruct = selfDestruct;
     }
+
+    public void setActive(boolean b){platform.setActive(b);}
 
     public void destroy()
     {
        animateDestroy = true;
        platform.setActive(false);
+       gameWorld.destroyBody(platform);
     }
 
 }

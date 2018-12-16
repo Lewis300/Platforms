@@ -41,6 +41,7 @@ public class FireballProjectile extends Actor
         fireBodyDef = new BodyDef();
         fireBodyDef.gravityScale = 3;
         fireBodyDef.type = BodyDef.BodyType.DynamicBody;
+        fireBodyDef.position.set(position);
 
         //Setting the texture, and getting its width and height to set the size
         fireTexture = new Texture("Powerups/FireBallPowerupImage.png");
@@ -57,7 +58,8 @@ public class FireballProjectile extends Actor
 
         //Creating the body in the world
         fireBody = gameWorld.createBody(fireBodyDef);
-        fireBody.createFixture(fireFixDef);
+
+        fireBody.createFixture(fireFixDef).setUserData("fireball");
 
     }
 
@@ -69,5 +71,6 @@ public class FireballProjectile extends Actor
     public void destroy()
     {
         fireBody.setActive(false);
+        gameWorld.destroyBody(fireBody);
     }
 }

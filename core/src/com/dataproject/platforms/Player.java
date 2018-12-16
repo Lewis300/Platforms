@@ -27,13 +27,11 @@ public class Player
     public Vector2 getTopPlatPos(){return plats.get(plats.size()-1).getPosition();}
 
 
-    public void setTopPlatDynamic(int amount)
+    public void setTopPlatDynamic(int amount, boolean selfDestruct)
     {
-
-
         for(int i = 0; i<amount; i++)
         {
-            plats.get(plats.size()-1-i).setDynamic();
+            plats.get(plats.size()-1-i).setDynamic(selfDestruct);
         }
     }
 

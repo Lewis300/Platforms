@@ -43,6 +43,15 @@ public class Wave implements Powerup
 
     }
 
+    public static void update(float dt)
+    {
+        try
+        {
+            psys.destroyParticle(0);
+        }
+        catch (Exception e){}
+    }
+
     @Override
     public double getRarity() {
         return 0;
@@ -71,13 +80,13 @@ public class Wave implements Powerup
     public static void init(ParticleSystem sys)
     {
         psys = sys;
-        psys.setParticleRadius(2);
+        psys.setParticleRadius(5f);
         psys.setParticleGravityScale(10);
 
         waveDef = new ParticleGroupDef();
 
         PolygonShape shp = new PolygonShape();
-        shp.setAsBox(2,20);
+        shp.setAsBox(2,30);
 
         waveDef.shape = shp;
         waveDef.angle= 5.5f;
@@ -104,7 +113,7 @@ public class Wave implements Powerup
     @Override
     public void use(Player affected)
     {
-        affected.setTopPlatDynamic(3);
+        affected.setTopPlatDynamic(3, true);
 
         if(affected.onRightSide){START_POS = new Vector2(Platforms.SCREEN_WIDTH+200, affected.getTopPlatPos().y);}
 
@@ -138,7 +147,7 @@ public class Wave implements Powerup
             wave.destroyParticlesInGroup();
         }
 
-        waveDef.position.set(new Vector2(pos.x-0*WAVEGROUP_SPAWN_COUNT, pos.y));
+        waveDef.position.set(new Vector2(pos.x+2*WAVEGROUP_SPAWN_COUNT, pos.y));
 
 
         //if(wave == null){wave = psys.createParticleGroup(waveDef);}
