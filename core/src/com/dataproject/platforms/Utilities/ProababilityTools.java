@@ -3,10 +3,7 @@ package com.dataproject.platforms.Utilities;
 import com.dataproject.platforms.HudStuff.PowerupPrompt;
 import com.dataproject.platforms.PlatformStuff.Platform;
 import com.dataproject.platforms.Player;
-import com.dataproject.platforms.Powerups.Fireball;
-import com.dataproject.platforms.Powerups.Lightning;
-import com.dataproject.platforms.Powerups.Powerup;
-import com.dataproject.platforms.Powerups.Wave;
+import com.dataproject.platforms.Powerups.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,6 +15,7 @@ public class ProababilityTools
     private static Wave pup_wave = new Wave();
     private static Fireball pup_fireball = new Fireball();
     private static Lightning pup_lightning = new Lightning();
+    private static Air pup_air = new Air();
 
     public static Player decider;
     public static Player affected;
@@ -33,8 +31,18 @@ public class ProababilityTools
 
         //return pup_lightning;
 
+        //Roll air
+        if(roll >= 0 && roll < 0.25)
+        {
+            if(harmRoll <= Air.CHANCE_TO_HARM_USER)
+            {
+                affected = p1;
+            }
+            return pup_air;
+        }
+
         //Roll wave
-        if(roll > 0.33 && roll <0.66)
+        if(roll >= 0.25 && roll < 0.5)
         {
             if(harmRoll <= Wave.CHANCE_TO_HARM_USER)
             {
@@ -44,7 +52,7 @@ public class ProababilityTools
         }
 
         //Roll fireball
-        else if(roll>=0.66)
+        else if(roll >= 0.5 && roll < 0.75)
         {
             if(harmRoll <= Fireball.CHANCE_TO_HARM_USER)
             {

@@ -92,6 +92,7 @@ public class WorldContactListener implements ContactListener
             A = contact.getFixtureA();
             B = contact.getFixtureB();
 
+            //Checking for collision with platform and fireball
             if(A.getUserData().toString().contains("fireball") && B.getUserData().toString().contains("platform"))
             {
 //                bodiesToDestroy.add(A.getBody());
@@ -103,6 +104,26 @@ public class WorldContactListener implements ContactListener
 
             }
             else if(A.getUserData().toString().contains("platform") && B.getUserData().toString().contains("fireball"))
+            {
+                //bodiesToDestroy.add(B.getBody());
+                //bodiesToDestroy.add(A.getBody());
+
+                getPlat(A.getUserData().toString()).destroy();
+                getFireballProjectile(B.getUserData().toString()).destroy();
+            }
+
+            //Checking for collision with platform and airprojectile
+            else if(A.getUserData().toString().contains("airprojectile") && B.getUserData().toString().contains("platform"))
+            {
+//                bodiesToDestroy.add(A.getBody());
+//                bodiesToDestroy.add(B.getBody());
+
+
+                getPlat(B.getUserData().toString()).destroy();
+                getFireballProjectile(A.getUserData().toString()).destroy();
+
+            }
+            else if(A.getUserData().toString().contains("platform") && B.getUserData().toString().contains("airprojectile"))
             {
                 //bodiesToDestroy.add(B.getBody());
                 //bodiesToDestroy.add(A.getBody());

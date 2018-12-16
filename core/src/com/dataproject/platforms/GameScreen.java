@@ -16,10 +16,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.dataproject.platforms.HudStuff.HudHandler;
 import com.dataproject.platforms.HudStuff.PowerupPrompt;
 import com.dataproject.platforms.PlatformStuff.Platform;
-import com.dataproject.platforms.Powerups.Fireball;
-import com.dataproject.platforms.Powerups.Lightning;
-import com.dataproject.platforms.Powerups.Powerup;
-import com.dataproject.platforms.Powerups.Wave;
+import com.dataproject.platforms.Powerups.*;
 import com.dataproject.platforms.Utilities.ProababilityTools;
 import com.dataproject.platforms.Utilities.WorldContactListener;
 import finnstr.libgdx.liquidfun.ParticleDebugRenderer;
@@ -177,6 +174,7 @@ public class GameScreen implements Screen
 
         Lightning.render(sb, delta);
         Fireball.render(sb, delta);
+        Air.render(sb, delta);
 
         for(int i = 0; i<p1_platforms.size(); i++)
         {
@@ -260,6 +258,7 @@ public class GameScreen implements Screen
         //Initialize Players
             Wave.init(psys, world);
             Fireball.init(world);
+            Air.init(world);
             Lightning.init();
             p1 = new Player(world, p1_platforms); p1.onRightSide = false;
             p2 = new Player(world, p2_platforms); p2.onRightSide = true;
