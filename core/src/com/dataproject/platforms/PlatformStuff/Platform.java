@@ -1,7 +1,9 @@
 package com.dataproject.platforms.PlatformStuff;
 
 import box2dLight.RayHandler;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -9,10 +11,13 @@ import com.dataproject.platforms.Platforms;
 import com.dataproject.platforms.Player;
 import com.dataproject.platforms.Powerups.Powerup;
 import com.dataproject.platforms.Powerups.Wave;
+import com.dataproject.platforms.Utilities.MiscTools;
 import com.dataproject.platforms.Utilities.WorldContactListener;
 
 public class Platform extends Actor
 {
+    public static final Texture PLATFORM_TEX = new Texture("Platforms/PlatformTextureScaledUp.png");
+
     public static final float PLATFORM_WIDTH = Platforms.SCREEN_WIDTH/7f;
     public static final float PLATFORM_HEIGHT = Platforms.SCREEN_HEIGHT/100f;
 
@@ -29,6 +34,7 @@ public class Platform extends Actor
     //Animation
     private boolean animateDestroy = false;
     public boolean selfDestruct = false;
+    private Sprite platSprite;
 
     private Player owner;
 
@@ -60,6 +66,10 @@ public class Platform extends Actor
         {
             // Animate destruction
         }
+
+        platSprite.setPosition(platform.getPosition().x - size.x, platform.getPosition().y - size.y);
+        platSprite.setRotation((float)Math.toDegrees(platform.getAngle()));
+        platSprite.draw(batch);
         super.draw(batch, parentAlpha);
     }
 
@@ -84,6 +94,7 @@ public class Platform extends Actor
         //Initialize the FixtureDef characteristics
             platShape = new PolygonShape();
             platShape.setAsBox(size.x, size.y);
+            platSprite = MiscTools.createScaledSprite(PLATFORM_TEX, (int)size.x*2, (int)size.y*2);
         /*
             Set characteristics of this object (characteristics are defined by the FixtureDef)
             ...

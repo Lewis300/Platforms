@@ -122,6 +122,10 @@ public class Wave implements Powerup
         {
             affected.setTopPlatDynamic(3, true);
         }
+        else
+        {
+            affected.setTopPlatDynamic(affected.plats.size(), true);
+        }
 
 
         WAVE_USED = true;

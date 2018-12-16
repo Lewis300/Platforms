@@ -186,7 +186,7 @@ public class GameScreen implements Screen
 
 
 
-        b2dr.render(world, gameCam.combined);
+        //b2dr.render(world, gameCam.combined);
 
         rayHandler.updateAndRender();
 
@@ -194,9 +194,22 @@ public class GameScreen implements Screen
         pdr.render(Wave.psys, 1, gameCam.combined);
 
         sb.begin();
+
         Lightning.render(sb, delta);
         Fireball.render(sb, delta);
+
+        for(int i = 0; i<p1_platforms.size(); i++)
+        {
+            p1_platforms.get(i).draw(sb, 1);
+        }
+
+        for(int i = 0; i<p2_platforms.size(); i++)
+        {
+            p2_platforms.get(i).draw(sb, 1);
+        }
+
         HH.render(sb, delta);
+
         sb.end();
 
         WorldContactListener.update(delta);
@@ -242,7 +255,6 @@ public class GameScreen implements Screen
             for(int i = 0; i < INITIAL_PLAT_AMT; i++)
             {
                 p1_platforms.add(new Platform(world, new Vector2(Platform.PLATFORM_WIDTH + gameCam.viewportWidth/30f, -35+HUD_HEIGHT + gameCam.viewportHeight/10f + (i+1)*platformSpacing + i*Platform.PLATFORM_HEIGHT)));
-
             }
 
 

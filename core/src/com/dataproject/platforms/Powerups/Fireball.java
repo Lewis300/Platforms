@@ -71,7 +71,10 @@ public class Fireball implements Powerup
         {
             affected.setTopPlatDynamic(3, false);
         }
-
+        else
+        {
+            affected.setTopPlatDynamic(affected.plats.size(), true);
+        }
 
 
         fireballs = new ArrayList<FireballProjectile>();
