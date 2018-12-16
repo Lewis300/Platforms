@@ -17,8 +17,11 @@ public class HudHandler
     {
         pupPropmt = new PowerupPrompt();
 
-        p1_roll = new Button(Button.ButtonType.ROLL); //TODO set position
-        p2_roll = new Button(Button.ButtonType.ROLL); //TODO set postition
+        p1_roll = new Button(Button.ButtonType.ROLL);
+        p2_roll = new Button(Button.ButtonType.ROLL);
+
+        p1_roll.setActive(true);
+        p2_roll.setActive(false);
 
         p1_roll.setButtonPosition(new Vector2(20, 20));
         p2_roll.setButtonPosition(new Vector2(Platforms.SCREEN_WIDTH - Button.ROLL_BTN_SPRITE.getWidth() - 20, 20));
@@ -38,6 +41,8 @@ public class HudHandler
 
             if(p1_roll.isActive() && p1_roll.isClicked())
             {
+                p1_roll.setActive(false);
+                p2_roll.setActive(true);
 
                 Platforms.gameScreen.handleTurn(true);
 
@@ -48,6 +53,9 @@ public class HudHandler
             }
             else if(p2_roll.isActive() && p2_roll.isClicked())
             {
+                p1_roll.setActive(true);
+                p2_roll.setActive(false);
+
                 Platforms.gameScreen.handleTurn(false);
 
                 pupPropmt.setDecidingPlayer(ProababilityTools.decider);

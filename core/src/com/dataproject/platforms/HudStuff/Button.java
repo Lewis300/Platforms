@@ -49,7 +49,7 @@ public class Button
     {
         if(buttonType == ButtonType.USE){tex = USE_BTN_TEX;}
         else if(buttonType == ButtonType.DONT_USE){tex = DONT_USE_BTN_TEX;}
-
+        else if(buttonType == ButtonType.ROLL){isActive = true;}
 
         if(buttonType != ButtonType.ROLL){dimensions = new Vector2(tex.getWidth(), tex.getHeight());}
         else{dimensions = new Vector2(ROLL_BTN_SPRITE.getWidth(), ROLL_BTN_SPRITE.getHeight());}

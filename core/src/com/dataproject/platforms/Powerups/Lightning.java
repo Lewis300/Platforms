@@ -26,7 +26,7 @@ public class Lightning implements Powerup
         drawPos = new Vector2();
     }
 
-    private static float timePassed = 0f;
+    private static float timePassed = 0.16f;
 
     public static void update(float dt)
     {
@@ -36,7 +36,10 @@ public class Lightning implements Powerup
 
     public static void render(Batch batch, float dt)
     {
-        if(timePassed<=0.15f){batch.draw(BOLT, drawPos.x, drawPos.y, 20, Platforms.SCREEN_HEIGHT-drawPos.y+20);}
+        if(timePassed<=0.15f)
+        {
+            batch.draw(BOLT, drawPos.x, drawPos.y, 20, Platforms.SCREEN_HEIGHT-drawPos.y+20);
+        }
     }
 
     @Override

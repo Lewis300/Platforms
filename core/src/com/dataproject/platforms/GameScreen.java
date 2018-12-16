@@ -125,10 +125,6 @@ public class GameScreen implements Screen
         HH.handleInput(dt);
     }
 
-    private  boolean spawnednewWave = false;
-    private  boolean spawnednewWave2 = false;
-    private  boolean spawnednewWave3 = false;
-    private  boolean spawnednewWave4 = false;
     public void update(float dt)
     {
         timePassed+=dt;
@@ -142,32 +138,6 @@ public class GameScreen implements Screen
         gameCam.update();
 
         sb.setProjectionMatrix(gameCam.combined);
-
-//
-//        if(timePassed>5 && timePassed<6 && spawnednewWave == false)
-//        {
-//            spawnednewWave = true;
-//            ProababilityTools.roll(p1, p2).use(p2);
-//        }
-//
-//        if(timePassed>12 && spawnednewWave2 == false)
-//        {
-//            spawnednewWave2 = true;
-//            ProababilityTools.roll(p2, p1).use(p1);
-//        }
-//
-//        if(timePassed>18 && spawnednewWave3 == false)
-//        {
-//            spawnednewWave3 = true;
-//            ProababilityTools.roll(p1, p2).use(p2);
-//        }
-//
-//        if(timePassed>24 && spawnednewWave4 == false)
-//        {
-//            spawnednewWave4 = true;
-//            ProababilityTools.roll(p2, p1).use(p1);
-//        }
-
 
         //MAccaroni
         try
@@ -236,7 +206,7 @@ public class GameScreen implements Screen
         rayHandler = new RayHandler(world);
         rayHandler.setAmbientLight(AMBIENT_LIGHT);
         //rayHandler.setAmbientLight(1,1,1,1);
-        sun = new PointLight(rayHandler, 600, Color.YELLOW, 1450, 0,0);
+        sun = new PointLight(rayHandler, 600, Color.BLUE, 1450, 0,0);
         sun.setXray(true);
         sun.setSoftnessLength(0f);
         sun.setPosition(sunPos);
