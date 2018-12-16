@@ -86,7 +86,7 @@ public class Fireball implements Powerup
 
             Vector2 currentTopPlatPos = affected.getTopPlatPos();
             Vector2 currentFireballSpawnPoint = currentTopPlatPos;
-            currentFireballSpawnPoint.x = (float) (currentTopPlatPos.x - (Platforms.SCREEN_WIDTH/7f / 2) + Math.random() * Platforms.SCREEN_WIDTH/7f);
+            currentFireballSpawnPoint.x = (float) (currentTopPlatPos.x - (Platforms.SCREEN_WIDTH/7f / 2) + 15 + 0.7 * (Math.random() * Platforms.SCREEN_WIDTH/7f));
             currentFireballSpawnPoint.y = currentTopPlatPos.y + 150;
 
 

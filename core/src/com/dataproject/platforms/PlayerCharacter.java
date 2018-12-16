@@ -6,25 +6,24 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.dataproject.platforms.PlatformStuff.Platform;
 import com.dataproject.platforms.Utilities.MiscTools;
 import com.dataproject.platforms.Utilities.WorldContactListener;
 
 
 public class PlayerCharacter extends Actor
 {
-    public static final Texture FIREBALL_TEX = new Texture("Powerups/FireBallTexture.png");
-    private Sprite fireballSprite;
+    public static final Texture PLAYERCHAR_TEX = new Texture("Powerups/FireBallTexture.png");
+    private Sprite playercharSprite;
 
-    private int fireballWidth;
-    private int fireballHeight;
+    private int playercharWidth;
+    private int playercharHeight;
     private World gameWorld;
 
-    private Texture fireTexture;
-    private Body fireBody;
-    private BodyDef fireBodyDef;
-    private FixtureDef fireFixDef = new FixtureDef();
-    private PolygonShape fireShape;
+    private Texture playercharTexture;
+    private Body playercharBody;
+    private BodyDef playercharBodyDef;
+    private FixtureDef playercharFixDef = new FixtureDef();
+    private PolygonShape playercharShape;
     private Vector2 size;
     private final Vector2 position = new Vector2();
 
@@ -44,13 +43,13 @@ public class PlayerCharacter extends Actor
     @Override
     public void draw(Batch batch, float parentAlpha)
     {
-        float rotation = (float)Math.toDegrees(fireBody.getAngle());
+        float rotation = (float)Math.toDegrees(playercharBody.getAngle());
 
-        if(fireBody.isActive())
+        if(playercharBody.isActive())
         {
-            fireballSprite.setPosition(fireBody.getPosition().x - size.x, fireBody.getPosition().y - size.y);
-            fireballSprite.setRotation(rotation);
-            fireballSprite.draw(batch, 1);
+            playercharSprite.setPosition(playercharBody.getPosition().x - size.x, playercharBody.getPosition().y - size.y);
+            playercharSprite.setRotation(rotation);
+            playercharSprite.draw(batch, 1);
         }
 
         super.draw(batch, parentAlpha);
@@ -58,44 +57,44 @@ public class PlayerCharacter extends Actor
 
     private void initBox2d(){
         //Making the body def for the fireball
-        fireBodyDef = new BodyDef();
-        fireBodyDef.gravityScale = 15;
-        fireBodyDef.type = BodyDef.BodyType.DynamicBody;
-        fireBodyDef.position.set(position);
+        playercharBodyDef = new BodyDef();
+        playercharBodyDef.gravityScale = 15;
+        playercharBodyDef.type = BodyDef.BodyType.DynamicBody;
+        playercharBodyDef.position.set(position);
 
         //Setting the texture, and getting its width and height to set the size
-        fireballWidth = FIREBALL_TEX.getWidth();
-        fireballHeight = FIREBALL_TEX.getHeight();
-        size = new Vector2(fireballWidth,fireballHeight);
-        fireballSprite = MiscTools.createScaledSprite(FIREBALL_TEX, (int)size.x*2, (int)size.y*2);
+        playercharWidth = PLAYERCHAR_TEX.getWidth();
+        playercharHeight = PLAYERCHAR_TEX.getHeight();
+        size = new Vector2(playercharWidth, playercharHeight);
+        playercharSprite = MiscTools.createScaledSprite(PLAYERCHAR_TEX, (int)size.x*2, (int)size.y*2);
 
         //Making the shape according to size
-        fireShape = new PolygonShape();
-        fireShape.setAsBox(size.x, size.y);
+        playercharShape = new PolygonShape();
+        playercharShape.setAsBox(size.x, size.y);
 
         //Setting the fixture def properties
-        fireFixDef.shape = fireShape;
+        playercharFixDef.shape = playercharShape;
 
         //Creating the body in the world
-        fireBody = gameWorld.createBody(fireBodyDef);
+        playercharBody = gameWorld.createBody(playercharBodyDef);
 
-        fireBody.createFixture(fireFixDef).setUserData("fireball_"+fireballProjectileId);
+        playercharBody.createFixture(playercharFixDef).setUserData("fireball_"+fireballProjectileId);
 
     }
 
     private void init()
     {
 
-        // fireballSprite.setRegionWidth((int)size.x);
-        // fireballSprite.setRegionHeight((int)size.y);
+        // playercharSprite.setRegionWidth((int)size.x);
+        // playercharSprite.setRegionHeight((int)size.y);
         initBox2d();
     }
 
     public void destroy()
     {
         System.out.println("Bucktee");
-        fireBody.setActive(false);
-        WorldContactListener.bodiesToDestroy.add(fireBody);
+        playercharBody.setActive(false);
+        WorldContactListener.bodiesToDestroy.add(playercharBody);
 
     }
 }
