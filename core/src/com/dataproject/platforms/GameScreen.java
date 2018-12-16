@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.dataproject.platforms.PlatformStuff.Platform;
 import com.dataproject.platforms.Powerups.Fireball;
+import com.dataproject.platforms.Powerups.Lightning;
 import com.dataproject.platforms.Powerups.Wave;
 import com.dataproject.platforms.Utilities.ProababilityTools;
 import com.dataproject.platforms.Utilities.WorldContactListener;
@@ -83,16 +84,15 @@ public class GameScreen implements Screen
         background = new Sprite();
         background.setRegion(backtex);
 
-        //initializeWorld();
     }
 
     private boolean hudAdded = false;
 
     private  boolean spawnednewWave = false;
+    private  boolean spawnednewWave2 = false;
     public void update(float dt)
     {
         timePassed+=dt;
-        //if(!hudAdded){addHud();}
 
         //Destroy bodies before world steps
         world.step(1/60f, 6,3, 1);
@@ -104,9 +104,15 @@ public class GameScreen implements Screen
         sb.setProjectionMatrix(gameCam.combined);
 
 
-        if(timePassed>5 && spawnednewWave == false)
+        if(timePassed>5 && timePassed<6 && spawnednewWave == false)
         {
             spawnednewWave = true;
+            ProababilityTools.roll(p1).use(p2);
+        }
+
+        if(timePassed>25 && spawnednewWave2 == false)
+        {
+            spawnednewWave2 = true;
             ProababilityTools.roll(p1).use(p2);
         }
 
@@ -114,6 +120,7 @@ public class GameScreen implements Screen
         for(Platform p: p1_platforms) {p.update(dt);}
         for(Platform p: p2_platforms) {p.update(dt);}
         Wave.update(dt);
+        Lightning.update(dt);
     }
 
     @Override
@@ -126,19 +133,19 @@ public class GameScreen implements Screen
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         sb.begin();
-        sb.draw(backtex, 230, 0, 75, 700);
+        Lightning.render(sb, delta);
         sb.end();
 
 
         b2dr.render(world, gameCam.combined);
         //pdr.render(psys, 1, gameCam.combined);
         rayHandler.updateAndRender();
-        pdr.render(psys, 1, gameCam.combined);
+        pdr.render(Wave.psys, 1, gameCam.combined);
 
 
         WorldContactListener.update(delta);
     }
-//
+
     private boolean worldInitialized = false;
     private void initializeWorld()
     {
@@ -204,8 +211,9 @@ public class GameScreen implements Screen
             psys = new ParticleSystem(world, psysDef);
 
         //Initialize Players
-            Wave.init(psys);
+            Wave.init(psys, world);
             Fireball.init(world);
+            Lightning.init();
             p1 = new Player(world, p1_platforms);
             p2 = new Player(world, p2_platforms);
 

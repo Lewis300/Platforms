@@ -7,10 +7,7 @@ import com.badlogic.gdx.utils.Array;
 import com.dataproject.platforms.Platforms;
 import com.dataproject.platforms.Player;
 import com.dataproject.platforms.Utilities.Range;
-import finnstr.libgdx.liquidfun.ParticleDef;
-import finnstr.libgdx.liquidfun.ParticleGroup;
-import finnstr.libgdx.liquidfun.ParticleGroupDef;
-import finnstr.libgdx.liquidfun.ParticleSystem;
+import finnstr.libgdx.liquidfun.*;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
@@ -24,17 +21,13 @@ public class Wave implements Powerup
     public static int WAVEGROUP_SPAWN_COUNT = 0;
     public static Vector2 START_POS;
 
-    private static int[] drops;
-    private static ParticleDef dropDef;
-
-    private static CircleShape dropShape;
-    private static final int radius = 1;
+    private static World gameWorld;
 
     //Liquidfun
     private static ParticleGroup wave;
     private static ParticleGroupDef waveDef;
     private static ParticleGroupDef.ParticleGroupType waveType;
-    private static ParticleSystem psys;
+    public static ParticleSystem psys;
 
 
     public Wave()
@@ -53,11 +46,15 @@ public class Wave implements Powerup
             if(Wave.WAVEGROUP_SPAWN_COUNT == 100){Wave.WAVE_USED = false;}
         }
 
-        try
-        {
-            psys.destroyParticle(0);
-        }
-        catch (Exception e){}
+//        try
+//        {
+//            for(int i = 0; i<2; i++)
+//            {
+//                psys.destroyParticle(i);
+//            }
+//
+//        }
+//        catch (Exception e){}
     }
 
     @Override
@@ -85,8 +82,10 @@ public class Wave implements Powerup
         return null;
     }
 //
-    public static void init(ParticleSystem sys)
+    public static void init(ParticleSystem sys, World wrld)
     {
+        gameWorld = wrld;
+
         psys = sys;
         psys.setParticleRadius(2f);
         psys.setParticleGravityScale(10);
@@ -100,27 +99,26 @@ public class Wave implements Powerup
         waveDef.angle= 5.5f;
         waveDef.flags.add(ParticleDef.ParticleType.b2_viscousParticle);
 
-
-
-//        for(int i = 0; i<DROP_AMT; i++)
-//        {
-//            if(i == 0){wave = psys.createParticleGroup(waveDef);}
-//            else
-//            {
-//                psys.joinParticleGroups(wave, psys.createParticleGroup(waveDef));
-//            }
-//        }
-//
-//
-       // psys.setPaused(true);
-
         waveDef.strength = 100000;
-        for(int i =0; i<100; i++)placeWave(new Vector2(-120, Platforms.SCREEN_HEIGHT-75));
+        //for(int i =0; i<100; i++)placeWave(new Vector2(-120, Platforms.SCREEN_HEIGHT-75));
     }
 
     @Override
     public void use(Player affected)
     {
+        ParticleSystemDef psysDef = new ParticleSystemDef();
+        psysDef.pressureStrength = 1000;
+        psysDef.destroyByAge = true;
+        psysDef.lifetimeGranularity = 10;
+        psysDef.maxCount = 2000;
+        psysDef.pressureStrength =1000;
+
+        psys.destroyParticleSystem();
+        psys = new ParticleSystem(gameWorld, psysDef);
+        psys.setParticleRadius(2f);
+        psys.setParticleGravityScale(10);
+
+
         affected.setTopPlatDynamic(3, true);
 
         if(affected.onRightSide){START_POS = new Vector2(Platforms.SCREEN_WIDTH+200, affected.getTopPlatPos().y);}
@@ -155,7 +153,7 @@ public class Wave implements Powerup
             wave.destroyParticlesInGroup();
         }
 
-        waveDef.position.set(new Vector2(pos.x+0*WAVEGROUP_SPAWN_COUNT, pos.y-25));
+        waveDef.position.set(new Vector2(pos.x+0*WAVEGROUP_SPAWN_COUNT, pos.y-10));
 
 
         //if(wave == null){wave = psys.createParticleGroup(waveDef);}

@@ -2,6 +2,7 @@ package com.dataproject.platforms.Utilities;
 
 import com.dataproject.platforms.Player;
 import com.dataproject.platforms.Powerups.Fireball;
+import com.dataproject.platforms.Powerups.Lightning;
 import com.dataproject.platforms.Powerups.Powerup;
 import com.dataproject.platforms.Powerups.Wave;
 

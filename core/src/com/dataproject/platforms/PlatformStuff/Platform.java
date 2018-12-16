@@ -39,7 +39,7 @@ public class Platform extends Actor
     {
         if(selfDestruct){deathClock+=dt;}
 
-        if(deathClock>10.0f){destroy();}
+        if(deathClock>5.0f){destroy();}
     }
 //
     @Override

@@ -29,9 +29,26 @@ public class Player
 
     public void setTopPlatDynamic(int amount, boolean selfDestruct)
     {
+        ArrayList<Platform> destroyed = new ArrayList<Platform>();
+        for(Platform p: plats)
+        {
+            if(p.selfDestruct){destroyed.add(p);}
+        }
+
+        plats.removeAll(destroyed);
+
         for(int i = 0; i<amount; i++)
         {
             plats.get(plats.size()-1-i).setDynamic(selfDestruct);
+        }
+    }
+
+    public void instantlyDestroyPlat(int amount)
+    {
+        for(int i = 0; i<amount; i++)
+        {
+            plats.get(plats.size()-1).destroy();
+            plats.remove(plats.size()-1);
         }
     }
 
