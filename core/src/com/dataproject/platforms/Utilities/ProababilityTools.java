@@ -14,6 +14,9 @@ public class ProababilityTools
 {
     public static Powerup roll(Player p)
     {
+        double roll = Math.random();
+
+
 
         return new Wave(); //For now just auto roll wave every time
     }
