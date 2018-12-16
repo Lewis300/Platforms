@@ -16,6 +16,7 @@ import com.dataproject.platforms.HudStuff.PowerupPrompt;
 import com.dataproject.platforms.PlatformStuff.Platform;
 import com.dataproject.platforms.Powerups.Fireball;
 import com.dataproject.platforms.Powerups.Lightning;
+import com.dataproject.platforms.Powerups.Powerup;
 import com.dataproject.platforms.Powerups.Wave;
 import com.dataproject.platforms.Utilities.ProababilityTools;
 import com.dataproject.platforms.Utilities.WorldContactListener;
@@ -61,7 +62,8 @@ public class GameScreen implements Screen
     //Players
     private Player p1; //on the left
     private Player p2; //on the right
-    private boolean isItP1Turn = true;
+
+    public Powerup currentRoll;
 
     //Liquidfun
     private ParticleSystem psys;
@@ -95,6 +97,17 @@ public class GameScreen implements Screen
 
     private boolean hudAdded = false;
 
+    public void handleTurn(boolean isItP1Turn)
+    {
+        if(isItP1Turn == true)
+        {
+            currentRoll = ProababilityTools.roll(p1, p2);
+        }
+        else
+        {
+            currentRoll = ProababilityTools.roll(p2, p1);
+        }
+    }
 
     public void handleInput(float dt)
     {
@@ -123,25 +136,25 @@ public class GameScreen implements Screen
         if(timePassed>5 && timePassed<6 && spawnednewWave == false)
         {
             spawnednewWave = true;
-            ProababilityTools.roll(p1).use(p2);
+            ProababilityTools.roll(p1, p2).use(p2);
         }
 
         if(timePassed>12 && spawnednewWave2 == false)
         {
             spawnednewWave2 = true;
-            ProababilityTools.roll(p2).use(p1);
+            ProababilityTools.roll(p2, p1).use(p1);
         }
 
         if(timePassed>18 && spawnednewWave3 == false)
         {
             spawnednewWave3 = true;
-            ProababilityTools.roll(p1).use(p2);
+            ProababilityTools.roll(p1, p2).use(p2);
         }
 
         if(timePassed>24 && spawnednewWave4 == false)
         {
             spawnednewWave4 = true;
-            ProababilityTools.roll(p2).use(p1);
+            ProababilityTools.roll(p2, p1).use(p1);
         }
 
 

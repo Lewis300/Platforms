@@ -13,8 +13,8 @@ import com.dataproject.platforms.Utilities.ProababilityTools;
 
 public class Platforms extends Game
 {
-	Batch sb;
-	Screen gameScreen;
+	private static Batch sb;
+	public static GameScreen gameScreen;
 
 	public static int SCREEN_WIDTH;
 	public static int SCREEN_HEIGHT;

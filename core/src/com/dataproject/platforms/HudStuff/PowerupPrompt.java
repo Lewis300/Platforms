@@ -50,7 +50,7 @@ public class PowerupPrompt
     {
         if(use.isClicked())
         {
-            ProababilityTools.roll(decider).use(affected);
+            decider.gettCurrentlyRolledPowerup().use(affected);
             isOpen = false;
         }
         else if(dontUse.isClicked())
