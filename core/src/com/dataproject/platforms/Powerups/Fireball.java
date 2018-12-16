@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class Fireball implements Powerup
 {
-    private static final Sprite emblem = MiscTools.createScaledSprite(new Texture("Powerups/FireBallPowerupImage.png"), Powerup.EMBLEM_WIDTH, Powerup.EMBLEM_HEIGHT);
+    private static final Sprite emblem = MiscTools.createScaledSprite(new Texture("Powerups/FireBallPowerupImageScaledUp.png"), Powerup.EMBLEM_WIDTH, Powerup.EMBLEM_HEIGHT);
 
     private static World gameworld;
     private double rarity = 0.15;

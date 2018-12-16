@@ -105,7 +105,7 @@ public class Platform extends Actor
     {
         platform.setType(BodyDef.BodyType.DynamicBody);
         //platform.setActive(true);
-        platform.setGravityScale(80);
+        platform.setGravityScale(0);
         this.selfDestruct = selfDestruct;
     }
 

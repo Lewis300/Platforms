@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class Wave implements Powerup
 {
-    private static final Sprite emblem = MiscTools.createScaledSprite(new Texture("Powerups/WavePowerupImage.png"), Powerup.EMBLEM_WIDTH, Powerup.EMBLEM_HEIGHT);
+    private static final Sprite emblem = MiscTools.createScaledSprite(new Texture("Powerups/WavePowerupImageScaledUp.png"), Powerup.EMBLEM_WIDTH, Powerup.EMBLEM_HEIGHT);
 
     private double rarity; //Probability of rolling this powerup
     private double chanceToHarmUser;

@@ -6,8 +6,8 @@ import com.dataproject.platforms.Utilities.Range;
 
 public interface Powerup
 {
-    public static final int EMBLEM_HEIGHT = 64;
-    public static final int EMBLEM_WIDTH = 64;
+    public static final int EMBLEM_HEIGHT = 128;
+    public static final int EMBLEM_WIDTH = 128;
 
     double getRarity(); //gets the rarity of rolling this powerup
     double getChanceToHarmUser(); //gets the probability of harming the player using the powerup

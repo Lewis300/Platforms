@@ -45,7 +45,7 @@ public class PowerupPrompt
         // render textuers
 
         batch.draw(WINDOW_TEX, position.x, position.y);
-        currentEmblem.setPosition(position.x + 500, position.y + 175);
+        currentEmblem.setPosition(position.x + 400, position.y + 175);
         currentEmblem.draw(batch);
 
         use.render(batch, dt);
