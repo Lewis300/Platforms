@@ -17,8 +17,7 @@ public class ProababilityTools
         double roll = Math.random();
 
 
-
-        return new Wave(); //For now just auto roll wave every time
+        return new Fireball(); //For now just auto roll wave every time
     }
 
     // Returns random integer between min and max
