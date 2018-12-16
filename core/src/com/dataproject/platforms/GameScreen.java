@@ -161,7 +161,7 @@ public class GameScreen implements Screen
 
 
 
-        //b2dr.render(world, gameCam.combined);
+        b2dr.render(world, gameCam.combined);
 
         rayHandler.updateAndRender();
 
@@ -185,6 +185,9 @@ public class GameScreen implements Screen
         {
             p2_platforms.get(i).draw(sb, 1);
         }
+
+        p1.render(sb, delta);
+        p2.render(sb, delta);
 
         HH.render(sb, delta);
 

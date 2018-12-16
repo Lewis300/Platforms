@@ -1,5 +1,6 @@
 package com.dataproject.platforms;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
@@ -19,6 +20,8 @@ public class Player
     private World gameWorld;
 
     private Powerup currentlyRolled;
+
+    private PlayerCharacter character;
 //
     public Player(World world, ArrayList<Platform> plats)
     {
@@ -29,6 +32,16 @@ public class Player
         {
             this.plats.get(i).setOwner(this);
         }
+
+        //Get position from top platform
+        Vector2 charPos = new Vector2(plats.get(plats.size()-1).getPosition().x , plats.get(plats.size()-1).getPosition().y + PlayerCharacter.CHARACTER_DIM + Platform.PLATFORM_HEIGHT);
+
+        character = new PlayerCharacter(world, charPos);
+    }
+
+    public void render(Batch batch, float dt)
+    {
+        character.draw(batch, 1);
     }
 
     public Vector2 getTopPlatPos(){return plats.get(plats.size()-1).getPosition();}
