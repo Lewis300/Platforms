@@ -44,7 +44,7 @@ public class FireballProjectile extends Actor
         fireBodyDef.position.set(position);
 
         //Setting the texture, and getting its width and height to set the size
-        fireTexture = new Texture("Powerups/FireBallPowerupImage.png");
+        fireTexture = new Texture("Powerups/FireBallTexture.png");
         fireballWidth = fireTexture.getWidth();
         fireballHeight = fireTexture.getHeight();
         size = new Vector2(fireballWidth,fireballHeight);
