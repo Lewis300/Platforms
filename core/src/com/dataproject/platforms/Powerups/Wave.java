@@ -53,7 +53,7 @@ public class Wave implements Powerup
 
         try
         {
-            for(int i = 0; i<2; i++)
+            for(int i = 0; i<7; i++)
             {
                 psys.destroyParticle(i);
             }
@@ -112,11 +112,17 @@ public class Wave implements Powerup
     public void use(Player affected)
     {
         useCount++;
-        affected.setTopPlatDynamic(3, true);
 
         if(affected.onRightSide){START_POS = new Vector2(Platforms.SCREEN_WIDTH+200, affected.getTopPlatPos().y);}
 
         else{START_POS = new Vector2(-200, affected.getTopPlatPos().y); System.out.println("FAG");}
+
+
+        if(affected.plats.size()>=3)
+        {
+            affected.setTopPlatDynamic(3, true);
+        }
+
 
         WAVE_USED = true;
     }

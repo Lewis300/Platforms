@@ -59,7 +59,7 @@ public class FireballProjectile extends Actor
     private void initBox2d(){
         //Making the body def for the fireball
         fireBodyDef = new BodyDef();
-        fireBodyDef.gravityScale = 3;
+        fireBodyDef.gravityScale = 15;
         fireBodyDef.type = BodyDef.BodyType.DynamicBody;
         fireBodyDef.position.set(position);
 
