@@ -2,14 +2,18 @@ package com.dataproject.platforms.Powerups;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.dataproject.platforms.PlatformStuff.Platform;
 import com.dataproject.platforms.Platforms;
 import com.dataproject.platforms.Player;
+import com.dataproject.platforms.Utilities.MiscTools;
 import com.dataproject.platforms.Utilities.Range;
 
 public class Lightning implements Powerup
 {
+    private static final Sprite emblem = MiscTools.createScaledSprite(new Texture("Powerups/ThunderPowerupImage.png"), Powerup.EMBLEM_WIDTH, Powerup.EMBLEM_HEIGHT);
+
     public static final String BOLT_IMG_PATH = "Powerups/ThunderBoltTexture.png";
     public static final Texture BOLT = new Texture(BOLT_IMG_PATH);
     private static Vector2 drawPos;
@@ -66,5 +70,10 @@ public class Lightning implements Powerup
         drawPos.y = affected.getTopPlatPos().y;
 
         affected.instantlyDestroyPlat(1);
+    }
+
+    @Override
+    public Sprite getEmblem() {
+        return emblem;
     }
 }

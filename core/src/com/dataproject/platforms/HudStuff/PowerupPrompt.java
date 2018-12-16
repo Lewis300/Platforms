@@ -2,6 +2,7 @@ package com.dataproject.platforms.HudStuff;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.dataproject.platforms.PlatformStuff.Platform;
 import com.dataproject.platforms.Platforms;
@@ -24,6 +25,8 @@ public class PowerupPrompt
     private Player decider;
     private Player affected;
 
+    public static Sprite currentEmblem;
+
     public PowerupPrompt()
     {
         position = new Vector2(Platforms.SCREEN_WIDTH/2 - WINDOW_TEX.getWidth()/2, Platforms.SCREEN_HEIGHT/2 - WINDOW_TEX.getHeight()/2); // Centers window
@@ -42,6 +45,8 @@ public class PowerupPrompt
         // render textuers
 
         batch.draw(WINDOW_TEX, position.x, position.y);
+        currentEmblem.setPosition(position.x + 500, position.y + 175);
+        currentEmblem.draw(batch);
 
         use.render(batch, dt);
         dontUse.render(batch, dt);

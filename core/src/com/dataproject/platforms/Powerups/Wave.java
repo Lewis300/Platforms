@@ -1,11 +1,14 @@
 package com.dataproject.platforms.Powerups;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.dataproject.platforms.Platforms;
 import com.dataproject.platforms.Player;
+import com.dataproject.platforms.Utilities.MiscTools;
 import com.dataproject.platforms.Utilities.Range;
 import finnstr.libgdx.liquidfun.*;
 import javafx.scene.paint.Color;
@@ -14,6 +17,8 @@ import java.util.ArrayList;
 
 public class Wave implements Powerup
 {
+    private static final Sprite emblem = MiscTools.createScaledSprite(new Texture("Powerups/WavePowerupImage.png"), Powerup.EMBLEM_WIDTH, Powerup.EMBLEM_HEIGHT);
+
     private double rarity; //Probability of rolling this powerup
     private double chanceToHarmUser;
     public static final int DROP_AMT = 200;
@@ -150,5 +155,11 @@ public class Wave implements Powerup
 
 
 
+    }
+
+    @Override
+    public Sprite getEmblem()
+    {
+        return emblem;
     }
 }
