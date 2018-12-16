@@ -1,5 +1,6 @@
 package com.dataproject.platforms.Powerups;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.dataproject.platforms.Player;
 import com.dataproject.platforms.Utilities.Range;
 
@@ -46,4 +47,9 @@ public class Laser implements Powerup
 
     }
 
+
+    @Override
+    public Sprite getEmblem() {
+        return null;
+    }
 }

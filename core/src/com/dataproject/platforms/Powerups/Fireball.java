@@ -2,17 +2,21 @@ package com.dataproject.platforms.Powerups;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.dataproject.platforms.Platforms;
 import com.dataproject.platforms.Powerups.Projectiles.FireballProjectile;
 import com.dataproject.platforms.Player;
+import com.dataproject.platforms.Utilities.MiscTools;
 import com.dataproject.platforms.Utilities.Range;
 
 import java.util.ArrayList;
 
 public class Fireball implements Powerup
 {
+    private static final Sprite emblem = MiscTools.createScaledSprite(new Texture("Powerups/FireBallPowerupImage.png"), Powerup.EMBLEM_WIDTH, Powerup.EMBLEM_HEIGHT);
+
     private static World gameworld;
     private double rarity = 0.15;
     private double chanceToHarmUser =  0.5;
@@ -98,5 +102,10 @@ public class Fireball implements Powerup
                 fireballs.add(new FireballProjectile(gameworld, currentFireballSpawnPoint));
             }
         }
+    }
+
+    @Override
+    public Sprite getEmblem() {
+        return emblem;
     }
 }

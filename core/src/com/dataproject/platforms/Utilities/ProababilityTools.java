@@ -1,5 +1,6 @@
 package com.dataproject.platforms.Utilities;
 
+import com.dataproject.platforms.HudStuff.PowerupPrompt;
 import com.dataproject.platforms.PlatformStuff.Platform;
 import com.dataproject.platforms.Player;
 import com.dataproject.platforms.Powerups.Fireball;
@@ -31,9 +32,18 @@ public class ProababilityTools
 
         //return pup_lightning;
 
-        if(roll > 0.33 && roll <0.66){return pup_wave;}
-        else if(roll>=0.66){return pup_fireball;}
-        else {return pup_lightning;}
+        if(roll > 0.33 && roll <0.66)
+        {
+            return pup_wave;
+        }
+        else if(roll>=0.66)
+        {
+            return pup_fireball;
+        }
+        else
+        {
+            return pup_lightning;
+        }
     }
 
     // Returns random integer between min and max

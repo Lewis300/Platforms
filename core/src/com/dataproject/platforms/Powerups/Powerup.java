@@ -1,10 +1,14 @@
 package com.dataproject.platforms.Powerups;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.dataproject.platforms.Player;
 import com.dataproject.platforms.Utilities.Range;
 
 public interface Powerup
 {
+    public static final int EMBLEM_HEIGHT = 64;
+    public static final int EMBLEM_WIDTH = 64;
+
     double getRarity(); //gets the rarity of rolling this powerup
     double getChanceToHarmUser(); //gets the probability of harming the player using the powerup
 
@@ -14,4 +18,6 @@ public interface Powerup
     Range getRange();//dw about this for not
 
     void use(Player affected); //Uses the powerup
+
+    Sprite getEmblem();
 }
