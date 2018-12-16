@@ -155,7 +155,7 @@ public class Wave implements Powerup
             wave.destroyParticlesInGroup();
         }
 
-        waveDef.position.set(new Vector2(pos.x+0*WAVEGROUP_SPAWN_COUNT, pos.y-40));
+        waveDef.position.set(new Vector2(pos.x+0*WAVEGROUP_SPAWN_COUNT, pos.y-25));
 
 
         //if(wave == null){wave = psys.createParticleGroup(waveDef);}

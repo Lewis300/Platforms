@@ -78,7 +78,7 @@ public class GameScreen implements Screen
         gameCam = new OrthographicCamera();
         sunPos = new Vector2(Platforms.SCREEN_WIDTH/2, Platforms.SCREEN_HEIGHT/2 -120);
 
-        backtex = new Texture("Powerups/Lightning1.png");
+        backtex = new Texture("Powerups/ThunderBoltTexture.png");
 
         background = new Sprite();
         background.setRegion(backtex);
@@ -126,7 +126,7 @@ public class GameScreen implements Screen
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         sb.begin();
-        sb.draw(backtex,0,0);
+        sb.draw(backtex, 230, 0, 75, 700);
         sb.end();
 
 
