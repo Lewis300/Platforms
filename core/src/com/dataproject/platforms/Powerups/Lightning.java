@@ -16,6 +16,8 @@ public class Lightning implements Powerup
 
     public static final String BOLT_IMG_PATH = "Powerups/ThunderBoltTexture.png";
     public static final Texture BOLT = new Texture(BOLT_IMG_PATH);
+    public static final double CHANCE_TO_HARM_USER = 0.1;
+
     private static Vector2 drawPos;
 
 

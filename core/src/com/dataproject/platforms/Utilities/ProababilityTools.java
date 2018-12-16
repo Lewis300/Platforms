@@ -29,19 +29,37 @@ public class ProababilityTools
         affected = p2;
 
         double roll = Math.random();
+        double harmRoll = Math.random();
 
         //return pup_lightning;
 
+        //Roll wave
         if(roll > 0.33 && roll <0.66)
         {
+            if(harmRoll <= Wave.CHANCE_TO_HARM_USER)
+            {
+                affected = p1;
+            }
             return pup_wave;
         }
+
+        //Roll fireball
         else if(roll>=0.66)
         {
+            if(harmRoll <= Fireball.CHANCE_TO_HARM_USER)
+            {
+                affected = p1;
+            }
             return pup_fireball;
         }
+
+        //Roll lightning
         else
         {
+            if(harmRoll <= Lightning.CHANCE_TO_HARM_USER)
+            {
+                affected = p1;
+            }
             return pup_lightning;
         }
     }

@@ -5,6 +5,8 @@ import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -79,6 +81,9 @@ public class GameScreen implements Screen
     //Hud
     private HudHandler HH;
 
+    //Sounds
+    private Sound backgroundMusic;
+
     public GameScreen(Batch sb)
     {
         this.sb = sb;
@@ -87,12 +92,14 @@ public class GameScreen implements Screen
         gameCam = new OrthographicCamera();
         sunPos = new Vector2(Platforms.SCREEN_WIDTH/2, Platforms.SCREEN_HEIGHT/2 -120);
 
-        backtex = new Texture("Powerups/ThunderBoltTexture.png");
+        backtex = new Texture("Background.png");
 
         background = new Sprite();
         background.setRegion(backtex);
 
         HH = new HudHandler();
+        backgroundMusic = Gdx.audio.newSound(Gdx.files.internal("Sounds/BackgroundMusic.mp3"));
+        backgroundMusic.play();
     }
 
     private boolean hudAdded = false;
@@ -194,6 +201,8 @@ public class GameScreen implements Screen
         pdr.render(Wave.psys, 1, gameCam.combined);
 
         sb.begin();
+
+        //sb.draw(backtex, 0, 0);
 
         Lightning.render(sb, delta);
         Fireball.render(sb, delta);

@@ -19,7 +19,7 @@ public class Fireball implements Powerup
 
     private static World gameworld;
     private double rarity = 0.15;
-    private double chanceToHarmUser =  0.5;
+    public static final double CHANCE_TO_HARM_USER =  0.25;
     public static ArrayList<FireballProjectile> fireballs;
 
     @Override
@@ -29,7 +29,7 @@ public class Fireball implements Powerup
 
     @Override
     public double getChanceToHarmUser() {
-        return chanceToHarmUser;
+        return CHANCE_TO_HARM_USER;
     }
 
     public static void render(Batch batch, float dt)
@@ -66,19 +66,21 @@ public class Fireball implements Powerup
 
     public void use(Player affected)
     {
+        int fireballAmount = 3;
 
         if(affected.plats.size()>=3)
         {
-            affected.setTopPlatDynamic(3, false);
+            affected.setTopPlatDynamic(fireballAmount, false);
         }
         else
         {
+            fireballAmount = affected.plats.size();
             affected.setTopPlatDynamic(affected.plats.size(), true);
         }
 
 
         fireballs = new ArrayList<FireballProjectile>();
-        for(int fireballCounter = 1; fireballCounter <= 3; fireballCounter++)
+        for(int fireballCounter = 1; fireballCounter <= fireballAmount; fireballCounter++)
         {
 
 
