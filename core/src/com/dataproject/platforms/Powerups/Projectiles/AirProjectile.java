@@ -67,7 +67,7 @@ public class AirProjectile extends Actor {
         //Setting the texture, and getting its width and height to set the size
         airWidth = AIR_TEX1.getWidth();
         airHeight = AIR_TEX1.getHeight();
-        size = new Vector2(airWidth/2, airHeight/2);
+        size = new Vector2(airWidth/3, airHeight/3);
         airSprite = MiscTools.createScaledSprite(AIR_TEX1, (int)size.x*2, (int)size.y*2);
 
         //Making the shape according to size
