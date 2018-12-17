@@ -271,7 +271,7 @@ public class GameScreen implements Screen
         //Initialize Players
             Wave.init(psys, world);
             Fireball.init(world);
-            Air.init(world);
+            Air.init(world, platformSpacing);
             Lightning.init();
             p1 = new Player(world, p1_platforms); p1.onRightSide = false;
             p2 = new Player(world, p2_platforms); p2.onRightSide = true;

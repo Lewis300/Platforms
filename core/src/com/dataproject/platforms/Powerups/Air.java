@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import com.dataproject.platforms.GameScreen;
 import com.dataproject.platforms.Platforms;
 import com.dataproject.platforms.Powerups.Projectiles.AirProjectile;
 import com.dataproject.platforms.Powerups.Projectiles.FireballProjectile;
@@ -21,9 +22,9 @@ public class Air implements Powerup
 
     private static World gameworld;
     private double rarity = 0.15;
+    private static int platformSpace;
     public static final double CHANCE_TO_HARM_USER =  0.90;
     public static ArrayList<AirProjectile> airprojectiles;
-    public static AirProjectile airProjectile;
     Vector2 airInitalVelocity;
 
     @Override
@@ -63,9 +64,10 @@ public class Air implements Powerup
         return null;
     }
 
-    public static void init(World world)
+    public static void init(World world, int platformSpacing)
     {
         gameworld = world;
+        platformSpace = platformSpacing;
     }
 
     public void use(Player affected)
@@ -74,22 +76,29 @@ public class Air implements Powerup
         Vector2 currentTopPlatPos = affected.getTopPlatPos();
         Vector2 currentAirSpawnPoint = currentTopPlatPos;
 
-        int airAmount = 3;
+        int airAmount = 5;
 
         if(affected.onRightSide)
         {
-            airInitalVelocity = new Vector2(200, 0);
-            currentAirSpawnPoint.x = (float) (350);
+           for(int i = 0; i < airAmount; i++)
+                {
+                    airInitalVelocity = new Vector2(200, 0);
+                    currentAirSpawnPoint.x = (float) (350);
+                    currentAirSpawnPoint.y = currentTopPlatPos.y - i * 19;
+                    airprojectiles.add(new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity));
+            }
         }
         else
         {
-            airInitalVelocity = new Vector2(-200, 0);
-            currentAirSpawnPoint.x = (float) (450);
+            for(int i = 0; i < airAmount; i++)
+            {
+                airInitalVelocity = new Vector2(-200, 0);
+                currentAirSpawnPoint.x = (float) (450);
+                currentAirSpawnPoint.y = currentTopPlatPos.y - i * 19;
+                airprojectiles.add(new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity));
+            }
         }
-
-        currentAirSpawnPoint.y = currentTopPlatPos.y;
-        airprojectiles.add(new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity));
-     }
+    }
 
     @Override
     public Sprite getEmblem() {
