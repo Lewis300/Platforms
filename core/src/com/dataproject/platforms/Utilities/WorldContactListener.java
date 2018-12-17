@@ -3,7 +3,9 @@ package com.dataproject.platforms.Utilities;
 import com.badlogic.gdx.physics.box2d.*;
 import com.dataproject.platforms.PlatformStuff.Platform;
 import com.dataproject.platforms.Player;
+import com.dataproject.platforms.Powerups.Air;
 import com.dataproject.platforms.Powerups.Fireball;
+import com.dataproject.platforms.Powerups.Projectiles.AirProjectile;
 import com.dataproject.platforms.Powerups.Projectiles.FireballProjectile;
 import finnstr.libgdx.liquidfun.ParticleBodyContact;
 import finnstr.libgdx.liquidfun.ParticleContact;
@@ -144,7 +146,7 @@ public class WorldContactListener implements ContactListener
 
 
                 getPlat(B.getUserData().toString()).destroy();
-                //getFireballProjectile(A.getUserData().toString()).destroy();
+                getAirProjectile(A.getUserData().toString()).destroy();
 
             }
             else if(A.getUserData().toString().contains("platform") && B.getUserData().toString().contains("airprojectile"))
@@ -153,7 +155,7 @@ public class WorldContactListener implements ContactListener
                 //bodiesToDestroy.add(A.getBody());
 
                 getPlat(A.getUserData().toString()).destroy();
-                //getFireballProjectile(B.getUserData().toString()).destroy();
+                getAirProjectile(B.getUserData().toString()).destroy();
             }
         }
         catch (NullPointerException e){e.printStackTrace();}
@@ -182,6 +184,18 @@ public class WorldContactListener implements ContactListener
         for(FireballProjectile f: Fireball.fireballs)
         {
             if(f.fireballProjectileId == id){return f;}
+        }
+
+        return null;
+    }
+
+    private AirProjectile getAirProjectile(String userdata)
+    {
+        int id = Integer.parseInt(userdata.substring(14));
+
+        for(AirProjectile a: Air.airprojectiles)
+        {
+            if(a.airProjectileId == id){return a;}
         }
 
         return null;
