@@ -108,7 +108,7 @@ public class PlayerCharacter extends Actor
         //Setting the fixture def properties
         playercharFixDef.shape = playercharShape;
         playercharFixDef.density = 999999;
-        playercharFixDef.restitution = 1f;
+        playercharFixDef.restitution = 0f;
 
         //Creating the body in the world
         playercharBody = gameWorld.createBody(playercharBodyDef);

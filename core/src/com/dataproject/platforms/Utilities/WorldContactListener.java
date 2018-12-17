@@ -42,31 +42,35 @@ public class WorldContactListener implements ContactListener
     }
 
     @Override
-    public void beginContact(Contact contact) {
-        Fixture A, B;
+    public void beginContact(Contact contact)
+    {
+       try {
+           Fixture A, B;
 
-        A = contact.getFixtureA();
-        B = contact.getFixtureB();
+           A = contact.getFixtureA();
+           B = contact.getFixtureB();
 
-        String dataA = A.getUserData().toString();
-        String dataB = B.getUserData().toString();
+           String dataA = A.getUserData().toString();
+           String dataB = B.getUserData().toString();
 
-        if (dataA.contains("player") && dataB.contains("platform"))
-        {
-            if (B.getBody().getType().equals(BodyDef.BodyType.StaticBody))
-            {
-                A.getBody().setType(BodyDef.BodyType.KinematicBody);
-            }
-        }
-        else if (dataB.contains("player") && dataA.contains("platform"))
-        {
-            if (A.getBody().getType().equals(BodyDef.BodyType.StaticBody))
-            {
-                B.getBody().setType(BodyDef.BodyType.KinematicBody);
-            }
+           if (dataA.contains("player") && dataB.contains("platform"))
+           {
+               if (B.getBody().getType().equals(BodyDef.BodyType.StaticBody))
+               {
+                   A.getBody().setType(BodyDef.BodyType.KinematicBody);
+               }
+           }
+           else if (dataB.contains("player") && dataA.contains("platform"))
+           {
+               if (A.getBody().getType().equals(BodyDef.BodyType.StaticBody))
+               {
+                   B.getBody().setType(BodyDef.BodyType.KinematicBody);
+               }
 
 
-        }
+           }
+       }
+       catch (NullPointerException e){e.printStackTrace();}
     }
     @Override
     public void endContact(Contact contact)
