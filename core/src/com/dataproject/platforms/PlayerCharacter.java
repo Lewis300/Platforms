@@ -18,7 +18,7 @@ public class PlayerCharacter extends Actor
 
     public static final int CHARACTER_DIM = 32;
 
-    private Sprite playercharSprite;
+    public Sprite playercharSprite;
 
     private int playercharWidth;
     private int playercharHeight;
@@ -47,15 +47,35 @@ public class PlayerCharacter extends Actor
         init();
     }
 
+    public float timePassed = 0f;
+    private float deltaY = 0f;
+    private Vector2 velocityY = new Vector2(0,0);
+
+    public void updatePosition(float dt)
+    {
+        playercharBody.setActive(false);
+        playercharBody.setType(BodyDef.BodyType.KinematicBody);
+        timePassed+=dt;
+
+        deltaY = (0.5f)*(-9.81f)*(timePassed)*(timePassed);
+
+        velocityY.set(0, velocityY.y + (-9.81f*timePassed));
+
+        //playercharSprite.setPosition(playercharBody.getPosition().x - size.x, playercharBody.getPosition().y - size.y + deltaY);
+        playercharBody.setLinearVelocity(velocityY);
+        playercharBody.setType(BodyDef.BodyType.DynamicBody);
+        playercharBody.setActive(true);
+    }
+
     @Override
     public void draw(Batch batch, float parentAlpha)
     {
         float rotation = (float)Math.toDegrees(playercharBody.getAngle());
 
-        //if(playercharBody.isActive())
+        if(playercharBody.isActive())
         {
-            playercharSprite.setPosition(playercharBody.getPosition().x - size.x, playercharBody.getPosition().y - size.y);
             playercharSprite.setRotation(rotation);
+            playercharSprite.setPosition(playercharBody.getPosition().x - size.x, playercharBody.getPosition().y - size.y);
             playercharSprite.draw(batch, 1);
         }
 
@@ -66,7 +86,7 @@ public class PlayerCharacter extends Actor
         //Making the body def for the fireball
         playercharBodyDef = new BodyDef();
         playercharBodyDef.gravityScale = 15;
-        playercharBodyDef.type = BodyDef.BodyType.DynamicBody;
+        playercharBodyDef.type = BodyDef.BodyType.KinematicBody;
         playercharBodyDef.position.set(position);
 
         //Setting the texture, and getting its width and height to set the size
@@ -83,12 +103,14 @@ public class PlayerCharacter extends Actor
 
         //Setting the fixture def properties
         playercharFixDef.shape = playercharShape;
+        playercharFixDef.density = 999999;
+        playercharFixDef.restitution = 1f;
 
         //Creating the body in the world
         playercharBody = gameWorld.createBody(playercharBodyDef);
 
         playercharBody.createFixture(playercharFixDef).setUserData("player_"+id);
-        playercharBody.setActive(false);
+        //playercharBody.setActive(false);
 
     }
 

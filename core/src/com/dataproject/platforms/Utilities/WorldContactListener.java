@@ -42,12 +42,32 @@ public class WorldContactListener implements ContactListener
     }
 
     @Override
-    public void beginContact(Contact contact)
-    {
+    public void beginContact(Contact contact) {
+        Fixture A, B;
+
+        A = contact.getFixtureA();
+        B = contact.getFixtureB();
+
+        String dataA = A.getUserData().toString();
+        String dataB = B.getUserData().toString();
+
+        if (dataA.contains("player") && dataB.contains("platform"))
+        {
+            if (B.getBody().getType().equals(BodyDef.BodyType.StaticBody))
+            {
+                A.getBody().setType(BodyDef.BodyType.KinematicBody);
+            }
+        }
+        else if (dataB.contains("player") && dataA.contains("platform"))
+        {
+            if (A.getBody().getType().equals(BodyDef.BodyType.StaticBody))
+            {
+                B.getBody().setType(BodyDef.BodyType.KinematicBody);
+            }
 
 
+        }
     }
-
     @Override
     public void endContact(Contact contact)
     {

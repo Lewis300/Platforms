@@ -34,13 +34,16 @@ public class Player
         }
 
         //Get position from top platform
-        Vector2 charPos = new Vector2(plats.get(plats.size()-1).getPosition().x , plats.get(plats.size()-1).getPosition().y + PlayerCharacter.CHARACTER_DIM + Platform.PLATFORM_HEIGHT);
+        Vector2 charPos = new Vector2(plats.get(plats.size()-1).getPosition().x , plats.get(plats.size()-1).getPosition().y + PlayerCharacter.CHARACTER_DIM + Platform.PLATFORM_HEIGHT+10);
 
         character = new PlayerCharacter(world, charPos);
     }
 
     public void render(Batch batch, float dt)
     {
+        if(character.timePassed > 6){character.timePassed = 0f;}
+
+        character.updatePosition(dt);
         character.draw(batch, 1);
     }
 
