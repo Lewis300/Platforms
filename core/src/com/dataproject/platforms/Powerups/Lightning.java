@@ -75,7 +75,7 @@ public class Lightning implements Powerup
     public void use(Player affected)
     {
         timePassed = 0f;
-        if(HARM_SELF)
+        if(HARM_SELF && affected.plats.size() > 1)
         {
             drawPos.x = affected.getTopPlatPos().x + Platform.PLATFORM_WIDTH/2 - BOLT.getWidth()/2;
             drawPos.y = affected.getTopPlatPos().y;
