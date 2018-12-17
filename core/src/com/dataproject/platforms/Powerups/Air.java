@@ -66,19 +66,22 @@ public class Air implements Powerup
 
     public void use(Player affected)
     {
-        if(affected.onRightSide)
-        {
-            airInitalVelocity = new Vector2(-200, 0);
-        }
 
-        else
-        {
-            airInitalVelocity = new Vector2(200, 0);
-        }
         Vector2 currentTopPlatPos = affected.getTopPlatPos();
         Vector2 currentAirSpawnPoint = currentTopPlatPos;
-        currentAirSpawnPoint.x = (float) (currentTopPlatPos.x - (Platforms.SCREEN_WIDTH/7f / 2) + 15 + 0.7 * (Math.random() * Platforms.SCREEN_WIDTH/7f));
-        currentAirSpawnPoint.y = Platforms.SCREEN_WIDTH/2f;
+
+        if(affected.onRightSide)
+        {
+            airInitalVelocity = new Vector2(200, 0);
+            currentAirSpawnPoint.x = (float) (350);
+        }
+        else
+        {
+            airInitalVelocity = new Vector2(-200, 0);
+            currentAirSpawnPoint.x = (float) (450);
+        }
+
+        currentAirSpawnPoint.y = currentTopPlatPos.y;
         airProjectile = new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity);
      }
 

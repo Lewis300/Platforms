@@ -24,7 +24,7 @@ public class AirProjectile extends Actor {
     private FixtureDef airFixDef = new FixtureDef();
     private PolygonShape airShape;
     private Vector2 size;
-    private Vector2 AIR_INITIAL_VELOCITY = new Vector2(200, 0);
+    private Vector2 AIR_INITIAL_VELOCITY;
     private final Vector2 position = new Vector2();
 
     private static int airProjectileCount = 0;
@@ -37,9 +37,8 @@ public class AirProjectile extends Actor {
         gameWorld = world;
         this.position.set(position);
 
+        AIR_INITIAL_VELOCITY = initalVelocity;
         init();
-
-        this.airBodyDef.linearVelocity.set(initalVelocity);
     }
 
     @Override
@@ -68,7 +67,7 @@ public class AirProjectile extends Actor {
         //Setting the texture, and getting its width and height to set the size
         airWidth = AIR_TEX1.getWidth();
         airHeight = AIR_TEX1.getHeight();
-        size = new Vector2(airWidth, airHeight);
+        size = new Vector2(airWidth/2, airHeight/2);
         airSprite = MiscTools.createScaledSprite(AIR_TEX1, (int)size.x*2, (int)size.y*2);
 
         //Making the shape according to size

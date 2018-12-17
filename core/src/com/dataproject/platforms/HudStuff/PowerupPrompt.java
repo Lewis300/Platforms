@@ -8,6 +8,7 @@ import com.dataproject.platforms.PlatformStuff.Platform;
 import com.dataproject.platforms.Platforms;
 import com.dataproject.platforms.Player;
 import com.dataproject.platforms.Powerups.Powerup;
+import com.dataproject.platforms.Utilities.MiscTools;
 import com.dataproject.platforms.Utilities.ProababilityTools;
 
 public class PowerupPrompt
@@ -47,6 +48,7 @@ public class PowerupPrompt
         batch.draw(WINDOW_TEX, position.x, position.y);
         currentEmblem.setPosition(position.x + 400, position.y + 175);
         currentEmblem.draw(batch);
+        MiscTools.font20.draw(batch, "Nigger", position.x +100, position.y + 175);
 
         use.render(batch, dt);
         dontUse.render(batch, dt);
