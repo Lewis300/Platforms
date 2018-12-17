@@ -75,17 +75,24 @@ public class Air implements Powerup
         airprojectiles = new ArrayList<AirProjectile>();
         Vector2 currentTopPlatPos = affected.getTopPlatPos();
         Vector2 currentAirSpawnPoint = currentTopPlatPos;
+        float highestYSpawnPoint = currentTopPlatPos.y;
 
         int airAmount = 5;
+
+        if(affected.plats.size() < airAmount)
+        {
+            airAmount = affected.plats.size();
+        }
 
         if(affected.onRightSide)
         {
            for(int i = 0; i < airAmount; i++)
-                {
-                    airInitalVelocity = new Vector2(200, 0);
-                    currentAirSpawnPoint.x = (float) (350);
-                    currentAirSpawnPoint.y = currentTopPlatPos.y - i * 19;
-                    airprojectiles.add(new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity));
+            {
+                airInitalVelocity = new Vector2(200, 0);
+                currentAirSpawnPoint.x = (float) (350);
+                currentAirSpawnPoint.y = highestYSpawnPoint - (float)(AirProjectile.AIR_TEX1.getHeight() / 2);
+                airprojectiles.add(new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity));
+                highestYSpawnPoint -= platformSpace;
             }
         }
         else
@@ -94,8 +101,9 @@ public class Air implements Powerup
             {
                 airInitalVelocity = new Vector2(-200, 0);
                 currentAirSpawnPoint.x = (float) (450);
-                currentAirSpawnPoint.y = currentTopPlatPos.y - i * 19;
+                currentAirSpawnPoint.y = highestYSpawnPoint - (float)(AirProjectile.AIR_TEX1.getHeight() / 2);
                 airprojectiles.add(new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity));
+                highestYSpawnPoint -= platformSpace;
             }
         }
     }
