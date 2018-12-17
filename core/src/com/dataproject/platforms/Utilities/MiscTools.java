@@ -31,12 +31,12 @@ public class MiscTools
     {
         FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
         params.size = 20;
-        params.color.set(Color.BLACK);
         params.characters = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm, /";
         // set params
 
         FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("gamefont.ttf"));
         font20 = gen.generateFont(params);
+        font20.setColor(Color.BLACK);
         gen.dispose();
     }
 }

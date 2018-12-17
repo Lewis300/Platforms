@@ -108,12 +108,14 @@ public class GameScreen implements Screen
             currentRoll = ProababilityTools.roll(p1, p2);
             p1.setCurrentlyRolledPowerup(currentRoll);
             PowerupPrompt.currentEmblem = p1.gettCurrentlyRolledPowerup().getEmblem();
+            PowerupPrompt.currentPupName = p1.gettCurrentlyRolledPowerup().getName();
         }
         else
         {
             currentRoll = ProababilityTools.roll(p2, p1);
             p2.setCurrentlyRolledPowerup(currentRoll);
             PowerupPrompt.currentEmblem = p2.gettCurrentlyRolledPowerup().getEmblem();
+            PowerupPrompt.currentPupName = p2.gettCurrentlyRolledPowerup().getName();
         }
     }
 

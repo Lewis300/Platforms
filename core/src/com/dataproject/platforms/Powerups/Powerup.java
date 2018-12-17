@@ -6,6 +6,7 @@ import com.dataproject.platforms.Utilities.Range;
 
 public interface Powerup
 {
+
     public static final int EMBLEM_HEIGHT = 128;
     public static final int EMBLEM_WIDTH = 128;
 
@@ -20,4 +21,6 @@ public interface Powerup
     void use(Player affected); //Uses the powerup
 
     Sprite getEmblem();
+
+    String getName();
 }

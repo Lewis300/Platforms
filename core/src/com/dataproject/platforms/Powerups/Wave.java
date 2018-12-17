@@ -20,6 +20,7 @@ public class Wave implements Powerup
     private static final Sprite emblem = MiscTools.createScaledSprite(new Texture("Powerups/WavePowerupImageScaledUp.png"), Powerup.EMBLEM_WIDTH, Powerup.EMBLEM_HEIGHT);
 
     public static final double CHANCE_TO_HARM_USER = 0.5;
+    public static final String NAME = "Wave";
 
     private double rarity; //Probability of rolling this powerup
     private double chanceToHarmUser;
@@ -173,5 +174,10 @@ public class Wave implements Powerup
     public Sprite getEmblem()
     {
         return emblem;
+    }
+
+    @Override
+    public String getName() {
+        return NAME;
     }
 }
