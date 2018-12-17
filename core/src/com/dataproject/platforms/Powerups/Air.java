@@ -89,7 +89,7 @@ public class Air implements Powerup
            for(int i = 0; i < airAmount; i++)
             {
                 airInitalVelocity = new Vector2(200, 0);
-                currentAirSpawnPoint.x = (float) (350);
+                currentAirSpawnPoint.x = (float) (350 - i * 3);
                 currentAirSpawnPoint.y = highestYSpawnPoint - (float)(AirProjectile.AIR_TEX1.getHeight() / 2);
                 airprojectiles.add(new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity));
                 highestYSpawnPoint -= platformSpace;
@@ -101,7 +101,7 @@ public class Air implements Powerup
             for(int i = 0; i < airAmount; i++)
             {
                 airInitalVelocity = new Vector2(-200, 0);
-                currentAirSpawnPoint.x = (float) (450);
+                currentAirSpawnPoint.x = (float) (450 - i * 3);
                 currentAirSpawnPoint.y = highestYSpawnPoint - (float)(AirProjectile.AIR_TEX1.getHeight() / 2);
                 airprojectiles.add(new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity));
                 highestYSpawnPoint -= platformSpace;
