@@ -75,6 +75,7 @@ public class FireballProjectile extends Actor
 
         //Setting the fixture def properties
         fireFixDef.shape = fireShape;
+        fireFixDef.density = 999;
 
         //Creating the body in the world
         fireBody = gameWorld.createBody(fireBodyDef);

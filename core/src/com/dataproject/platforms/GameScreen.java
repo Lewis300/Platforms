@@ -62,7 +62,7 @@ public class GameScreen implements Screen
     private Player p1; //on the left
     private Player p2; //on the right
 
-    public Powerup currentRoll;
+    public Powerup currentRoll = new Laser(0,0);
 
     //Liquidfun
     private ParticleSystem psys;
@@ -183,8 +183,9 @@ public class GameScreen implements Screen
         //sb.draw(backtex, 0, 0);
 
         Lightning.render(sb, delta);
-        Fireball.render(sb, delta);
-        Air.render(sb, delta);
+
+        if(currentRoll.getName().equals("Fireball")){Fireball.render(sb, delta);}
+        if(currentRoll.getName().equals("Wind")){Air.render(sb, delta);}
 
         for(int i = 0; i<p1_platforms.size(); i++)
         {
