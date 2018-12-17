@@ -24,19 +24,21 @@ public class AirProjectile extends Actor {
     private FixtureDef airFixDef = new FixtureDef();
     private PolygonShape airShape;
     private Vector2 size;
+    private Vector2 AIR_INITIAL_VELOCITY = new Vector2(200, 0);
     private final Vector2 position = new Vector2();
 
     private static int airProjectileCount = 0;
     public int airProjectileId = 0;
 
-    public AirProjectile(World world, Vector2 position)
+    public AirProjectile(World world, Vector2 position, Vector2 initalVelocity)
     {
         airProjectileCount++;
         airProjectileId = airProjectileCount;
         gameWorld = world;
-        this.position.set(position);
-
         init();
+
+        this.position.set(position);
+        this.airBodyDef.linearVelocity.set(initalVelocity);
     }
 
     @Override
@@ -57,9 +59,10 @@ public class AirProjectile extends Actor {
     private void initBox2d(){
         //Making the body def for the air
         airBodyDef = new BodyDef();
-        airBodyDef.gravityScale = 0;
+        airBodyDef.gravityScale = 0f;
         airBodyDef.type = BodyDef.BodyType.DynamicBody;
         airBodyDef.position.set(position);
+        airBodyDef.linearVelocity.set(AIR_INITIAL_VELOCITY);
 
         //Setting the texture, and getting its width and height to set the size
         airWidth = AIR_TEX1.getWidth();

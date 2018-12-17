@@ -140,7 +140,7 @@ public class WorldContactListener implements ContactListener
 
 
                 getPlat(B.getUserData().toString()).destroy();
-                getFireballProjectile(A.getUserData().toString()).destroy();
+                //getFireballProjectile(A.getUserData().toString()).destroy();
 
             }
             else if(A.getUserData().toString().contains("platform") && B.getUserData().toString().contains("airprojectile"))
@@ -149,7 +149,7 @@ public class WorldContactListener implements ContactListener
                 //bodiesToDestroy.add(A.getBody());
 
                 getPlat(A.getUserData().toString()).destroy();
-                getFireballProjectile(B.getUserData().toString()).destroy();
+                //getFireballProjectile(B.getUserData().toString()).destroy();
             }
         }
         catch (NullPointerException e){e.printStackTrace();}

@@ -21,8 +21,9 @@ public class Air implements Powerup
     private static World gameworld;
     private double rarity = 0.15;
     public static final double CHANCE_TO_HARM_USER =  0.90;
-    public static ArrayList<FireballProjectile> fireballs;
+    public static ArrayList<AirProjectile> airprojectiles;
     public static AirProjectile airProjectile;
+    Vector2 airInitalVelocity;
 
     @Override
     public double getRarity() {
@@ -65,34 +66,21 @@ public class Air implements Powerup
 
     public void use(Player affected)
     {
-        int fireballAmount = 3;
-
-        if(affected.plats.size()>=3)
+        if(affected.onRightSide)
         {
-            affected.setTopPlatDynamic(fireballAmount, false);
+            airInitalVelocity = new Vector2(-200, 0);
         }
 
         else
         {
-            fireballAmount = affected.plats.size();
-            affected.setTopPlatDynamic(affected.plats.size(), true);
+            airInitalVelocity = new Vector2(200, 0);
         }
-
-
-        fireballs = new ArrayList<FireballProjectile>();
-        for(int fireballCounter = 1; fireballCounter <= fireballAmount; fireballCounter++)
-        {
-
-
-            Vector2 currentTopPlatPos = affected.getTopPlatPos();
-            Vector2 currentFireballSpawnPoint = currentTopPlatPos;
-            currentFireballSpawnPoint.x = (float) (currentTopPlatPos.x - (Platforms.SCREEN_WIDTH/7f / 2) + 15 + 0.7 * (Math.random() * Platforms.SCREEN_WIDTH/7f));
-            currentFireballSpawnPoint.y = currentTopPlatPos.y + 150;
-
-
-            fireballs.add(new FireballProjectile(gameworld, currentFireballSpawnPoint));
-        }
-    }
+        Vector2 currentTopPlatPos = affected.getTopPlatPos();
+        Vector2 currentAirSpawnPoint = currentTopPlatPos;
+        currentAirSpawnPoint.x = (float) (currentTopPlatPos.x - (Platforms.SCREEN_WIDTH/7f / 2) + 15 + 0.7 * (Math.random() * Platforms.SCREEN_WIDTH/7f));
+        currentAirSpawnPoint.y = currentTopPlatPos.y + 150;
+        airProjectile = new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity);
+     }
 
     @Override
     public Sprite getEmblem() {
