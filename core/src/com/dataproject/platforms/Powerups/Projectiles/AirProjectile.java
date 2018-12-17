@@ -6,12 +6,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.dataproject.platforms.Platforms;
 import com.dataproject.platforms.Utilities.MiscTools;
 import com.dataproject.platforms.Utilities.WorldContactListener;
 
 public class AirProjectile extends Actor {
-    public static final Texture AIR_TEX1 = new Texture("Powerups/WindTextureAnimation1.png");
-    public static final Texture AIR_TEX2 = new Texture("Powerups/WindTextureAnimation2.png");
+    public static final Texture AIR_TEX1 = new Texture(Platforms.ROOT+"\\Powerups\\WindTextureAnimation1.png");
+    public static final Texture AIR_TEX2 = new Texture(Platforms.ROOT+"\\Powerups\\WindTextureAnimation2.png");
     private Sprite airSprite;
 
     private int airWidth;

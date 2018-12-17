@@ -13,8 +13,8 @@ import com.dataproject.platforms.Utilities.WorldContactListener;
 
 public class PlayerCharacter extends Actor
 {
-    public static final Texture PLAYER1_TEX = new Texture("Players/Player1Texture.png");
-    public static final Texture PLAYER2_TEX = new Texture("Players/Player2Texture.png");
+    public static final Texture PLAYER1_TEX = new Texture(Platforms.ROOT+"\\Players\\Player1Texture.png");
+    public static final Texture PLAYER2_TEX = new Texture(Platforms.ROOT+"\\Players\\Player2Texture.png");
 
     public static final int CHARACTER_DIM = 32;
 

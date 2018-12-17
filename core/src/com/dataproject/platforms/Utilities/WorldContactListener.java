@@ -68,8 +68,6 @@ public class WorldContactListener implements ContactListener
                {
                    B.getBody().setType(BodyDef.BodyType.KinematicBody);
                }
-
-
            }
            else if((dataA.contains("player") && dataB.contains("ground")) || (dataB.contains("player") && dataA.contains("ground")))
            {

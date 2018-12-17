@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.dataproject.platforms.Platforms;
 
 public class MiscTools
 {
@@ -35,7 +36,7 @@ public class MiscTools
         params.characters = "!QWERTYUIOPASDFGHJKLZXCVBNM1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm, /:";
         // set params
 
-        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("gamefont.ttf"));
+        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.absolute(Platforms.ROOT+"\\gamefont.ttf"));
         font16 = gen.generateFont(params);
         font16.setColor(Color.BLACK);
 

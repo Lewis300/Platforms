@@ -7,13 +7,14 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.dataproject.platforms.PlatformStuff.Platform;
+import com.dataproject.platforms.Platforms;
 import com.dataproject.platforms.Utilities.MiscTools;
 import com.dataproject.platforms.Utilities.WorldContactListener;
 
 
 public class FireballProjectile extends Actor
 {
-    public static final Texture FIREBALL_TEX = new Texture("Powerups/FireBallTexture.png");
+    public static final Texture FIREBALL_TEX = new Texture(Platforms.ROOT+"\\Powerups\\FireBallTexture.png");
     private Sprite fireballSprite;
 
     private int fireballWidth;

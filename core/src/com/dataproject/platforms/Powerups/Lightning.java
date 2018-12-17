@@ -12,11 +12,11 @@ import com.dataproject.platforms.Utilities.Range;
 
 public class Lightning implements Powerup
 {
-    private static final Sprite emblem = MiscTools.createScaledSprite(new Texture("Powerups/ThunderPowerupImageScaledUp.png"), Powerup.EMBLEM_WIDTH, Powerup.EMBLEM_HEIGHT);
+    private static final Sprite emblem = MiscTools.createScaledSprite(new Texture(Platforms.ROOT+"\\Powerups\\ThunderPowerupImageScaledUp.png"), Powerup.EMBLEM_WIDTH, Powerup.EMBLEM_HEIGHT);
     public static final String NAME = "Lightning";
 
 
-    public static final String BOLT_IMG_PATH = "Powerups/ThunderBoltTexture.png";
+    public static final String BOLT_IMG_PATH = Platforms.ROOT+"\\Powerups\\ThunderBoltTexture.png";
     public static final Texture BOLT = new Texture(BOLT_IMG_PATH);
     public static final double CHANCE_TO_HARM_USER = 0.1;
 

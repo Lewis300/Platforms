@@ -91,13 +91,13 @@ public class GameScreen implements Screen
         gameCam = new OrthographicCamera();
         sunPos = new Vector2(Platforms.SCREEN_WIDTH/2, Platforms.SCREEN_HEIGHT/2 -120);
 
-        backtex = new Texture("Background.png");
+       // backtex = new Texture("Background.png");
 
-        background = new Sprite();
-        background.setRegion(backtex);
+       // background = new Sprite();
+//        background.setRegion(backtex);
 
         HH = new HudHandler();
-        backgroundMusic = Gdx.audio.newSound(Gdx.files.internal("Sounds/BackgroundMusic.mp3"));
+        backgroundMusic = Gdx.audio.newSound(Gdx.files.internal(Platforms.ROOT+"\\Sounds\\BackgroundMusic.mp3"));
         backgroundMusic.play();
     }
 

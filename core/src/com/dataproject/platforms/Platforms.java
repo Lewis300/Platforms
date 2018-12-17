@@ -12,6 +12,10 @@ import com.dataproject.platforms.PlatformStuff.Platform;
 import com.dataproject.platforms.Utilities.MiscTools;
 import com.dataproject.platforms.Utilities.ProababilityTools;
 
+// LEWIS' ROOT : "D:\\LibGDXProjects\\Platforms\\core\\assets"
+
+// LUKA'S ROOT : "C:\\Users\\lukam\\IdeaProjects\\Platforms\\core\\assets"
+
 public class Platforms extends Game
 {
 	private static Batch sb;
@@ -19,6 +23,8 @@ public class Platforms extends Game
 
 	public static int SCREEN_WIDTH;
 	public static int SCREEN_HEIGHT;
+
+	public final static String ROOT = "D:\\LibGDXProjects\\Platforms\\core\\assets";
 
 	public Platforms(int height, int width)
 	{
