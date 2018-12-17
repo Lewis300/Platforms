@@ -48,7 +48,7 @@ public class PowerupPrompt
         batch.draw(WINDOW_TEX, position.x, position.y);
         currentEmblem.setPosition(position.x + 400, position.y + 175);
         currentEmblem.draw(batch);
-        MiscTools.font20.draw(batch, "Nigger", position.x +100, position.y + 175);
+        MiscTools.font20.draw(batch, "Nigger", position.x +100, position.y + 375);
 
         use.render(batch, dt);
         dontUse.render(batch, dt);
