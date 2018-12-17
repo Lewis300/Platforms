@@ -40,7 +40,7 @@ public class Platforms extends Game
 		MiscTools.loadFonts();
 		sb = new SpriteBatch();
 		gameScreen = new GameScreen(sb);
-		Gdx.graphics.setDisplayMode(SCREEN_HEIGHT, SCREEN_HEIGHT, true);
+		//Gdx.graphics.setDisplayMode(SCREEN_HEIGHT, SCREEN_HEIGHT, false);
 		setScreen(gameScreen);
 
 	}

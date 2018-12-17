@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.dataproject.platforms.GameScreen;
+import com.dataproject.platforms.PlatformStuff.Platform;
 import com.dataproject.platforms.Platforms;
 import com.dataproject.platforms.Powerups.Projectiles.AirProjectile;
 import com.dataproject.platforms.Powerups.Projectiles.FireballProjectile;
@@ -100,10 +101,10 @@ public class Air implements Powerup
            for(int i = 0; i < airAmount; i++)
             {
                 airInitalVelocity = new Vector2(200, 0);
-                currentAirSpawnPoint.x = (float) (350 - i * 3);
-                currentAirSpawnPoint.y = highestYSpawnPoint - (float)(AirProjectile.AIR_TEX1.getHeight() / 2);
+                currentAirSpawnPoint.x = (float) (350 - i * 5);
+                currentAirSpawnPoint.y = highestYSpawnPoint;
                 airprojectiles.add(new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity));
-                highestYSpawnPoint -= (float)(509 / 27.0);
+                highestYSpawnPoint -= (float)(GameScreen.platformSpacing + Platform.PLATFORM_HEIGHT);
                 GameScreen.PLATS_IN_WORLD--;
             }
         }
@@ -112,10 +113,10 @@ public class Air implements Powerup
             for(int i = 0; i < airAmount; i++)
             {
                 airInitalVelocity = new Vector2(-200, 0);
-                currentAirSpawnPoint.x = (float) (450 - i * 3);
-                currentAirSpawnPoint.y = highestYSpawnPoint - (float)(AirProjectile.AIR_TEX1.getHeight() / 2);
+                currentAirSpawnPoint.x = (float) (450 - i * 5);
+                currentAirSpawnPoint.y = highestYSpawnPoint;
                 airprojectiles.add(new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity));
-                highestYSpawnPoint -= (float)(509 / 27.0);
+                highestYSpawnPoint -= (float)(GameScreen.platformSpacing + Platform.PLATFORM_HEIGHT);
                 GameScreen.PLATS_IN_WORLD--;
             }
         }

@@ -29,10 +29,10 @@ public class ProababilityTools
         double roll = Math.random();
         double harmRoll = Math.random();
 
-        //return pup_lightning;
+//        return pup_lightning;
 
         //Roll air
-        if(roll >= 0 && roll < 0.25)
+        if(roll >= 0 && roll < 0.2)
         {
             if(harmRoll <= Air.CHANCE_TO_HARM_USER)
             {
@@ -43,7 +43,7 @@ public class ProababilityTools
         }
 
         //Roll wave
-        if(roll >= 0.25 && roll < 0.5)
+        if(roll >= 0.2 && roll < 0.4)
         {
             if(harmRoll <= Wave.CHANCE_TO_HARM_USER)
             {
@@ -53,7 +53,7 @@ public class ProababilityTools
         }
 
         //Roll fireball
-        else if(roll >= 0.5 && roll < 0.75)
+        else if(roll >= 0.4 && roll < 0.7)
         {
             if(harmRoll <= Fireball.CHANCE_TO_HARM_USER)
             {
