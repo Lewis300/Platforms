@@ -99,8 +99,6 @@ public class GameScreen implements Screen
         HH = new HudHandler();
         backgroundMusic = Gdx.audio.newSound(Gdx.files.internal("Sounds\\BackgroundMusic.mp3"));
         backgroundMusic.play();
-
-        Gdx.graphics.setTitle("PLATFORMS OF DEATH");
     }
 
     private boolean hudAdded = false;
