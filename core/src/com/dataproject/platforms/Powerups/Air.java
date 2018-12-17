@@ -71,21 +71,23 @@ public class Air implements Powerup
     public void use(Player affected)
     {
         airprojectiles = new ArrayList<AirProjectile>();
+        Vector2 currentTopPlatPos = affected.getTopPlatPos();
+        Vector2 currentAirSpawnPoint = currentTopPlatPos;
+
+        int airAmount = 3;
 
         if(affected.onRightSide)
         {
-            airInitalVelocity = new Vector2(-200, 0);
+            airInitalVelocity = new Vector2(200, 0);
+            currentAirSpawnPoint.x = (float) (350);
         }
-
         else
         {
-            airInitalVelocity = new Vector2(200, 0);
+            airInitalVelocity = new Vector2(-200, 0);
+            currentAirSpawnPoint.x = (float) (450);
         }
 
-        Vector2 currentTopPlatPos = affected.getTopPlatPos();
-        Vector2 currentAirSpawnPoint = currentTopPlatPos;
-        currentAirSpawnPoint.x = (float) (currentTopPlatPos.x - (Platforms.SCREEN_WIDTH/7f / 2) + 15 + 0.7 * (Math.random() * Platforms.SCREEN_WIDTH/7f));
-        currentAirSpawnPoint.y = Platforms.SCREEN_WIDTH/2f;
+        currentAirSpawnPoint.y = currentTopPlatPos.y;
         airprojectiles.add(new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity));
      }
 
