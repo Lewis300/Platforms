@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.dataproject.platforms.PlatformStuff.Platform;
+import com.dataproject.platforms.Utilities.MiscTools;
 import com.dataproject.platforms.Utilities.ProababilityTools;
 
 public class Platforms extends Game
@@ -29,6 +30,7 @@ public class Platforms extends Game
 	@Override
 	public void create ()
 	{
+		MiscTools.loadFonts();
 		sb = new SpriteBatch();
 		gameScreen = new GameScreen(sb);
 		setScreen(gameScreen);
