@@ -23,9 +23,10 @@ public class Air implements Powerup
     private static World gameworld;
     private double rarity = 0.15;
     private static int platformSpace;
-    public static final double CHANCE_TO_HARM_USER =  0.90;
+    public static final double CHANCE_TO_HARM_USER =  0.5;
     public static ArrayList<AirProjectile> airprojectiles;
     Vector2 airInitalVelocity;
+    public static boolean HARM_SELF = false;
 
     @Override
     public double getRarity() {
@@ -72,12 +73,22 @@ public class Air implements Powerup
 
     public void use(Player affected)
     {
+        int airAmount;
+        if(HARM_SELF)
+        {
+            airAmount = 1;
+        }
+
+        else
+        {
+            airAmount = 5;
+        }
+        HARM_SELF = false;
+
         airprojectiles = new ArrayList<AirProjectile>();
         Vector2 currentTopPlatPos = affected.getTopPlatPos();
         Vector2 currentAirSpawnPoint = currentTopPlatPos;
         float highestYSpawnPoint = currentTopPlatPos.y;
-
-        int airAmount = 5;
 
         if(affected.plats.size() < airAmount)
         {
