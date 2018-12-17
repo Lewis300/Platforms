@@ -86,7 +86,6 @@ public class Fireball implements Powerup
             affected.setTopPlatDynamic(affected.plats.size(), false);
         }
 
-
         fireballs = new ArrayList<FireballProjectile>();
         for(int fireballCounter = 1; fireballCounter <= fireballAmount; fireballCounter++)
         {
@@ -94,7 +93,7 @@ public class Fireball implements Powerup
 
             Vector2 currentTopPlatPos = affected.getTopPlatPos();
             Vector2 currentFireballSpawnPoint = currentTopPlatPos;
-            currentFireballSpawnPoint.x = (float) (currentTopPlatPos.x - ((Platforms.SCREEN_WIDTH/7f) / 2) + (Math.random() * Platforms.SCREEN_WIDTH/7f));
+            currentFireballSpawnPoint.x = (float) (currentTopPlatPos.x -  (Platform.PLATFORM_WIDTH / 2) + (FireballProjectile.FIREBALL_TEX.getWidth() / 2f) + Math.random() * (Platform.PLATFORM_WIDTH - FireballProjectile.FIREBALL_TEX.getWidth()));
             currentFireballSpawnPoint.y = currentTopPlatPos.y + 150;
 
 
