@@ -59,7 +59,6 @@ public class GameScreen implements Screen
     //Platforms
     private ArrayList<Platform> p1_platforms;
     private ArrayList<Platform> p2_platforms;
-    private static int platformSpacing;
 
     //Players
     private Player p1; //on the left
@@ -296,6 +295,8 @@ public class GameScreen implements Screen
         Gdx.graphics.setDisplayMode(Platforms.SCREEN_WIDTH, Platforms.SCREEN_HEIGHT+HUD_HEIGHT, false);
     }
 
+    public static int platformSpacing;
+
     @Override
     public void resize(int width, int height)
     {
@@ -304,6 +305,8 @@ public class GameScreen implements Screen
         {gameCam.position.set(width/2f, height/2f, 0);}
 
         if(!worldInitialized){initializeWorld();}
+
+        platformSpacing = (int)(gameCam.viewportHeight/27f);
     }
 
     @Override
