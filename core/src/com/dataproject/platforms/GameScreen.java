@@ -33,6 +33,8 @@ public class GameScreen implements Screen
     private static final int INITIAL_PLAT_AMT = 15;
     public static final int HUD_HEIGHT = Platforms.SCREEN_HEIGHT/7;
 
+    public static int PLATS_IN_WORLD = 30;
+
     //Renderers
     private Box2DDebugRenderer b2dr;
     private Camera gameCam;
@@ -48,7 +50,7 @@ public class GameScreen implements Screen
     private final boolean allowSleepingObjects = false;
 
     private BodyDef groundBodyDef;
-    private final Vector2 groundPosition = new Vector2(-2, -15);
+    private final Vector2 groundPosition = new Vector2(-2, -50);
     private final Vector2 groundSize = new Vector2(Platforms.SCREEN_WIDTH*3, 20);
     private PolygonShape groundShape;
     private final FixtureDef groundFixtureDef = new FixtureDef();
@@ -129,7 +131,7 @@ public class GameScreen implements Screen
 
     public void handleInput(float dt)
     {
-        HH.handleInput(dt);
+        if(PLATS_IN_WORLD == p1_platforms.size() + p2_platforms.size()){HH.handleInput(dt);}
     }
 
     public void update(float dt)
@@ -171,7 +173,7 @@ public class GameScreen implements Screen
 
 
 
-        b2dr.render(world, gameCam.combined);
+        //b2dr.render(world, gameCam.combined);
 
         rayHandler.updateAndRender();
 
@@ -184,8 +186,8 @@ public class GameScreen implements Screen
 
         Lightning.render(sb, delta);
 
-        if(currentRoll.getName().equals("Fireball")){Fireball.render(sb, delta);}
-        if(currentRoll.getName().equals("Wind")){Air.render(sb, delta);}
+        if(!currentRoll.getName().equals("Wind")){Fireball.render(sb, delta);}
+        if(!currentRoll.getName().equals("Fireball")){Air.render(sb, delta);}
 
         for(int i = 0; i<p1_platforms.size(); i++)
         {
@@ -200,7 +202,7 @@ public class GameScreen implements Screen
         p1.render(sb, delta);
         p2.render(sb, delta);
 
-        HH.render(sb, delta);
+        if(PLATS_IN_WORLD == p1_platforms.size() + p2_platforms.size()){HH.render(sb, delta);}
 
         sb.end();
 
@@ -234,7 +236,7 @@ public class GameScreen implements Screen
             groundFixtureDef.shape = groundShape;
 
             ground = world.createBody(groundBodyDef);
-            ground.createFixture(groundFixtureDef);
+            ground.createFixture(groundFixtureDef).setUserData("ground");
 
 
         //Initialize platforms

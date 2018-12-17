@@ -57,6 +57,7 @@ public class ProababilityTools
             if(harmRoll <= Fireball.CHANCE_TO_HARM_USER)
             {
                 affected = p1;
+                Fireball.HARM_SELF = true;
             }
             return pup_fireball;
         }

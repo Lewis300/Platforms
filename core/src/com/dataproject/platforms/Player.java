@@ -63,6 +63,7 @@ public class Player
         for(int i = 0; i<amount; i++)
         {
             plats.get(plats.size()-i-1).setDynamic(selfDestruct);
+            GameScreen.PLATS_IN_WORLD--;
         }
 
     }
@@ -76,6 +77,7 @@ public class Player
         for(int i = 0; i<amount; i++)
         {
             plats.get(plats.size()-1).destroy();
+            GameScreen.PLATS_IN_WORLD--;
         }
     }
 
