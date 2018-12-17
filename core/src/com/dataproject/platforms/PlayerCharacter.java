@@ -55,6 +55,7 @@ public class PlayerCharacter extends Actor
     {
         playercharBody.setActive(false);
         playercharBody.setType(BodyDef.BodyType.KinematicBody);
+
         timePassed+=dt;
 
         deltaY = (0.5f)*(-9.81f)*(timePassed)*(timePassed);
@@ -64,6 +65,7 @@ public class PlayerCharacter extends Actor
         //playercharSprite.setPosition(playercharBody.getPosition().x - size.x, playercharBody.getPosition().y - size.y + deltaY);
         playercharBody.setLinearVelocity(velocityY);
         playercharBody.setType(BodyDef.BodyType.DynamicBody);
+        playercharBody.setAngularVelocity(0);
         playercharBody.setActive(true);
     }
 
@@ -88,6 +90,8 @@ public class PlayerCharacter extends Actor
         playercharBodyDef.gravityScale = 15;
         playercharBodyDef.type = BodyDef.BodyType.KinematicBody;
         playercharBodyDef.position.set(position);
+        playercharBodyDef.angle = 0;
+        playercharBodyDef.fixedRotation = true;
 
         //Setting the texture, and getting its width and height to set the size
         playercharWidth = CHARACTER_DIM;
