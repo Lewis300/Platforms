@@ -53,8 +53,8 @@ public class PowerupPrompt
         currentEmblem.setPosition(position.x + 400, position.y + 175);
         currentEmblem.draw(batch);
 
-        use.render(batch, dt);
-        dontUse.render(batch, dt);
+        use.render(batch, dt, isOpen);
+        dontUse.render(batch, dt, isOpen);
 
         MiscTools.font16.draw(batch, ("You rolled "+currentPupName+"!"), position.x +125, position.y + 300);
         MiscTools.font16.draw(batch, ("Odds in favour of harming YOU "+currentOddsToHarmUser), position.x +50, position.y + 275);
