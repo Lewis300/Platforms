@@ -93,7 +93,6 @@ public class Button
             if((mouseX > buttonPos.x && mouseX < (buttonPos.x + dimensions.x) ) // if mouse is in the X range of button image
                     && (mouseY > buttonPos.y && mouseY < (buttonPos.y + dimensions.y))) // if mouse is in the Y range of button image
             {
-                System.out.println("Here");
                 return true;
             }
         }

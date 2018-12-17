@@ -71,6 +71,10 @@ public class WorldContactListener implements ContactListener
 
 
            }
+           else if((dataA.contains("player") && dataB.contains("ground")) || (dataB.contains("player") && dataA.contains("ground")))
+           {
+               System.exit(0);
+           }
        }
        catch (NullPointerException e){e.printStackTrace();}
     }

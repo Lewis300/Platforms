@@ -36,6 +36,7 @@ public class ProababilityTools
         {
             if(harmRoll <= Air.CHANCE_TO_HARM_USER)
             {
+                Air.HARM_SELF = true;
                 affected = p1;
             }
             return pup_air;
