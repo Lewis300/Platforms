@@ -98,7 +98,7 @@ public class GameScreen implements Screen
 //        background.setRegion(backtex);
 
         HH = new HudHandler();
-        backgroundMusic = Gdx.audio.newSound(Gdx.files.absolute("Sounds/BackgroundMusic.mp3"));
+        backgroundMusic = Gdx.audio.newSound(Gdx.files.internal("Sounds\\BackgroundMusic.mp3"));
         backgroundMusic.play();
     }
 

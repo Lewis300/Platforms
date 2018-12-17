@@ -4,7 +4,12 @@ sourceCompatibility = 1.6
 sourceSets.main.java.srcDirs = [ "src/" ]
 
 project.ext.mainClassName = "com.dataproject.platforms.desktop.DesktopLauncher"
-project.ext.assetsDir = new File("../core/assets");
+
+manifest {
+    attributes ('Main-Class': mainClassName)
+}
+
+project.ext.assetsDir = new File("..\\core\\assets");
 
 task run(dependsOn: classes, type: JavaExec) {
     main = project.mainClassName
@@ -19,10 +24,6 @@ task dist(type: Jar) {
     from files(sourceSets.main.output.resourcesDir)
     from {configurations.compile.collect {zipTree(it)}}
     from files(project.assetsDir);
- 
-    manifest {
-        attributes 'Main-Class': project.DesktopLauncher
-    }
 }
 
 dist.dependsOn classes
