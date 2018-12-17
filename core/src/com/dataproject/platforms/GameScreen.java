@@ -204,7 +204,7 @@ public class GameScreen implements Screen
         p1.render(sb, delta);
         p2.render(sb, delta);
 
-        if(PLATS_IN_WORLD == p1_platforms.size() + p2_platforms.size()){HH.render(sb, delta);}
+        if(PLATS_IN_WORLD == (p1_platforms.size() + p2_platforms.size()) && PLATS_IN_WORLD > 0){HH.render(sb, delta);}
 
         sb.end();
 

@@ -80,9 +80,7 @@ public class FireballProjectile extends Actor
 
         //Creating the body in the world
         fireBody = gameWorld.createBody(fireBodyDef);
-
         fireBody.createFixture(fireFixDef).setUserData("fireball_"+fireballProjectileId);
-
     }
 
     private void init()
