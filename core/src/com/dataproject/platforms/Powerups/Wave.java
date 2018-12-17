@@ -71,7 +71,7 @@ public class Wave implements Powerup
 
     @Override
     public double getChanceToHarmUser() {
-        return 0;
+        return CHANCE_TO_HARM_USER;
     }
 
     @Override
@@ -179,5 +179,16 @@ public class Wave implements Powerup
     @Override
     public String getName() {
         return NAME;
+    }
+
+    @Override
+    public String getEnemyDetriment()
+    {
+        return "3";
+    }
+
+    @Override
+    public String getSelfDetriment() {
+        return "3";
     }
 }

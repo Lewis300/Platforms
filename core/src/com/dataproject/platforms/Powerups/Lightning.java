@@ -51,7 +51,7 @@ public class Lightning implements Powerup
 
     @Override
     public double getChanceToHarmUser() {
-        return 0;
+        return CHANCE_TO_HARM_USER;
     }
 
     @Override
@@ -87,5 +87,16 @@ public class Lightning implements Powerup
     @Override
     public String getName() {
         return NAME;
+    }
+
+    @Override
+    public String getEnemyDetriment()
+    {
+        return "1";
+    }
+
+    @Override
+    public String getSelfDetriment() {
+        return "2";
     }
 }

@@ -29,6 +29,9 @@ public class PowerupPrompt
 
     public static Sprite currentEmblem;
     public static String currentPupName;
+    public static String currentOddsToHarmUser;
+    public static String currentOnHarmSelf;
+    public static String currentOnHarmOther;
 
     public PowerupPrompt()
     {
@@ -53,7 +56,11 @@ public class PowerupPrompt
         use.render(batch, dt);
         dontUse.render(batch, dt);
 
-        MiscTools.font20.draw(batch, "You rolled "+currentPupName+"!", position.x +50, position.y + 300);
+        MiscTools.font16.draw(batch, ("You rolled "+currentPupName+"!"), position.x +125, position.y + 300);
+        MiscTools.font16.draw(batch, ("Odds in favour of harming YOU "+currentOddsToHarmUser), position.x +50, position.y + 275);
+        MiscTools.font12.draw(batch, ("If YOU are harmed, you lose: "+currentOnHarmSelf+" platforms"), position.x +50, position.y + 240);
+        MiscTools.font12.draw(batch, ("If THE ENEMY is harmed, they lose: "+currentOnHarmOther+" platforms"), position.x +50, position.y + 210);
+
 
 
     }

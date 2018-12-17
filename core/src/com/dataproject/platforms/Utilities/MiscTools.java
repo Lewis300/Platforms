@@ -9,7 +9,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 public class MiscTools
 {
-    public static BitmapFont font20;
+    public static BitmapFont font16;
+    public static BitmapFont font12;
 
     public static Sprite createScaledSprite(Texture texture, int width, int height)
     {
@@ -30,13 +31,17 @@ public class MiscTools
     public static void loadFonts()
     {
         FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        params.size = 20;
-        params.characters = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm, /";
+        params.size = 16;
+        params.characters = "!QWERTYUIOPASDFGHJKLZXCVBNM1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm, /:";
         // set params
 
         FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("gamefont.ttf"));
-        font20 = gen.generateFont(params);
-        font20.setColor(Color.BLACK);
+        font16 = gen.generateFont(params);
+        font16.setColor(Color.BLACK);
+
+        params.size = 12;
+        font12 = gen.generateFont(params);
+        font12.setColor(Color.BLACK);
         gen.dispose();
     }
 }

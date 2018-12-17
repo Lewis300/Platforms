@@ -57,4 +57,15 @@ public class Laser implements Powerup
     public String getName() {
         return "";
     }
+
+    @Override
+    public String getEnemyDetriment()
+    {
+        return "5";
+    }
+
+    @Override
+    public String getSelfDetriment() {
+        return "1";
+    }
 }

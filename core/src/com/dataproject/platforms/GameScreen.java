@@ -107,15 +107,23 @@ public class GameScreen implements Screen
         {
             currentRoll = ProababilityTools.roll(p1, p2);
             p1.setCurrentlyRolledPowerup(currentRoll);
+
             PowerupPrompt.currentEmblem = p1.gettCurrentlyRolledPowerup().getEmblem();
             PowerupPrompt.currentPupName = p1.gettCurrentlyRolledPowerup().getName();
+            PowerupPrompt.currentOddsToHarmUser = ProababilityTools.oddsInFavour(p1.gettCurrentlyRolledPowerup().getChanceToHarmUser());
+            PowerupPrompt.currentOnHarmOther = p1.gettCurrentlyRolledPowerup().getEnemyDetriment();
+            PowerupPrompt.currentOnHarmSelf = p1.gettCurrentlyRolledPowerup().getSelfDetriment();
         }
         else
         {
             currentRoll = ProababilityTools.roll(p2, p1);
             p2.setCurrentlyRolledPowerup(currentRoll);
+
             PowerupPrompt.currentEmblem = p2.gettCurrentlyRolledPowerup().getEmblem();
             PowerupPrompt.currentPupName = p2.gettCurrentlyRolledPowerup().getName();
+            PowerupPrompt.currentOddsToHarmUser = ProababilityTools.oddsInFavour(p2.gettCurrentlyRolledPowerup().getChanceToHarmUser());
+            PowerupPrompt.currentOnHarmOther = p2.gettCurrentlyRolledPowerup().getEnemyDetriment();
+            PowerupPrompt.currentOnHarmSelf = p2.gettCurrentlyRolledPowerup().getSelfDetriment();
         }
     }
 

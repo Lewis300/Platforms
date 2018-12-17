@@ -103,4 +103,15 @@ public class Fireball implements Powerup
     public String getName() {
         return NAME;
     }
+
+    @Override
+    public String getEnemyDetriment()
+    {
+        return "3";
+    }
+
+    @Override
+    public String getSelfDetriment() {
+        return "6";
+    }
 }

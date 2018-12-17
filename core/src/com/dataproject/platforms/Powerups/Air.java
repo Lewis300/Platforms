@@ -100,4 +100,15 @@ public class Air implements Powerup
     public String getName() {
         return NAME;
     }
+
+    @Override
+    public String getEnemyDetriment()
+    {
+        return "5";
+    }
+
+    @Override
+    public String getSelfDetriment() {
+        return "1";
+    }
 }

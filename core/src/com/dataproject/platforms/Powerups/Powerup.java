@@ -23,4 +23,7 @@ public interface Powerup
     Sprite getEmblem();
 
     String getName();
+
+    String getEnemyDetriment();
+    String getSelfDetriment();
 }
