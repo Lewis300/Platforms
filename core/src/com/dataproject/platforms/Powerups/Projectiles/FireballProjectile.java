@@ -94,7 +94,6 @@ public class FireballProjectile extends Actor
 
     public void destroy()
     {
-        System.out.println("Bucktee");
         fireBody.setActive(false);
         WorldContactListener.bodiesToDestroy.add(fireBody);
 

@@ -118,7 +118,7 @@ public class Wave implements Powerup
 
         if(affected.onRightSide){START_POS = new Vector2(Platforms.SCREEN_WIDTH+200, affected.getTopPlatPos().y);}
 
-        else{START_POS = new Vector2(-200, affected.getTopPlatPos().y); System.out.println("FAG");}
+        else{START_POS = new Vector2(-200, affected.getTopPlatPos().y);}
 
 
         if(affected.plats.size()>=3)

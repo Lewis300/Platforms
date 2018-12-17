@@ -128,7 +128,6 @@ public class PlayerCharacter extends Actor
 
     public void destroy()
     {
-        System.out.println("Bucktee");
         playercharBody.setActive(false);
         WorldContactListener.bodiesToDestroy.add(playercharBody);
 

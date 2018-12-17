@@ -58,11 +58,11 @@ public class Button
         ROLL_BTN_SPRITE.setPosition(buttonPos.x, buttonPos.y);
     }
 
-    public void render(Batch batch, float dt)
+    public void render(Batch batch, float dt, boolean choiceWindowOpen)
     {
         if(type == ButtonType.ROLL)
         {
-            if(isActive)
+            if(!choiceWindowOpen && isActive)
             {
                 ROLL_BTN_SPRITE.setPosition(buttonPos.x, buttonPos.y);
                 ROLL_BTN_SPRITE.draw(batch);
@@ -93,7 +93,6 @@ public class Button
             if((mouseX > buttonPos.x && mouseX < (buttonPos.x + dimensions.x) ) // if mouse is in the X range of button image
                     && (mouseY > buttonPos.y && mouseY < (buttonPos.y + dimensions.y))) // if mouse is in the Y range of button image
             {
-                System.out.println("Here");
                 return true;
             }
         }

@@ -23,7 +23,7 @@ public class Air implements Powerup
     private static World gameworld;
     private double rarity = 0.15;
     private static int platformSpace;
-    public static final double CHANCE_TO_HARM_USER =  0.5;
+    public static final double CHANCE_TO_HARM_USER =  0.9;
     public static ArrayList<AirProjectile> airprojectiles;
     Vector2 airInitalVelocity;
     public static boolean HARM_SELF = false;

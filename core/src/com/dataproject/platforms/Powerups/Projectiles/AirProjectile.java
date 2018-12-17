@@ -94,7 +94,6 @@ public class AirProjectile extends Actor {
 
     public void destroy()
     {
-        System.out.println("yeet");
         airBody.setActive(false);
         WorldContactListener.bodiesToDestroy.add(airBody);
 

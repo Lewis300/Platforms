@@ -30,8 +30,8 @@ public class HudHandler
     public void render(Batch batch, float dt)
     {
         if(pupPropmt.isOpen()){pupPropmt.render(batch, dt);}
-        p1_roll.render(batch, dt);
-        p2_roll.render(batch, dt);
+        p1_roll.render(batch, dt, pupPropmt.isOpen());
+        p2_roll.render(batch, dt, pupPropmt.isOpen());
     }
 
     public void handleInput(float dt)
