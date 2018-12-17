@@ -23,6 +23,8 @@ public class Fireball implements Powerup
     public static final double CHANCE_TO_HARM_USER =  0.25;
     public static ArrayList<FireballProjectile> fireballs;
 
+    public static boolean HARM_SELF = false;
+
     @Override
     public double getRarity() {
         return rarity;
@@ -67,9 +69,13 @@ public class Fireball implements Powerup
 
     public void use(Player affected)
     {
-        int fireballAmount = 3;
+        int fireballAmount;
+        if(HARM_SELF){fireballAmount = 6;}
+        else{fireballAmount = 3;}
 
-        if(affected.plats.size()>=3)
+        HARM_SELF = false;
+
+        if(affected.plats.size()>=fireballAmount)
         {
             affected.setTopPlatDynamic(fireballAmount, false);
         }
