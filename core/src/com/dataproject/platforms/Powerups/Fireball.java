@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class Fireball implements Powerup
 {
     private static final Sprite emblem = MiscTools.createScaledSprite(new Texture("Powerups/FireBallPowerupImageScaledUp.png"), Powerup.EMBLEM_WIDTH, Powerup.EMBLEM_HEIGHT);
+    public static final String NAME = "Fireball";
 
     private static World gameworld;
     private double rarity = 0.15;
@@ -75,7 +76,7 @@ public class Fireball implements Powerup
         else
         {
             fireballAmount = affected.plats.size();
-            affected.setTopPlatDynamic(affected.plats.size(), true);
+            affected.setTopPlatDynamic(affected.plats.size(), false);
         }
 
 
@@ -97,5 +98,9 @@ public class Fireball implements Powerup
     @Override
     public Sprite getEmblem() {
         return emblem;
+    }
+    @Override
+    public String getName() {
+        return NAME;
     }
 }

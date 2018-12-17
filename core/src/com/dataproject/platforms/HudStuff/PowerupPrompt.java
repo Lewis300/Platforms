@@ -1,5 +1,6 @@
 package com.dataproject.platforms.HudStuff;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -27,6 +28,7 @@ public class PowerupPrompt
     private Player affected;
 
     public static Sprite currentEmblem;
+    public static String currentPupName;
 
     public PowerupPrompt()
     {
@@ -44,14 +46,15 @@ public class PowerupPrompt
     public void render(Batch batch, float dt)
     {
         // render textuers
-
         batch.draw(WINDOW_TEX, position.x, position.y);
         currentEmblem.setPosition(position.x + 400, position.y + 175);
         currentEmblem.draw(batch);
-        MiscTools.font20.draw(batch, "Nigger", position.x +100, position.y + 375);
 
         use.render(batch, dt);
         dontUse.render(batch, dt);
+
+        MiscTools.font20.draw(batch, "You rolled "+currentPupName+"!", position.x +50, position.y + 300);
+
 
     }
 

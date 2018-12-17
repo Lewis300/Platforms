@@ -52,4 +52,9 @@ public class Laser implements Powerup
     public Sprite getEmblem() {
         return null;
     }
+
+    @Override
+    public String getName() {
+        return "";
+    }
 }

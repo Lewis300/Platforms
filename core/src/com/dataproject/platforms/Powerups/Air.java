@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class Air implements Powerup
 {
     private static final Sprite emblem = MiscTools.createScaledSprite(new Texture("Powerups/WindPowerupImageScaledUp.png"), Powerup.EMBLEM_WIDTH, Powerup.EMBLEM_HEIGHT);
+    public static final String NAME = "Wind";
 
     private static World gameworld;
     private double rarity = 0.15;
@@ -91,5 +92,10 @@ public class Air implements Powerup
     @Override
     public Sprite getEmblem() {
         return emblem;
+    }
+
+    @Override
+    public String getName() {
+        return NAME;
     }
 }
