@@ -78,7 +78,7 @@ public class Air implements Powerup
         Vector2 currentTopPlatPos = affected.getTopPlatPos();
         Vector2 currentAirSpawnPoint = currentTopPlatPos;
         currentAirSpawnPoint.x = (float) (currentTopPlatPos.x - (Platforms.SCREEN_WIDTH/7f / 2) + 15 + 0.7 * (Math.random() * Platforms.SCREEN_WIDTH/7f));
-        currentAirSpawnPoint.y = currentTopPlatPos.y + 150;
+        currentAirSpawnPoint.y = Platforms.SCREEN_WIDTH/2f;
         airProjectile = new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity);
      }
 

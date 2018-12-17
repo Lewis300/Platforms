@@ -35,9 +35,10 @@ public class AirProjectile extends Actor {
         airProjectileCount++;
         airProjectileId = airProjectileCount;
         gameWorld = world;
+        this.position.set(position);
+
         init();
 
-        this.position.set(position);
         this.airBodyDef.linearVelocity.set(initalVelocity);
     }
 
