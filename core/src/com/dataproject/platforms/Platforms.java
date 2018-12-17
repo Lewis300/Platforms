@@ -24,7 +24,7 @@ public class Platforms extends Game
 	public static int SCREEN_WIDTH;
 	public static int SCREEN_HEIGHT;
 
-	public final static String ROOT = "D:\\LibGDXProjects\\Platforms\\core\\assets";
+	public final static String ROOT = "C:\\Users\\lukam\\IdeaProjects\\Platforms\\core\\assets";
 
 	public Platforms(int height, int width)
 	{

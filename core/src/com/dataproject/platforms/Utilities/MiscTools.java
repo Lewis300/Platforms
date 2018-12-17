@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.dataproject.platforms.Platforms;
 
+import static com.dataproject.platforms.Platforms.ROOT;
+
 public class MiscTools {
     public static BitmapFont font16;
     public static BitmapFont font12;
@@ -32,7 +34,7 @@ public class MiscTools {
 //        params.characters = "!QWERTYUIOPASDFGHJKLZXCVBNM1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm, /:";
 //        // set params
 //
-//        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("gamefont.ttf"));
+//        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.absolute("gamefont.ttf"));
 //        font16 = gen.generateFont(params);
 //        font16.setColor(Color.BLACK);
 //
@@ -45,17 +47,17 @@ public class MiscTools {
         {
             SmartFontGenerator sfg = new SmartFontGenerator();
 
-            //font16 = sfg.createFont(Gdx.files.local("Font/gamefont.ttf"), "16font", 16);
-            //font12 = sfg.createFont(Gdx.files.local("Font/gamefont.ttf"), "12font", 12);
+            font16 = sfg.createFont(Gdx.files.local("generated-fonts\\16_16font.fnt"), "16font", 16);
+            font12 = sfg.createFont(Gdx.files.local("generated-fonts\\12_12font.fnt"), "12font", 12);
 
-            font16 = new BitmapFont(sfg.getFontFile("16font.fnt", 16));
-            font12 = new BitmapFont(sfg.getFontFile("12font.fnt", 12));
+//            font16 = new BitmapFont(sfg.getFontFile("16font.fnt", 16));
+//            font12 = new BitmapFont(sfg.getFontFile("12font.fnt", 12));
 
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            loadFonts();
+//            loadFonts();
         }
     }
 //

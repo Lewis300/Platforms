@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="org.jbox2d:jbox2d-serialization:1.1.0" type="repository">
+    <properties maven-id="org.jbox2d:jbox2d-serialization:1.1.0" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jbox2d/jbox2d-serialization/1.1.0/jbox2d-serialization-1.1.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/jbox2d/jbox2d-library/2.2.1.1/jbox2d-library-2.2.1.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/protobuf/protobuf-java/2.4.1/protobuf-java-2.4.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
