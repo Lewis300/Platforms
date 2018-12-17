@@ -20,6 +20,8 @@ public class Lightning implements Powerup
     public static final Texture BOLT = new Texture(BOLT_IMG_PATH);
     public static final double CHANCE_TO_HARM_USER = 0.1;
 
+    public static boolean HARM_SELF = false;
+
     private static Vector2 drawPos;
 
 
@@ -73,6 +75,14 @@ public class Lightning implements Powerup
     public void use(Player affected)
     {
         timePassed = 0f;
+        if(HARM_SELF)
+        {
+            drawPos.x = affected.getTopPlatPos().x + Platform.PLATFORM_WIDTH/2 - BOLT.getWidth()/2;
+            drawPos.y = affected.getTopPlatPos().y;
+
+            affected.instantlyDestroyPlat(1);
+        }
+
         drawPos.x = affected.getTopPlatPos().x + Platform.PLATFORM_WIDTH/2 - BOLT.getWidth()/2;
         drawPos.y = affected.getTopPlatPos().y;
 

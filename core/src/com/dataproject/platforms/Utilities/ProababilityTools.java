@@ -67,6 +67,7 @@ public class ProababilityTools
         {
             if(harmRoll <= Lightning.CHANCE_TO_HARM_USER)
             {
+                Lightning.HARM_SELF = true;
                 affected = p1;
             }
             return pup_lightning;
