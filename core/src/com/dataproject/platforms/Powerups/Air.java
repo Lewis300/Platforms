@@ -17,12 +17,12 @@ import java.util.ArrayList;
 
 public class Air implements Powerup
 {
-    private static final Sprite emblem = MiscTools.createScaledSprite(new Texture("Powerups\\WindPowerupImageScaledUp.png"), Powerup.EMBLEM_WIDTH, Powerup.EMBLEM_HEIGHT);
+    private static final Sprite emblem = MiscTools.createScaledSprite(new Texture("Powerups/WindPowerupImageScaledUp.png"), Powerup.EMBLEM_WIDTH, Powerup.EMBLEM_HEIGHT);
     public static final String NAME = "Wind";
 
     private static World gameworld;
     private double rarity = 0.15;
-    private static int platformSpace;
+//    private static int platformSpace;
     public static final double CHANCE_TO_HARM_USER =  0.9;
     public static ArrayList<AirProjectile> airprojectiles;
     Vector2 airInitalVelocity;
@@ -65,10 +65,10 @@ public class Air implements Powerup
         return null;
     }
 
-    public static void init(World world, int platformSpacing)
+    public static void init(World world)
     {
         gameworld = world;
-        platformSpace = platformSpacing;
+//        platformSpace = platformSpacing;
     }
 
     public void use(Player affected)
@@ -103,7 +103,7 @@ public class Air implements Powerup
                 currentAirSpawnPoint.x = (float) (350 - i * 3);
                 currentAirSpawnPoint.y = highestYSpawnPoint - (float)(AirProjectile.AIR_TEX1.getHeight() / 2);
                 airprojectiles.add(new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity));
-                highestYSpawnPoint -= platformSpace;
+                highestYSpawnPoint -= (float)(509 / 27.0);
                 GameScreen.PLATS_IN_WORLD--;
             }
         }
@@ -115,7 +115,7 @@ public class Air implements Powerup
                 currentAirSpawnPoint.x = (float) (450 - i * 3);
                 currentAirSpawnPoint.y = highestYSpawnPoint - (float)(AirProjectile.AIR_TEX1.getHeight() / 2);
                 airprojectiles.add(new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity));
-                highestYSpawnPoint -= platformSpace;
+                highestYSpawnPoint -= (float)(509 / 27.0);
                 GameScreen.PLATS_IN_WORLD--;
             }
         }

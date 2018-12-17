@@ -59,6 +59,7 @@ public class GameScreen implements Screen
     //Platforms
     private ArrayList<Platform> p1_platforms;
     private ArrayList<Platform> p2_platforms;
+    private static int platformSpacing;
 
     //Players
     private Player p1; //on the left
@@ -97,7 +98,7 @@ public class GameScreen implements Screen
 //        background.setRegion(backtex);
 
         HH = new HudHandler();
-        backgroundMusic = Gdx.audio.newSound(Gdx.files.absolute("Sounds\\BackgroundMusic.mp3"));
+        backgroundMusic = Gdx.audio.newSound(Gdx.files.absolute("Sounds/BackgroundMusic.mp3"));
         backgroundMusic.play();
     }
 
@@ -241,7 +242,7 @@ public class GameScreen implements Screen
 
         //Initialize platforms
 
-            int platformSpacing = (int)(gameCam.viewportHeight/27f);
+            platformSpacing = (int)(gameCam.viewportHeight/27f);
 
             //Initialize left platforms
             p1_platforms = new ArrayList<Platform>();
@@ -271,10 +272,10 @@ public class GameScreen implements Screen
             psysDef.pressureStrength =1000;
             psys = new ParticleSystem(world, psysDef);
 
-        //Initialize Players
+            //Initialize Players
             Wave.init(psys, world);
             Fireball.init(world);
-            Air.init(world, platformSpacing);
+            Air.init(world);
             Lightning.init();
             p1 = new Player(world, p1_platforms); p1.onRightSide = false;
             p2 = new Player(world, p2_platforms); p2.onRightSide = true;
