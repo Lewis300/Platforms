@@ -14,7 +14,7 @@ import com.dataproject.platforms.Utilities.ProababilityTools;
 
 public class PowerupPrompt
 {
-    private static final Texture WINDOW_TEX = new Texture(Platforms.ROOT+"\\Windows\\WindowPromptBackground.png");//TODO get path
+    private static final Texture WINDOW_TEX = new Texture("Windows\\WindowPromptBackground.png");//TODO get path
 
     private boolean isOpen = false;
     private Vector2 position;

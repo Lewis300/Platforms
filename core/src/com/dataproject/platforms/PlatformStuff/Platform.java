@@ -19,7 +19,7 @@ import com.dataproject.platforms.Utilities.WorldContactListener;
 
 public class Platform extends Actor
 {
-    public static final Texture PLATFORM_TEX = new Texture(Platforms.ROOT+"\\Platforms\\PlatformTextureScaledUp.png");
+    public static final Texture PLATFORM_TEX = new Texture("Platforms\\PlatformTextureScaledUp.png");
 
     public static final float PLATFORM_WIDTH = Platforms.SCREEN_WIDTH/7f;
     public static final float PLATFORM_HEIGHT = Platforms.SCREEN_HEIGHT/100f;

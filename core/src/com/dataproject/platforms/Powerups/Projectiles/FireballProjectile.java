@@ -14,7 +14,7 @@ import com.dataproject.platforms.Utilities.WorldContactListener;
 
 public class FireballProjectile extends Actor
 {
-    public static final Texture FIREBALL_TEX = new Texture(Platforms.ROOT+"\\Powerups\\FireBallTexture.png");
+    public static final Texture FIREBALL_TEX = new Texture("Powerups\\FireBallTexture.png");
     private Sprite fireballSprite;
 
     private int fireballWidth;

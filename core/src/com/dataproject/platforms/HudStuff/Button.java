@@ -20,9 +20,9 @@ public class Button
         public static final int ROLL = 2;
     }
 
-    public static final Texture USE_BTN_TEX = new Texture(Platforms.ROOT+"\\Buttons\\YesButton.png"); //TODO Get path
-    public static final Texture DONT_USE_BTN_TEX = new Texture(Platforms.ROOT+"\\Buttons\\NoButton.png"); //TODO get path
-    public static final Texture ROLL_BTN_TEX = new Texture(Platforms.ROOT+"\\Buttons\\RollButton.png");//TODO get path)
+    public static final Texture USE_BTN_TEX = new Texture("Buttons\\YesButton.png"); //TODO Get path
+    public static final Texture DONT_USE_BTN_TEX = new Texture("Buttons\\NoButton.png"); //TODO get path
+    public static final Texture ROLL_BTN_TEX = new Texture("Buttons\\RollButton.png");//TODO get path)
     public static final Sprite ROLL_BTN_SPRITE = MiscTools.createScaledSprite(ROLL_BTN_TEX, 80 ,40);
 
     private Texture tex;
