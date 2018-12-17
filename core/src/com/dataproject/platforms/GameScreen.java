@@ -186,8 +186,8 @@ public class GameScreen implements Screen
 
         Lightning.render(sb, delta);
 
-        if(!currentRoll.getName().equals("Wind")){Fireball.render(sb, delta);}
-        if(!currentRoll.getName().equals("Fireball")){Air.render(sb, delta);}
+        if(currentRoll.getName().equals("Wind")){Air.render(sb, delta);}
+        if(currentRoll.getName().equals("Fireball")){Fireball.render(sb, delta);}
 
         for(int i = 0; i<p1_platforms.size(); i++)
         {
