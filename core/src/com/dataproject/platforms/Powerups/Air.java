@@ -1,5 +1,6 @@
 package com.dataproject.platforms.Powerups;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -101,7 +102,7 @@ public class Air implements Powerup
            for(int i = 0; i < airAmount; i++)
             {
                 airInitalVelocity = new Vector2(200, 0);
-                currentAirSpawnPoint.x = (float) (350 - i * 5);
+                currentAirSpawnPoint.x = (float) (Platforms.SCREEN_WIDTH / 2 - i * 2);
                 currentAirSpawnPoint.y = highestYSpawnPoint;
                 airprojectiles.add(new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity));
                 highestYSpawnPoint -= (float)(GameScreen.platformSpacing + Platform.PLATFORM_HEIGHT);
@@ -113,7 +114,7 @@ public class Air implements Powerup
             for(int i = 0; i < airAmount; i++)
             {
                 airInitalVelocity = new Vector2(-200, 0);
-                currentAirSpawnPoint.x = (float) (450 - i * 5);
+                currentAirSpawnPoint.x = (float) (Platforms.SCREEN_WIDTH / 2 - i * 2);
                 currentAirSpawnPoint.y = highestYSpawnPoint;
                 airprojectiles.add(new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity));
                 highestYSpawnPoint -= (float)(GameScreen.platformSpacing + Platform.PLATFORM_HEIGHT);
