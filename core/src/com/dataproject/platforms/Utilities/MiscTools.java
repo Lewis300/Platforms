@@ -57,7 +57,7 @@ public class MiscTools {
         catch (Exception e)
         {
             e.printStackTrace();
-//            loadFonts();
+           // loadFonts();
         }
     }
 //

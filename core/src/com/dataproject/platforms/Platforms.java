@@ -29,6 +29,7 @@ public class Platforms extends Game
 	public Platforms(int height, int width)
 	{
 		super();
+
 		SCREEN_HEIGHT = height;
 		SCREEN_WIDTH = width;
 	}
@@ -39,6 +40,7 @@ public class Platforms extends Game
 		MiscTools.loadFonts();
 		sb = new SpriteBatch();
 		gameScreen = new GameScreen(sb);
+		Gdx.graphics.setDisplayMode(SCREEN_HEIGHT, SCREEN_HEIGHT, true);
 		setScreen(gameScreen);
 
 	}
