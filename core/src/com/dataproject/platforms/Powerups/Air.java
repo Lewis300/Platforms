@@ -93,6 +93,7 @@ public class Air implements Powerup
                 currentAirSpawnPoint.y = highestYSpawnPoint - (float)(AirProjectile.AIR_TEX1.getHeight() / 2);
                 airprojectiles.add(new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity));
                 highestYSpawnPoint -= platformSpace;
+                GameScreen.PLATS_IN_WORLD--;
             }
         }
         else
@@ -104,6 +105,7 @@ public class Air implements Powerup
                 currentAirSpawnPoint.y = highestYSpawnPoint - (float)(AirProjectile.AIR_TEX1.getHeight() / 2);
                 airprojectiles.add(new AirProjectile(gameworld, currentAirSpawnPoint, airInitalVelocity));
                 highestYSpawnPoint -= platformSpace;
+                GameScreen.PLATS_IN_WORLD--;
             }
         }
     }

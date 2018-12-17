@@ -50,7 +50,7 @@ public class GameScreen implements Screen
     private final boolean allowSleepingObjects = false;
 
     private BodyDef groundBodyDef;
-    private final Vector2 groundPosition = new Vector2(-2, -50);
+    private final Vector2 groundPosition = new Vector2(-2, -125);
     private final Vector2 groundSize = new Vector2(Platforms.SCREEN_WIDTH*3, 20);
     private PolygonShape groundShape;
     private final FixtureDef groundFixtureDef = new FixtureDef();
