@@ -1,6 +1,8 @@
 package com.dataproject.platforms.Utilities;
 
+import box2dLight.Light;
 import com.badlogic.gdx.physics.box2d.*;
+import com.dataproject.platforms.GameScreen;
 import com.dataproject.platforms.PlatformStuff.Platform;
 import com.dataproject.platforms.Player;
 import com.dataproject.platforms.Powerups.Air;
@@ -17,6 +19,7 @@ public class WorldContactListener implements ContactListener
 {
     private Fixture object;
     public static ArrayList<Body> bodiesToDestroy;
+    public static ArrayList<Light> lightsToDestroy;
     private static World gameWorld;
 
     private Player p1, p2;
@@ -27,6 +30,7 @@ public class WorldContactListener implements ContactListener
         this.p1 = p1;
         this.p2 = p2;
         bodiesToDestroy = new ArrayList<Body>();
+        lightsToDestroy = new ArrayList<Light>();
     }
 
     public static void update(float dt)
@@ -40,6 +44,19 @@ public class WorldContactListener implements ContactListener
             }
         }
         bodiesToDestroy.removeAll(bodiesToDestroy);
+
+        for(int i = 0; i<lightsToDestroy.size(); i++)
+        {
+            Light l = lightsToDestroy.get(i);
+            {
+                if(l!=null)
+                {
+                    l.remove();
+                    l.dispose();
+                }
+            }
+        }
+        lightsToDestroy.removeAll(lightsToDestroy);
 
     }
 

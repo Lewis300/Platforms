@@ -1,7 +1,11 @@
 package com.dataproject.platforms.PlatformStuff;
 
+import box2dLight.PointLight;
 import box2dLight.RayHandler;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -24,6 +28,8 @@ public class Platform extends Actor
     public static final float PLATFORM_WIDTH = Platforms.SCREEN_WIDTH/7f;
     public static final float PLATFORM_HEIGHT = Platforms.SCREEN_HEIGHT/100f;
 
+    public static final Sound BANG = Gdx.audio.newSound(Gdx.files.internal("Sounds\\Bang.mp3"));
+
     //Box2d
     private World gameWorld;
 
@@ -33,6 +39,7 @@ public class Platform extends Actor
     private PolygonShape platShape;
     private final Vector2 size = new Vector2(PLATFORM_WIDTH, PLATFORM_HEIGHT);
     private final Vector2 position = new Vector2();
+    private PointLight explosionLight;
 
     //Animation
     private boolean animateDestroy = false;
@@ -65,11 +72,6 @@ public class Platform extends Actor
     @Override
     public void draw(Batch batch, float parentAlpha)
     {
-        if(animateDestroy)
-        {
-            // Animate destruction
-        }
-
         platSprite.setPosition(platform.getPosition().x - size.x, platform.getPosition().y - size.y);
         platSprite.setRotation((float)Math.toDegrees(platform.getAngle()));
         platSprite.draw(batch);
@@ -78,6 +80,9 @@ public class Platform extends Actor
 
     private void init()
     {
+        explosionLight = new PointLight(GameScreen.rayHandler, 3000, Color.WHITE, 600, 0, 0);
+        explosionLight.setActive(false);
+        explosionLight.setXray(true);
         initBox2d();
     }
 
@@ -128,9 +133,13 @@ public class Platform extends Actor
     public void destroy()
     {
        animateDestroy = true;
+       explosionLight.setActive(true);
+       explosionLight.setPosition(platform.getPosition());
        platform.setActive(false);
        WorldContactListener.bodiesToDestroy.add(platform);
+       WorldContactListener.lightsToDestroy.add(explosionLight);
        owner.plats.remove(this);
+       BANG.play();
     }
 
 }

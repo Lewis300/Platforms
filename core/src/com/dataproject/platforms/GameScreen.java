@@ -41,7 +41,7 @@ public class GameScreen implements Screen
 
     //Box2d World
     private World world;
-    private RayHandler rayHandler;
+    public static RayHandler rayHandler;
     public static final float AMBIENT_LIGHT = 1f;
     private PointLight sun;
     private Vector2 sunPos;
@@ -138,7 +138,7 @@ public class GameScreen implements Screen
     {
         timePassed+=dt;
         handleInput(dt);
-//        if(timePassed>=26.67f && (int)(timePassed*50) % 2 == 0){sun.setColor(new Color((float)(Math.random()), (float)(Math.random()), (float)(Math.random()), 1));}
+        if(timePassed>=26.67f && (int)(timePassed*50) % 2 == 0){sun.setColor(new Color((float)(Math.random()), (float)(Math.random()), (float)(Math.random()), 1));}
 
         //Destroy bodies before world steps
         world.step(1/60f, 6,3, 1);
@@ -169,9 +169,6 @@ public class GameScreen implements Screen
         //Clear screen before rendering next frame
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-
-
 
         //b2dr.render(world, gameCam.combined);
 
