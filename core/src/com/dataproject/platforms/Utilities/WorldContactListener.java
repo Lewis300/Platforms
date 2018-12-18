@@ -33,6 +33,7 @@ public class WorldContactListener implements ContactListener
         lightsToDestroy = new ArrayList<Light>();
     }
 
+    public static float lightTime = 0;
     public static void update(float dt)
     {
         for(int i = 0; i<bodiesToDestroy.size(); i++)
@@ -45,7 +46,7 @@ public class WorldContactListener implements ContactListener
         }
         bodiesToDestroy.removeAll(bodiesToDestroy);
 
-        for(int i = 0; i<lightsToDestroy.size(); i++)
+        for(int i = 0; i<lightsToDestroy.size() && lightTime >= 0.05f; i++)
         {
             Light l = lightsToDestroy.get(i);
             {
@@ -55,8 +56,11 @@ public class WorldContactListener implements ContactListener
                     l.dispose();
                 }
             }
+
         }
-        lightsToDestroy.removeAll(lightsToDestroy);
+        if(lightTime >= 0.05f){lightsToDestroy.removeAll(lightsToDestroy); lightTime = 0f;}
+        if(lightsToDestroy.size()>0){lightTime+=dt;}
+
 
     }
 

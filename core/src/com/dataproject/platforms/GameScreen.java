@@ -140,7 +140,7 @@ public class GameScreen implements Screen
         handleInput(dt);
         double rand = Math.random();
 
-        if(timePassed>=26.67f && (int)(timePassed*50) % 2 == 0){sun.setColor(new Color((float)Math.pow(Math.sin(timePassed*5), 2), (float)Math.pow(Math.cos(timePassed*6), 2), (float)Math.pow(Math.sin(timePassed*7) + 0.5f, 2),1 ));}
+        if(timePassed>=26.67f && (int)(timePassed*50) % 2 == 0){sun.setColor(new Color((float)Math.pow(Math.sin(timePassed*5), 2), (float)Math.pow(Math.cos(timePassed*6), 2), (float)Math.pow(Math.sin(timePassed*7), 2),1 ));}
 
         //Destroy bodies before world steps
         world.step(1/60f, 6,3, 1);

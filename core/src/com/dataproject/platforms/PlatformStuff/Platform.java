@@ -4,6 +4,7 @@ import box2dLight.PointLight;
 import box2dLight.RayHandler;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -28,7 +29,7 @@ public class Platform extends Actor
     public static final float PLATFORM_WIDTH = Platforms.SCREEN_WIDTH/7f;
     public static final float PLATFORM_HEIGHT = Platforms.SCREEN_HEIGHT/100f;
 
-    public static final Sound BANG = Gdx.audio.newSound(Gdx.files.internal("Sounds\\Bang.mp3"));
+    public static final Music BANG = Gdx.audio.newMusic(Gdx.files.internal("Sounds\\Bang.mp3"));
 
     //Box2d
     private World gameWorld;

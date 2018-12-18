@@ -63,7 +63,7 @@ public class PlayerCharacter extends Actor
         velocityY.set(0, velocityY.y + (-9.81f*timePassed));
 
         //playercharSprite.setPosition(playercharBody.getPosition().x - size.x, playercharBody.getPosition().y - size.y + deltaY);
-        playercharBody.setLinearVelocity(velocityY);
+        playercharBody.getPosition().set(playercharBody.getPosition().x, playercharBody.getPosition().y + deltaY);
         playercharBody.setType(BodyDef.BodyType.DynamicBody);
         playercharBody.setAngularVelocity(0);
         playercharBody.setActive(true);
