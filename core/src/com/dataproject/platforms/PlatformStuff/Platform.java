@@ -80,7 +80,7 @@ public class Platform extends Actor
 
     private void init()
     {
-        explosionLight = new PointLight(GameScreen.rayHandler, 3000, Color.WHITE, 600, 0, 0);
+        explosionLight = new PointLight(GameScreen.rayHandler, 30, Color.WHITE, 6000, 0, 0);
         explosionLight.setActive(false);
         explosionLight.setXray(true);
         initBox2d();
