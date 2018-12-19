@@ -181,11 +181,10 @@ public class GameScreen implements Screen
 
         pdr.render(Wave.psys, 1, gameCam.combined);
 
-        if(timePassed <= 4){sb.setColor(1,1,1,1/timePassed);}
-        else{sb.setColor(1,1,1,1);}
-        sb.begin();
+        sb.setColor(1,1,1,1);
+        if(timePassed >= 1.0 && 1.0f/timePassed*2 > 1.0/8.0){sb.setColor(1,1,1,1.0f/timePassed*2);}
 
-        sb.draw(backtex, 0, 0);
+        sb.begin();
 
         Lightning.render(sb, delta);
 
@@ -207,7 +206,7 @@ public class GameScreen implements Screen
 
         if(PLATS_IN_WORLD == (p1_platforms.size() + p2_platforms.size()) && PLATS_IN_WORLD > 0){HH.render(sb, delta);}
 
-        sb.draw(SPLASHSCREEN, 0,0);
+        if(timePassed<4.0){sb.draw(SPLASHSCREEN, 0,0);}
         sb.end();
 
         WorldContactListener.update(delta);
