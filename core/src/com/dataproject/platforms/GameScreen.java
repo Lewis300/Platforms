@@ -28,6 +28,8 @@ import java.util.ArrayList;
 
 public class GameScreen implements Screen
 {
+    public static final Texture SPLASHSCREEN = new Texture("Splash.png");
+
     private Batch sb;
     private static final int PPM = 100;
     private static final int INITIAL_PLAT_AMT = 15;
@@ -179,9 +181,11 @@ public class GameScreen implements Screen
 
         pdr.render(Wave.psys, 1, gameCam.combined);
 
+        if(timePassed <= 4){sb.setColor(1,1,1,1/timePassed);}
+        else{sb.setColor(1,1,1,1);}
         sb.begin();
 
-        //sb.draw(backtex, 0, 0);
+        sb.draw(backtex, 0, 0);
 
         Lightning.render(sb, delta);
 
@@ -203,6 +207,7 @@ public class GameScreen implements Screen
 
         if(PLATS_IN_WORLD == (p1_platforms.size() + p2_platforms.size()) && PLATS_IN_WORLD > 0){HH.render(sb, delta);}
 
+        sb.draw(SPLASHSCREEN, 0,0);
         sb.end();
 
         WorldContactListener.update(delta);

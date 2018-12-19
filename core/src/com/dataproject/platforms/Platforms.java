@@ -39,7 +39,8 @@ public class Platforms extends Game
 	{
 		MiscTools.loadFonts();
 		sb = new SpriteBatch();
-		Gdx.graphics.setDisplayMode(SCREEN_HEIGHT, SCREEN_HEIGHT, true);
+		System.out.print(SCREEN_HEIGHT+", "+SCREEN_WIDTH);
+		//Gdx.graphics.setDisplayMode(SCREEN_HEIGHT, SCREEN_HEIGHT, true);
 		gameScreen = new GameScreen(sb);
 		setScreen(gameScreen);
 
