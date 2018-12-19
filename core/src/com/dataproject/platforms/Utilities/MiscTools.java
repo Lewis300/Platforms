@@ -13,6 +13,7 @@ import static com.dataproject.platforms.Platforms.ROOT;
 public class MiscTools {
     public static BitmapFont font16;
     public static BitmapFont font12;
+    public static BitmapFont font24;
 
     public static Sprite createScaledSprite(Texture texture, int width, int height) {
         Sprite sprite = new Sprite(texture);
@@ -28,30 +29,37 @@ public class MiscTools {
         return sprite.getTexture();
     }
 
-    public static void loadFonts() {
+    public static void loadFonts()
+    {
 //        FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
 //        params.size = 16;
 //        params.characters = "!QWERTYUIOPASDFGHJKLZXCVBNM1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm, /:";
 //        // set params
 //
-//        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.absolute("gamefont.ttf"));
-//        font16 = gen.generateFont(params);
-//        font16.setColor(Color.BLACK);
+//        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("Font/gamefont.ttf"));
+////        font16 = gen.generateFont(params);
+////        font16.setColor(Color.BLACK);
+////
+////        params.size = 12;
+////        font12 = gen.generateFont(params);
+////        font12.setColor(Color.BLACK);
 //
-//        params.size = 12;
-//        font12 = gen.generateFont(params);
-//        font12.setColor(Color.BLACK);
-//        gen.dispose();
+//        params.size = 24;
+//        font24 = gen.generateFont(params);
+//        font24.setColor(Color.BLACK);
+       // gen.dispose();
 
         try
         {
             SmartFontGenerator sfg = new SmartFontGenerator();
 
+            font24 = sfg.createFont(Gdx.files.local("generated-fonts\\24_24font.fnt"), "24font", 24);
             font16 = sfg.createFont(Gdx.files.local("generated-fonts\\16_16font.fnt"), "16font", 16);
             font12 = sfg.createFont(Gdx.files.local("generated-fonts\\12_12font.fnt"), "12font", 12);
 
 //            font16 = new BitmapFont(sfg.getFontFile("16font.fnt", 16));
 //            font12 = new BitmapFont(sfg.getFontFile("12font.fnt", 12));
+            //font24 = sfg.createFont(Gdx.files.local("Font/gamefont.ttf"), "24Font", 24);
 
         }
         catch (Exception e)

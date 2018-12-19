@@ -60,7 +60,7 @@ public class PowerupPrompt
         MiscTools.font16.draw(batch, ("Odds in favour of harming YOU "+currentOddsToHarmUser), position.x +50, position.y + 275);
         MiscTools.font12.draw(batch, ("If YOU are harmed, you lose: "+currentOnHarmSelf+" platforms"), position.x +50, position.y + 240);
         MiscTools.font12.draw(batch, ("If THE ENEMY is harmed, they lose: "+currentOnHarmOther+" platforms"), position.x +50, position.y + 210);
-
+        MiscTools.font24.draw(batch, "USE?", position.x + WINDOW_TEX.getWidth()/2 - MiscTools.font16.getSpaceWidth()*6, position.y + 100 );
 
 
     }

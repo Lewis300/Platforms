@@ -86,7 +86,7 @@ public class SmartFontGenerator {
 		PixmapPacker packer = new PixmapPacker(pageWidth, pageHeight, Pixmap.Format.RGBA8888, 2, false);
 		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
 		parameter.size = fontSize;
-		parameter.characters = "!QWERTYUIOPASDFGHJKLZXCVBNM1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm, /:";
+		parameter.characters = "!QWERTYUIOPASDFGHJKLZXCVBNM1234567890-=qwertyuiop[]asdfghjkl;'zx?cvbnm, /:";
         parameter.color = Color.BLACK;
 		parameter.flip = false;
 		parameter.packer = packer;
