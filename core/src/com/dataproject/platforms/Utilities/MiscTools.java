@@ -59,7 +59,7 @@ public class MiscTools {
 
 //            font16 = new BitmapFont(sfg.getFontFile("16font.fnt", 16));
 //            font12 = new BitmapFont(sfg.getFontFile("12font.fnt", 12));
-            //font24 = sfg.createFont(Gdx.files.local("Font/gamefont.ttf"), "24Font", 24);
+            //font24 = sfg.createFont(Gdx.files.local("Font/gamefont.ttf"), "24font", 24);
 
         }
         catch (Exception e)
