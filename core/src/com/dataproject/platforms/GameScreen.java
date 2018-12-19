@@ -5,6 +5,7 @@ import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.*;
@@ -83,7 +84,7 @@ public class GameScreen implements Screen
     private HudHandler HH;
 
     //Sounds
-    private Sound backgroundMusic;
+    private Music backgroundMusic;
 
     public GameScreen(Batch sb)
     {
@@ -99,7 +100,7 @@ public class GameScreen implements Screen
 //        background.setRegion(backtex);
 
         HH = new HudHandler();
-        backgroundMusic = Gdx.audio.newSound(Gdx.files.internal("Sounds\\BackgroundMusic.mp3"));
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("Sounds\\BackgroundMusic.mp3"));
         backgroundMusic.play();
     }
 

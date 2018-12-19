@@ -11,7 +11,7 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 //		config.height = 571;
 //		config.width = (int)(500*1.6180339);
-		//config.fullscreen = true;
+//		config.fullscreen = true;
 
 		config.title = "PLATFORMS OF DEATH";
 		config.addIcon("Players\\Player1Texture.png", Files.FileType.Internal);
